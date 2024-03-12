@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Egwarancje.Views.LoginView"
+             xmlns:vm="clr-namespace:Egwarancje.ViewModels"
+             x:DataType="vm:LoginViewModel"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutItemIsVisible="False"
+             Title="Login">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="1.5,2"
+                             EndPoint="0,2">
+            <GradientStop Color="#660a0a"
+                          Offset="0.0" />
+            <GradientStop Color="#280645"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <ScrollView>
+        <VerticalStackLayout Spacing="25"
+                             Padding="30, 0"
+                             VerticalOptions="Center">
+            <Frame Padding="12, 5"
+                   VerticalOptions="Start"
+                   BackgroundColor="Transparent"
+                   BorderColor="Transparent">
+                <Entry Text="Logowanie"
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       FontSize="30"
+                       FontFamily="Times New Roman" />
+            </Frame>
+            <Frame Padding="12, 5">
+                <Entry Placeholder="Email"
+                       Text="{Binding Email}"
+                       TextColor="#333" />
+            </Frame>
+            <Frame Padding="12, 5">
+                <Entry Placeholder="Password"
+                       IsPassword="True"
+                       Text="{Binding Password}"
+                       TextColor="#333" />
+            </Frame>
+
+            <!--
+            <Button Text="Login"
+                    Command="{Binding LoginCommand}" />
+            <Button Text="Create Account"
+                    Background="Blue"
+                    TextColor="#EEE"
+                    Command="{Binding CreateAccountCommand}" />
+            -->
+
+            <Label x:Name="versionLabel"
+                   TextColor="White" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
