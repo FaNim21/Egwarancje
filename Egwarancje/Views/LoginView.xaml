@@ -42,14 +42,14 @@
                        TextColor="#333" />
             </Frame>
 
-            <!--
             <Button Text="Login"
                     Command="{Binding LoginCommand}" />
             <Button Text="Create Account"
                     Background="Blue"
                     TextColor="#EEE"
-                    Command="{Binding CreateAccountCommand}" />
-            -->
+                    Command="{Binding RegisterCommand}" />
+            <Button Text="Reset Password"
+                    Command="{Binding ResetPasswordCommand}" />
 
             <Label x:Name="versionLabel"
                    TextColor="White" />

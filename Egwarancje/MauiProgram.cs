@@ -23,9 +23,18 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
         //xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-        builder.Services.AddSingleton<LoginView>();
-        builder.Services.AddSingleton<LoginViewModel>();
 
+        builder.Services.AddTransient<LoginView>();
+        builder.Services.AddTransient<LoginViewModel>();
+
+        builder.Services.AddTransient<RegisterView>();
+        builder.Services.AddTransient<RegisterViewModel>();
+
+        builder.Services.AddTransient<RecoverPasswordView>();
+        builder.Services.AddTransient<RecoverPasswordViewModel>();
+
+        builder.Services.AddTransient<OrderPanelView>();
+        builder.Services.AddTransient<OrderPanelViewModel>();
 
         return builder.Build();
     }

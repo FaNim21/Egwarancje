@@ -12,4 +12,22 @@
                   ContentTemplate="{DataTemplate view:LoginView}"
                   Route="Login" />
 
+    <ShellContent Title="RegisterPage"
+                  ContentTemplate="{DataTemplate view:RegisterView}"
+                  Route="Register" />
+
+    <ShellContent Title="RecoverPage"
+                  ContentTemplate="{DataTemplate view:RecoverPasswordView}"
+                  Route="Recover" />
+
+    <TabBar>
+        <ShellContent Title="OrderPanelPage"
+                      ContentTemplate="{DataTemplate view:OrderPanelView}"
+                      Route="OrderPanel" />
+
+        <ShellContent Title="OrderPanelPage"
+                      ContentTemplate="{DataTemplate view:OrderPanelView}"
+                      Route="OrderPanel" />
+    </TabBar>
+
 </Shell>
