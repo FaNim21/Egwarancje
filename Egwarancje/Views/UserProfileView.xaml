@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Egwarancje.Views.OrderPanelView"
+             x:Class="Egwarancje.Views.UserProfileView"
              xmlns:vm="clr-namespace:Egwarancje.ViewModels"
-             x:DataType="vm:OrderPanelViewModel"
+             x:DataType="vm:UserProfileViewModel"
              BackgroundColor="#1E1E1E"
-             Title="OrderPanelView">
+             Title="UserProfileView">
     <VerticalStackLayout>
-        <Label Text="TU BĘDĄ ZAMÓWNIENIA"
+        <Label 
+            Text="TU BĘDZIE PANEL UŻYTKOWNIKA"
                FontSize="24"
                TextColor="White"
                Margin="20"
                VerticalOptions="Center"
                HorizontalOptions="Center" />
+
+        <Button Text="Wyloguj"
+                BackgroundColor="#6B5B95"
+                Command="{Binding LogoutCommand}"
+                Margin="0,10" />
     </VerticalStackLayout>
 </ContentPage>

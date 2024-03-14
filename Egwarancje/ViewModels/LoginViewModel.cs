@@ -20,7 +20,7 @@ public partial class LoginViewModel : BaseViewModel
     [RelayCommand]
     public async Task Login()
     {
-        await Shell.Current.GoToAsync("///MainTab");
+        await Shell.Current.GoToAsync("///MainTab//OrderPanel");
     }
 
     [RelayCommand]

@@ -7,7 +7,7 @@
        Shell.FlyoutBehavior="Disabled"
        Shell.NavBarIsVisible="False"
        Title="Egwarancje">
-
+    
     <ShellContent Title="LoginPage"
                   ContentTemplate="{DataTemplate view:LoginView}"
                   Route="Login" />
@@ -20,14 +20,15 @@
                   ContentTemplate="{DataTemplate view:RecoverPasswordView}"
                   Route="Recover" />
 
-    <TabBar Route="MainTab">
-        <ShellContent Title="OrderPanelPage"
+    <TabBar Route="MainTab"
+            Shell.TabBarBackgroundColor="#141414">
+        <ShellContent Title="Zamówienia"
                       ContentTemplate="{DataTemplate view:OrderPanelView}"
                       Route="OrderPanel" />
 
-        <ShellContent Title="OrderPanelPage"
-                      ContentTemplate="{DataTemplate view:OrderPanelView}"
-                      Route="OrderPanel2" />
+        <ShellContent Title="Profil"
+                      ContentTemplate="{DataTemplate view:UserProfileView}"
+                      Route="UserProfile" />
     </TabBar>
 
 </Shell>
