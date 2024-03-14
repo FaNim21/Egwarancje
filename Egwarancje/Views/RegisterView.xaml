@@ -6,18 +6,70 @@
              x:DataType="vm:RegisterViewModel"
              Shell.NavBarIsVisible="False"
              Shell.FlyoutItemIsVisible="False"
-             Title="Register">
-    <VerticalStackLayout>
-        <Label Text="Welcome to .NET MAUI!"
-               VerticalOptions="Center"
-               HorizontalOptions="Center" />
+             Title="Register"
+             BackgroundColor="#1E1E1E">
 
-        <Button Text="Register"
-                Background="Blue"
+    <StackLayout Padding="20">
+
+        <Label Text="Tworzenie konta"
+               HorizontalOptions="Start" 
+               TextColor="#FFFFFF"
+               FontSize="30"
+               Margin="0, 20"/>
+
+        <Entry Placeholder="Imię i nazwisko"
+                Text="{Binding Name, Mode=TwoWay}" 
+                Keyboard="Text"
+                BackgroundColor="#333333"
+                TextColor="#FFFFFF"
+                Margin="0,10"/>
+
+
+        <Entry Placeholder="Email"
+               Text="{Binding Email, Mode=TwoWay}" 
+               Keyboard="Email"
+               BackgroundColor="#333333"
+               TextColor="#FFFFFF"
+               Margin="0,10"/>
+
+        <Entry Placeholder="Numer telefonu"
+               Text="{Binding PhoneNumber, Mode=TwoWay}" 
+               Keyboard="Telephone"
+               BackgroundColor="#333333"
+               TextColor="#FFFFFF"
+               Margin="0,10"/>
+
+        <Entry Placeholder="Hasło"
+               Text="{Binding Password, Mode=TwoWay}" 
+               IsPassword="True"
+               BackgroundColor="#333333"
+               TextColor="#FFFFFF"
+               Margin="0,10"/>
+
+        <Entry Placeholder="Powtórz hasło"
+               Text="{Binding PasswordAgain, Mode=TwoWay}" 
+               IsPassword="True"
+               BackgroundColor="#333333"
+               TextColor="#FFFFFF"
+               Margin="0,10"/>
+
+        <Button Text="Stwórz konto"
+                BackgroundColor="#6B5B95"
                 TextColor="#EEE"
-                Command="{Binding FinalizeRegisterCommand}" />
-        
-        <Button Text="Back"
-                Command="{Binding BackCommand}" />
-    </VerticalStackLayout>
+                Command="{Binding FinalizeRegisterCommand}"
+                Margin="0,20,0,0"/>
+
+        <Button Text="Powrót"
+                BackgroundColor="#6B5B95"
+                Command="{Binding BackCommand}" 
+                Margin="0,10"/>
+
+        <Label Text="Tworząc konto lub podpisując umowę, wyrażasz zgodę na nasz Regulamin."
+               VerticalOptions="CenterAndExpand"
+               HorizontalTextAlignment="Center"
+               TextColor="#FFFFFF"
+               FontSize="Small"
+               Margin="0, 20"/>
+
+    </StackLayout>
 </ContentPage>
