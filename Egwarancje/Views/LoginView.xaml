@@ -6,16 +6,9 @@
              x:DataType="vm:LoginViewModel"
              Shell.NavBarIsVisible="False"
              Shell.FlyoutItemIsVisible="False"
-             Title="Login">
-    <ContentPage.Background>
-        <LinearGradientBrush StartPoint="1.5,2"
-                             EndPoint="0,2">
-            <GradientStop Color="#227FB5"
-                          Offset="0.0" />
-            <GradientStop Color="#280645"
-                          Offset="1.0" />
-        </LinearGradientBrush>
-    </ContentPage.Background>
+             Title="Login"
+             BackgroundColor="#1E1E1E">
+
     <ScrollView>
         <VerticalStackLayout Spacing="25"
                              Padding="30, 100"
@@ -26,7 +19,7 @@
                    BackgroundColor="Transparent"
                    BorderColor="Transparent">
                 
-                <Label Text="E-Gwarancja"
+                <Label Text="E-Gwarancje"
                    HorizontalOptions="Center"                    
                    TextColor="#FFFFFF"
                    FontSize="40"
