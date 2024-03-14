@@ -20,14 +20,14 @@
                   ContentTemplate="{DataTemplate view:RecoverPasswordView}"
                   Route="Recover" />
 
-    <TabBar>
+    <TabBar Route="MainTab">
         <ShellContent Title="OrderPanelPage"
                       ContentTemplate="{DataTemplate view:OrderPanelView}"
                       Route="OrderPanel" />
 
         <ShellContent Title="OrderPanelPage"
                       ContentTemplate="{DataTemplate view:OrderPanelView}"
-                      Route="OrderPanel" />
+                      Route="OrderPanel2" />
     </TabBar>
 
 </Shell>
