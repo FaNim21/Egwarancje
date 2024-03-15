@@ -1,10 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Egwarancje.Context;
 
 namespace Egwarancje.ViewModels;
 
 public partial class LoginViewModel : BaseViewModel
 {
+    public LocalDatabaseContext Database { get; set; }
+
     [ObservableProperty]
     private string email;
 
@@ -12,9 +15,9 @@ public partial class LoginViewModel : BaseViewModel
     private string password;
 
 
-    public LoginViewModel()
+    public LoginViewModel(LocalDatabaseContext database)
     {
-
+        Database = database;
     }
 
     [RelayCommand]

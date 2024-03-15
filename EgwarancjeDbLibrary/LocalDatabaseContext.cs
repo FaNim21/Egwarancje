@@ -1,13 +1,10 @@
-﻿using Egwarancje.Models;
-using Egwarancje.Utils;
-using Microsoft.Data.SqlClient;
+﻿using EgwarancjeDbLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Egwarancje.Context;
+namespace EgwarancjeDbLibrary;
 
 public class LocalDatabaseContext : DbContext
 {
-    //public DbSet<Attachment> Attachments { get; set; }
     public DbSet<User> Users { get; set; }
 
 

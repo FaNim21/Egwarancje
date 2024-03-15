@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using Egwarancje.Context;
 using Egwarancje.ViewModels;
 using Egwarancje.Views;
 using Microsoft.Extensions.Logging;
@@ -23,6 +24,8 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
         //xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+
+        builder.Services.AddDbContext<LocalDatabaseContext>();
 
         builder.Services.AddTransient<LoginView>();
         builder.Services.AddTransient<LoginViewModel>();
