@@ -11,7 +11,7 @@ public class LocalDatabaseContext : DbContext
     public LocalDatabaseContext() { }
     public LocalDatabaseContext(DbContextOptions<LocalDatabaseContext> options) : base(options)
     {
-        //Database.Migrate();
+        Database.Migrate();
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -21,8 +21,7 @@ public class LocalDatabaseContext : DbContext
         string srvrusername = "fanim";
         string srvrpassword = "fanim123";
 
-        string sqlconn = $"Data Source={srvrname};Initial Catalog={srvrdbname};User ID={srvrusername};Password={srvrpassword}";
+        string sqlconn = $"Data Source={srvrname};Initial Catalog={srvrdbname};User ID={srvrusername};Password={srvrpassword};TrustServerCertificate=True";
         optionsBuilder.UseSqlServer(sqlconn);
-        Database.Migrate();
     }
 }
