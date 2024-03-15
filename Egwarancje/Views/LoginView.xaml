@@ -35,6 +35,7 @@
                        Text="{Binding Email}"
                        BackgroundColor="Transparent"
                        PlaceholderColor="White"
+                       TextColor="White"
                        FontFamily=""
                        />
             </Frame>
@@ -45,6 +46,7 @@
                        IsPassword="True"
                        Text="{Binding Password}"
                        PlaceholderColor="White"
+                       TextColor="White"
                        BackgroundColor="#1E1E1E"
                         FontFamily=""
                        />
@@ -62,8 +64,7 @@
                     Command="{Binding LoginCommand}" 
                     FontFamily=""
                     FontSize="Medium"
-
-                    />
+                    BackgroundColor="#285c2e"/>
                     
             <Button Text="Nie posiadasz konta? Zarejestruj się"
                     Background="Transparent"
