@@ -29,7 +29,11 @@ public partial class LoginViewModel : BaseViewModel
     {
         //List<User> users = database.Users.ToList();
         //Trace.WriteLine(users.Count);
-        if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password)) return;
+        if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
+        {
+            await App.Current!.MainPage!.DisplayAlert("Message", "Uzupełnij dane logowania", "OK");
+            return;
+        }
         User? user = database.Users.FirstOrDefault(u => u.Email == Email && u.Password == Password);
 
         if (user == null)
