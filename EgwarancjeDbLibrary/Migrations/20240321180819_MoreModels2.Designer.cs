@@ -4,6 +4,7 @@ using EgwarancjeDbLibrary;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EgwarancjeDbLibrary.Migrations
 {
     [DbContext(typeof(LocalDatabaseContext))]
-    partial class LocalDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240321180819_MoreModels2")]
+    partial class MoreModels2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,44 +47,7 @@ namespace EgwarancjeDbLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("EgwarancjeDbLibrary.Models.OrderSpec", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Realization")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("ValueGross")
-                        .HasColumnType("real");
-
-                    b.Property<float>("ValueNet")
-                        .HasColumnType("real");
-
-                    b.Property<int>("WarrantyLength")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrdersSpec");
                 });
 
             modelBuilder.Entity("EgwarancjeDbLibrary.Models.User", b =>
@@ -110,36 +76,6 @@ namespace EgwarancjeDbLibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("EgwarancjeDbLibrary.Models.Order", b =>
-                {
-                    b.HasOne("EgwarancjeDbLibrary.Models.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("EgwarancjeDbLibrary.Models.OrderSpec", b =>
-                {
-                    b.HasOne("EgwarancjeDbLibrary.Models.Order", "Order")
-                        .WithMany("OrderSpecs")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("EgwarancjeDbLibrary.Models.Order", b =>
-                {
-                    b.Navigation("OrderSpecs");
-                });
-
-            modelBuilder.Entity("EgwarancjeDbLibrary.Models.User", b =>
-                {
-                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

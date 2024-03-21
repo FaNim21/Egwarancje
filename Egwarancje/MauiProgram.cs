@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Maui;
-//using Egwarancje.Context;
 using EgwarancjeDbLibrary;
 using Egwarancje.ViewModels;
 using Egwarancje.Views;

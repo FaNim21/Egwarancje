@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using EgwarancjeDbLibrary;
 using EgwarancjeDbLibrary.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Egwarancje.ViewModels;
 
@@ -30,12 +31,17 @@ public partial class LoginViewModel : BaseViewModel
             return;
         }
 
-        User? user = database.Users.FirstOrDefault(u => u.Email.Equals(Email) && u.Password.Equals(Password));
+        User? user = database.Users
+            .Include(u => u.Orders!)
+            .ThenInclude(o => o.OrderSpecs)
+            .FirstOrDefault(u => u.Email.Equals(Email) && u.Password.Equals(Password));
         if (user == null)
         {
             await Application.Current!.MainPage!.DisplayAlert("Message", "Nieprawidłowe dane logowania", "OK");
             return;
         }
+
+        database.User = user;
 
         await Shell.Current.GoToAsync("///MainTab//OrderPanel");
     }

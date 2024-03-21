@@ -17,4 +17,5 @@ public class User
 
     public int PhoneNumber { get; set; }
 
+    public List<Order>? Orders { get; set; }
 }

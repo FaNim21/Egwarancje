@@ -3,15 +3,76 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Egwarancje.Views.OrderPanelView"
              xmlns:vm="clr-namespace:Egwarancje.ViewModels"
+             xmlns:models="clr-namespace:EgwarancjeDbLibrary.Models;assembly=EgwarancjeDbLibrary"
              x:DataType="vm:OrderPanelViewModel"
              BackgroundColor="#1E1E1E"
              Title="OrderPanelView">
-    <VerticalStackLayout>
-        <Label Text="TU BĘDĄ ZAMÓWNIENIA"
-               FontSize="24"
-               TextColor="White"
-               Margin="20"
-               VerticalOptions="Center"
-               HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid>
+        <StackLayout>
+            <CollectionView ItemsSource="{Binding Orders}"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="StartAndExpand">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       SnapPointsType="None"
+                                       SnapPointsAlignment="Start"
+                                       ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Order">
+                        <Grid Padding="10"
+                              BackgroundColor="PaleVioletRed">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+
+                            <VerticalStackLayout>
+
+                                <Label Text="{Binding OrderNumber}"
+                                       FontSize="18"
+                                       TextColor="White"
+                                       Grid.Row="0" />
+                                <Label Text="{Binding OrderDate}"
+                                       FontSize="14"
+                                       TextColor="White"
+                                       Grid.Row="1" />
+
+                                <CollectionView ItemsSource="{Binding OrderSpecs}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="models:OrderSpec">
+                                            <HorizontalStackLayout>
+
+                                                <Label Text="{Binding Name}" />
+                                                <Label Text=" - " />
+                                                <Label Text="{Binding Realization}" />
+                                            </HorizontalStackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </VerticalStackLayout>
+
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+
+        <VerticalStackLayout VerticalOptions="Center">
+            <Button Text="Dodaj zamowienie"
+                    Command="{Binding AddOrderCommand}"
+                    HorizontalOptions="Center"
+                    BackgroundColor="LightGreen"
+                    TextColor="Black" />
+            <Button Text="usun ostatnie zamowienie"
+                    Command="{Binding RemoveOrderCommand}"
+                    HorizontalOptions="Center"
+                    BackgroundColor="OrangeRed"
+                    TextColor="Black"
+                    Margin="0, 10, 0, 0" />
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>
