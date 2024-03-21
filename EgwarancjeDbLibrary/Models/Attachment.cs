@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Egwarancje.Models
-{
+namespace EgwarancjeDbLibrary.Models;
+
     public class Attachment
     {
         [Key]
@@ -18,4 +13,4 @@ namespace Egwarancje.Models
         public int WarrantySpecId { get; set; }
 
     }
-}
+
