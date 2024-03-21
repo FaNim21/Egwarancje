@@ -93,6 +93,10 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Models\" />
+	</ItemGroup>
+
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionEgwarancjeHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

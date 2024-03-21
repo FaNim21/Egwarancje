@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Egwarancje.Models
-{
-    public class Order
+namespace EgwarancjeDbLibrary.Models;
+
+public class Order
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -23,4 +18,4 @@ namespace Egwarancje.Models
         [ForeignKey(nameof(User.Id))]
         public int UserId { get; set; }
     }
-}
+
