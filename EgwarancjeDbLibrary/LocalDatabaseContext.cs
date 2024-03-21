@@ -17,9 +17,9 @@ public class LocalDatabaseContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         string srvrdbname = "egwarancje";
-        string srvrname = "192.168.0.165";
-        string srvrusername = "fanim";
-        string srvrpassword = "fanim123";
+        string srvrname = "192.168.56.1";
+        string srvrusername = "borek";
+        string srvrpassword = "borek123";
 
         string sqlconn = $"Data Source={srvrname};Initial Catalog={srvrdbname};User ID={srvrusername};Password={srvrpassword};TrustServerCertificate=True";
         optionsBuilder.UseSqlServer(sqlconn);
