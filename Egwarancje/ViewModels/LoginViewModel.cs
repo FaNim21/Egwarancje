@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Converters;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 //using Egwarancje.Context;
 using EgwarancjeDbLibrary;
@@ -26,8 +27,16 @@ public partial class LoginViewModel : BaseViewModel
     [RelayCommand]
     public async Task Login()
     {
-        List<User> users = database.Users.ToList();
-        Trace.WriteLine(users.Count);
+        //List<User> users = database.Users.ToList();
+        //Trace.WriteLine(users.Count);
+        if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password)) return;
+        User? user = database.Users.FirstOrDefault(u => u.Email == Email && u.Password == Password);
+
+        if (user == null)
+        {
+            await App.Current!.MainPage!.DisplayAlert("Message", "Nieprawidłowe dane logowania", "OK");
+            return;
+        }
 
         await Shell.Current.GoToAsync("///MainTab//OrderPanel");
     }
