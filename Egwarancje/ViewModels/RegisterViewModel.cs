@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using EgwarancjeDbLibrary;
 using EgwarancjeDbLibrary.Models;
-using System.Diagnostics;
 
 namespace Egwarancje.ViewModels;
 
@@ -11,19 +10,19 @@ public partial class RegisterViewModel : BaseViewModel
     public readonly LocalDatabaseContext database;
 
     [ObservableProperty]
-    private string name;
+    private string? name;
 
     [ObservableProperty]
-    private string email;
+    private string? email;
 
     [ObservableProperty]
     private int phoneNumber;
 
     [ObservableProperty]
-    private string password;
+    private string? password;
 
     [ObservableProperty]
-    private string passwordAgain;
+    private string? passwordAgain;
 
 
     public RegisterViewModel(LocalDatabaseContext database)
@@ -40,22 +39,22 @@ public partial class RegisterViewModel : BaseViewModel
     [RelayCommand]
     public async Task FinalizeRegister()
     {
-        if(string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(PhoneNumber.ToString()) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(PasswordAgain)) 
+        if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(PhoneNumber.ToString()) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(PasswordAgain))
         {
-            await App.Current!.MainPage!.DisplayAlert("Message", "Uzupełnij wszystkie dane wymagagane do rejestracji", "OK");
+            await Application.Current!.MainPage!.DisplayAlert("Nie pełne dane", "Uzupełnij wszystkie dane wymagagane do rejestracji", "OK");
             return;
         }
 
-        if(Password != PasswordAgain)
+        if (!Password.Equals(PasswordAgain))
         {
-            await App.Current!.MainPage!.DisplayAlert("Message", "Pola hasło oraz hasło ponownie nie są identyczne", "OK");
+            await Application.Current!.MainPage!.DisplayAlert("Hasła", "Pola hasło oraz hasło ponownie nie są identyczne", "OK");
             return;
         }
 
-        User? user = database.Users.FirstOrDefault(u => u.Email == Email);
+        User? user = database.Users.FirstOrDefault(u => u.Email.Equals(Email));
         if (user == null)
         {
-            User newUser = new User
+            User newUser = new()
             {
                 Name = Name,
                 Email = Email,
@@ -64,15 +63,13 @@ public partial class RegisterViewModel : BaseViewModel
             };
 
             database.Users.Add(newUser);
-
             await database.SaveChangesAsync();
 
-            await App.Current!.MainPage!.DisplayAlert("Message", "Zarejestrowano pomyślnie użytkownika", "OK");
+            await Application.Current!.MainPage!.DisplayAlert("Rejestracja", "Zarejestrowano pomyślnie użytkownika", "OK");
         }
-
         else
         {
-            await App.Current!.MainPage!.DisplayAlert("Message", "Istnieje już użytkownik o podanym adresie e-mail", "OK");
+            await Application.Current!.MainPage!.DisplayAlert("Rejestracja", "Istnieje już użytkownik o podanym adresie e-mail", "OK");
             return;
         }
 
