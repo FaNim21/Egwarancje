@@ -11,12 +11,23 @@
 
     <StackLayout Padding="20">
 
+        <StackLayout>
+            <Image Source="Images/return_image.png" Aspect="AspectFit" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+
+
+
+
         <Label Text="Tworzenie konta"
                HorizontalOptions="Start" 
                TextColor="#FFFFFF"
                FontSize="30"
+               FontAttributes="Bold"
                Margin="0, 20"/>
-
 
         <Frame Padding="12, 5, 5, 5"
        BackgroundColor="#1E1E1E"
@@ -44,7 +55,9 @@
             <Entry Placeholder="Numer telefonu"
                Text="{Binding PhoneNumber, Mode=TwoWay}" 
                Keyboard="Telephone"
-               TextColor="#FFFFFF"/>
+               TextColor="#FFFFFF"
+               MaxLength="9"/>
+            
         </Frame>
 
 
@@ -73,11 +86,6 @@
                 TextColor="#EEE"
                 Command="{Binding FinalizeRegisterCommand}"
                 Margin="0,20,0,0"/>
-
-        <Button Text="Powrót"
-                BackgroundColor="#285c2e"
-                Command="{Binding BackCommand}" 
-                Margin="0,20"/>
 
         <Label Text="Tworząc konto lub podpisując umowę, wyrażasz zgodę na nasz Regulamin."
                VerticalOptions="CenterAndExpand"
