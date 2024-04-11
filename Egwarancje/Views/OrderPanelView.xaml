@@ -12,57 +12,62 @@
             <CollectionView ItemsSource="{Binding Orders}"
                             HorizontalOptions="CenterAndExpand"
                             VerticalOptions="StartAndExpand">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical"
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"
                                        SnapPointsType="None"
                                        SnapPointsAlignment="Start"
                                        ItemSpacing="10" />
-                </CollectionView.ItemsLayout>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Order">
+                            <Grid Padding="10"
+                            BackgroundColor="PaleVioletRed">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="60" />
+                                </Grid.RowDefinitions>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Order">
-                        <Grid Padding="10"
-                              BackgroundColor="PaleVioletRed">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="25" />
-                                <RowDefinition Height="25" />
-                                <RowDefinition Height="60" />
-                            </Grid.RowDefinitions>
+                                <VerticalStackLayout>
 
-                            <VerticalStackLayout>
-
-                                <Label Text="{Binding OrderNumber}"
+                                    <Label Text="{Binding OrderNumber}"
                                        FontSize="18"
                                        TextColor="White"
                                        Grid.Row="0" />
-                                <Label Text="{Binding OrderDate}"
+                                    <Label Text="{Binding OrderDate}"
                                        FontSize="14"
                                        TextColor="White"
                                        Grid.Row="1" />
-                                <Label Text="{Binding Comments}"
+                                    <Label Text="{Binding Comments}"
                                        FontSize="14"
                                        TextColor="White"
                                        Grid.Row="2" />
-
+                                <Button Text="Pokaż szczegóły zamówienia"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:OrderPanelViewModel}}, Path=ShowSpecsCommand}"
+                                        CommandParameter="{Binding .}"
+                                        HorizontalOptions="Center"
+                                        BackgroundColor="Black"
+                                        TextColor="White"
+                                        Margin="150, 0, 0 ,-45"/>
                                 <CollectionView ItemsSource="{Binding OrderSpecs}">
-                                    <CollectionView.ItemTemplate>
-                                        <DataTemplate x:DataType="models:OrderSpec">
-                                            <HorizontalStackLayout>
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate x:DataType="models:OrderSpec">
+                                                <HorizontalStackLayout>
 
-                                                <Label Text="{Binding Name}" />
-                                                <Label Text=" - " />
-                                                <Label Text="{Binding Realization}" />
-                                            </HorizontalStackLayout>
-                                        </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
-                            </VerticalStackLayout>
+                                                    <Label Text="{Binding Name}" />
+                                                    <Label Text=" - " />
+                                                    <Label Text="{Binding Realization}" />
+                                                </HorizontalStackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </VerticalStackLayout>
 
 
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
         </StackLayout>
 
         <VerticalStackLayout VerticalOptions="Center">

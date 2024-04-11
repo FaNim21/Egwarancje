@@ -44,7 +44,7 @@ public partial class OrderPanelViewModel : BaseViewModel
     {
         await Shell.Current.Navigation.PushAsync(new OrderRegistrationView(new OrderRegistrationViewModel(this)));
     }
-    //TEMP
+
     [RelayCommand]
     public async Task RemoveOrder()
     {
@@ -54,5 +54,11 @@ public partial class OrderPanelViewModel : BaseViewModel
         database.Orders.Remove(last);
         await database.SaveChangesAsync();
         Orders?.Remove(last);
+    }
+
+    [RelayCommand]
+    public async Task ShowSpecs()
+    {
+        await Shell.Current.Navigation.PushAsync(new OrderSpecsView(new OrderSpecsViewModel(this)));
     }
 }
