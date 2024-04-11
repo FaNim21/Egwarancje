@@ -1,14 +1,16 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Egwarancje.Views;
 using EgwarancjeDbLibrary;
 using EgwarancjeDbLibrary.Models;
 using System.Collections.ObjectModel;
+
 
 namespace Egwarancje.ViewModels;
 
 public partial class OrderPanelViewModel : BaseViewModel
 {
-    private readonly LocalDatabaseContext database;
+    public readonly LocalDatabaseContext database;
 
     [ObservableProperty]
     private ObservableCollection<Order>? orders;
@@ -25,31 +27,29 @@ public partial class OrderPanelViewModel : BaseViewModel
         Orders = new(database.User!.Orders!);
     }
 
+    public async Task AddOrder(Order order)
+    {
+        await database.Orders.AddAsync(order);
+        Orders.Add(order);
+        await database.SaveChangesAsync();
+    }
+    public async Task AddOrderSpecs(OrderSpec orderSpec)
+    {
+        await database.OrdersSpec.AddAsync(orderSpec);
+        await database.SaveChangesAsync();
+    }
+
     [RelayCommand]
     public async Task AddOrder()
     {
-        Random random = new();
-        Order order = new()
-        {
-            UserId = 1,
-            Comments = "",
-            OrderSpecs = new(),
-            OrderDate = DateTime.Now,
-            OrderNumber = random.Next(5000, 99999),
-        };
-
-        await database.Orders.AddAsync(order);
-        Orders?.Add(order);
-        await database.SaveChangesAsync();
-        //TODO: 2 Zrobic przechodzenie do view z rejestrowaniem zamowien (tam bedzie rejestrowanie po kodzie i NFC)
+        await Shell.Current.Navigation.PushAsync(new OrderRegistrationView(new OrderRegistrationViewModel(this)));
     }
-
     //TEMP
     [RelayCommand]
     public async Task RemoveOrder()
     {
+        if (!Orders.Any()) return;
         var last = Orders?.Last();
-        if (last == null) return;
 
         database.Orders.Remove(last);
         await database.SaveChangesAsync();

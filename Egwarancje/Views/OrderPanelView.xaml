@@ -26,7 +26,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="25" />
                                 <RowDefinition Height="25" />
-                                <RowDefinition Height="40" />
+                                <RowDefinition Height="60" />
                             </Grid.RowDefinitions>
 
                             <VerticalStackLayout>
@@ -39,6 +39,10 @@
                                        FontSize="14"
                                        TextColor="White"
                                        Grid.Row="1" />
+                                <Label Text="{Binding Comments}"
+                                       FontSize="14"
+                                       TextColor="White"
+                                       Grid.Row="2" />
 
                                 <CollectionView ItemsSource="{Binding OrderSpecs}">
                                     <CollectionView.ItemTemplate>

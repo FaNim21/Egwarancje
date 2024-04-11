@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Egwarancje.Views.WarrantyPanelView"
+             xmlns:vm="clr-namespace:Egwarancje.ViewModels"
+             xmlns:models="clr-namespace:EgwarancjeDbLibrary.Models;assembly=EgwarancjeDbLibrary"
+             x:DataType="vm:WarrantyPanelViewModel"
+             BackgroundColor="#1E1E1E"
+             Title="OrderRegistrationView">
+    <VerticalStackLayout>
+        <Label 
+            Text="TU BĘDZIE PANEL GWARANCJI"
+               FontSize="24"
+               TextColor="White"
+               Margin="20"
+               VerticalOptions="Center"
+               HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>
