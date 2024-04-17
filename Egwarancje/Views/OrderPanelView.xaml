@@ -11,73 +11,86 @@
         <ScrollView>
             <StackLayout Margin="20,20">
                 <Label Text="Podgląd zamówień"
-                   TextColor="White"
-                   FontAttributes="Bold"
-                   Margin="0, 20"
-                   FontSize="30"
-                   HorizontalOptions="Start"
-                   />
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       Margin="0, 20"
+                       FontSize="30"
+                       HorizontalOptions="Start" />
                 <CollectionView ItemsSource="{Binding Orders}"
-                            HorizontalOptions="CenterAndExpand"
-                            VerticalOptions="StartAndExpand">
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="StartAndExpand">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical"
-                                       SnapPointsType="None"
-                                       SnapPointsAlignment="Start"
-                                       ItemSpacing="10" />
+                                           SnapPointsType="None"
+                                           SnapPointsAlignment="Start"
+                                           ItemSpacing="10" />
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Order">
                             <Frame Padding="10"
-                              BackgroundColor="#292929"
-                              CornerRadius="20"
-                              HasShadow="True"
-                              BorderColor="White">
+                                   BackgroundColor="#292929"
+                                   CornerRadius="20"
+                                   HasShadow="True"
+                                   BorderColor="White">
                                 <VerticalStackLayout>
-                                    <Frame Padding="5" BackgroundColor="#858585" BorderColor="#858585">
-                                        <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Frame Padding="5"
+                                           BackgroundColor="#858585"
+                                           BorderColor="#858585">
+                                        <StackLayout Orientation="Horizontal"
+                                                     Spacing="10">
                                             <Label Text="Numer zamówienia:"
                                                    FontSize="15"
                                                    FontAttributes="Bold"
-                                                   TextColor="Black"/>
+                                                   TextColor="Black" />
                                             <Label Text="{Binding OrderNumber}"
-                                           FontSize="15"
-                                           TextColor="Black" />
+                                                   FontSize="15"
+                                                   TextColor="Black" />
                                         </StackLayout>
                                     </Frame>
-                                    <Frame Padding="5" Margin="0, 5" BackgroundColor="#858585" BorderColor="#858585">
-                                        <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Frame Padding="5"
+                                           Margin="0, 5"
+                                           BackgroundColor="#858585"
+                                           BorderColor="#858585">
+                                        <StackLayout Orientation="Horizontal"
+                                                     Spacing="10">
                                             <Label Text="Data:"
-                                                       FontSize="15"
-                                                       FontAttributes="Bold"
-                                                       TextColor="Black"/>
+                                                   FontSize="15"
+                                                   FontAttributes="Bold"
+                                                   TextColor="Black" />
                                             <Label Text="{Binding OrderDate}"
-                                                           FontSize="15"
-                                                           TextColor="Black" />
+                                                   FontSize="15"
+                                                   TextColor="Black" />
 
                                         </StackLayout>
                                     </Frame>
-                                    <Frame Padding="5" BackgroundColor="#858585" BorderColor="#858585">
-                                        <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Frame Padding="5"
+                                           BackgroundColor="#858585"
+                                           BorderColor="#858585">
+                                        <StackLayout Orientation="Horizontal"
+                                                     Spacing="10">
                                             <Label Text="Suma brutto:"
                                                    FontSize="15"
                                                    FontAttributes="Bold"
-                                                   TextColor="Black"/>
+                                                   TextColor="Black" />
                                             <!--<Label Text="{Binding OrderDate}"
                                                FontSize="15"
                                                TextColor="Black" />-->
                                         </StackLayout>
                                     </Frame>
-                                    <Frame Padding="5" Margin ="0,5" BackgroundColor="#858585" BorderColor="#858585">
-                                        <StackLayout Orientation="Vertical" Spacing="10">
+                                    <Frame Padding="5"
+                                           Margin="0,5"
+                                           BackgroundColor="#858585"
+                                           BorderColor="#858585">
+                                        <StackLayout Orientation="Vertical"
+                                                     Spacing="10">
                                             <Label Text="Uwagi do zamówienia:"
                                                    FontSize="15"
                                                    FontAttributes="Bold"
-                                                   TextColor="Black"/>
+                                                   TextColor="Black" />
                                             <Label Text="{Binding Comments}"
                                                    FontSize="15"
-                                                   TextColor="Black"/>
+                                                   TextColor="Black" />
                                         </StackLayout>
                                     </Frame>
                                     <CollectionView ItemsSource="{Binding OrderSpecs}">
@@ -85,9 +98,12 @@
                                             <DataTemplate x:DataType="models:OrderSpec">
                                                 <HorizontalStackLayout>
 
-                                                    <Label Text="{Binding Name}" TextColor="White" />
-                                                    <Label Text=" - " TextColor="White"/>
-                                                    <Label Text="{Binding Realization}" TextColor="White"/>
+                                                    <Label Text="{Binding Name}"
+                                                           TextColor="White" />
+                                                    <Label Text=" - "
+                                                           TextColor="White" />
+                                                    <Label Text="{Binding Realization}"
+                                                           TextColor="White" />
                                                 </HorizontalStackLayout>
                                             </DataTemplate>
                                         </CollectionView.ItemTemplate>
@@ -101,11 +117,11 @@
         </ScrollView>
         <StackLayout VerticalOptions="End">
             <ImageButton Source="add.png"
-                 Background="Transparent"
-                 Command="{Binding AddOrderCommand}"
-                 HeightRequest="100"
-                 WidthRequest="100"
-                 HorizontalOptions="End"/>
+                         Background="Transparent"
+                         Command="{Binding AddOrderCommand}"
+                         HeightRequest="100"
+                         WidthRequest="100"
+                         HorizontalOptions="End" />
         </StackLayout>
     </Grid>
 </ContentPage>
