@@ -85,22 +85,27 @@
                                             <DataTemplate x:DataType="models:OrderSpec">
                                                 <HorizontalStackLayout>
 
-                                                <Label Text="{Binding Name}" />
-                                                <Label Text=" - " />
-                                                <Label Text="{Binding Realization}" />
-                                            </HorizontalStackLayout>
-                                        </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
-                            </VerticalStackLayout>
-
-
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
-
+                                                    <Label Text="{Binding Name}" TextColor="White" />
+                                                    <Label Text=" - " TextColor="White"/>
+                                                    <Label Text="{Binding Realization}" TextColor="White"/>
+                                                </HorizontalStackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+        <StackLayout VerticalOptions="End">
+            <ImageButton Source="add.png"
+                 Background="Transparent"
+                 Command="{Binding AddOrderCommand}"
+                 HeightRequest="100"
+                 WidthRequest="100"
+                 HorizontalOptions="End"/>
         </StackLayout>
     </Grid>
 </ContentPage>
