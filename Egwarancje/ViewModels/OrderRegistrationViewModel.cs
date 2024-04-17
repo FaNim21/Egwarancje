@@ -93,6 +93,7 @@ public partial class OrderRegistrationViewModel : BaseViewModel
         await orderPanelViewModel.AddOrderSpecs(orderSpec4);
 
         await Application.Current!.MainPage!.DisplayAlert("Message", "Pomyślnie dodano zamówienie", "OK");
+        await Shell.Current.Navigation.PopAsync(); //Po dodaniu zamowienia powrot do panelu zamowien
     }
 
     [RelayCommand]
