@@ -21,7 +21,8 @@
                   Route="Recover" />
 
     <TabBar Route="MainTab"
-            Shell.TabBarBackgroundColor="#141414">
+            Shell.TabBarBackgroundColor="#141414"
+            Shell.TabBarTitleColor="#6B5B95">
         <ShellContent Title="Zamówienia"
                       ContentTemplate="{DataTemplate view:OrderPanelView}"
                       Route="OrderPanel" />

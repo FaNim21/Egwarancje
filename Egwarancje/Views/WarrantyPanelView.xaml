@@ -7,13 +7,14 @@
              x:DataType="vm:WarrantyPanelViewModel"
              BackgroundColor="#1E1E1E"
              Title="OrderRegistrationView">
-    <VerticalStackLayout>
-        <Label 
-            Text="TU BĘDZIE PANEL GWARANCJI"
-               FontSize="24"
-               TextColor="White"
-               Margin="20"
-               VerticalOptions="Center"
-               HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid>
+        <StackLayout Padding="20">
+            <Label Text="Podgląd zarejestrowanych gwarancji"
+               HorizontalOptions="Start" 
+               TextColor="#FFFFFF"
+               FontSize="29"
+               FontAttributes="Bold"
+               Margin="0, 20"/>
+        </StackLayout>
+    </Grid>
 </ContentPage>
