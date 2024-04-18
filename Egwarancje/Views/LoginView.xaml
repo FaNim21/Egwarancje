@@ -51,27 +51,67 @@
                         FontFamily=""
                        />
             </Frame>
-            <Button Text="Zapomniałes hasła? Reset hasła"
-                Command="{Binding ResetPasswordCommand}" 
-                    TextColor="White"
-                    Background="Transparent"
-                    HorizontalOptions="End"
-                    Margin="0,-20,0,0"
-                    
-                    />
+
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         Margin="0,-20,0,0">
+                <Label Text="Zapomniałeś hasła?"
+                       TextColor="White"
+                       VerticalOptions="Center" />
+                <Frame BackgroundColor="Transparent"
+                       Padding="5"
+                       BorderColor="Transparent"
+                       HasShadow="False">
+                    <Label Text="Reset hasła"
+                           TextColor="White"
+                           TextDecorations="Underline"
+                           FontSize="15"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ResetPasswordCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Frame>
+            </StackLayout>
+
+
+
 
             <Button Text="Zaloguj się"
                     Command="{Binding LoginCommand}" 
                     FontFamily=""
                     FontSize="Medium"
-                    BackgroundColor="#285c2e"/>
-                    
-            <Button Text="Nie posiadasz konta? Zarejestruj się"
-                    Background="Transparent"
-                    TextColor="#EEE"
-                    Command="{Binding RegisterCommand}" 
-                    Margin="0,40,0,0"/>
-           
+                    BackgroundColor="#6B5B95"/>
+
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                         Margin="0,40,0,0">
+                <Label Text="Nie posiadasz konta?"
+                       TextColor="#EEE"
+                       VerticalOptions="Center"
+                       Margin="0,0,0,0" />
+                <Frame BackgroundColor="Transparent"
+                       Padding="5"
+                       BorderColor="Transparent"
+                       HasShadow="False">
+                    <Label Text="Zarejestruj się"
+                           TextColor="#EEE"
+                           TextDecorations="Underline"
+                           FontAttributes="Bold"
+                           FontSize="15"
+                           VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Frame>
+            </StackLayout>
+
+
+
 
             <Label x:Name="versionLabel"
                    TextColor="White" />

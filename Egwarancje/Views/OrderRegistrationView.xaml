@@ -7,7 +7,7 @@
              x:DataType="vm:OrderRegistrationViewModel"
              BackgroundColor="#1E1E1E"
              Title="OrderRegistrationView">
-    <VerticalStackLayout>
+    <VerticalStackLayout Margin="20">
         <Image Source="Images/return_image.png" Aspect="AspectFit" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start">
             <Image.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding BackCommand}" />
@@ -42,7 +42,7 @@
         <Button Text="Dodaj zamowienie"
             Command="{Binding AddOrderCommand}"
             HorizontalOptions="Center"
-            BackgroundColor="LightGreen"
+                BackgroundColor="#6B5B95"
             TextColor="Black" />
     </VerticalStackLayout>
 </ContentPage>

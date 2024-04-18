@@ -82,7 +82,7 @@
 
 
         <Button Text="Stwórz konto"
-                BackgroundColor="#285c2e"
+                BackgroundColor="#6B5B95"
                 TextColor="#EEE"
                 Command="{Binding FinalizeRegisterCommand}"
                 Margin="0,20,0,0"/>
