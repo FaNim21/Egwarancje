@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Egwarancje.Views.OrderSpecsView"
-             Title="OrderSpecsView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+                  x:Class="Egwarancje.Views.OrderSpecsView"
+                  xmlns:vm="clr-namespace:Egwarancje.ViewModels"
+                  xmlns:models="clr-namespace:EgwarancjeDbLibrary.Models;assembly=EgwarancjeDbLibrary"
+                  x:DataType="vm:OrderSpecsViewModel"
+                  Title="OrderSpecsView"
+                  BackgroundColor="#80000000"
+                  CloseWhenBackgroundIsClicked="True">
+    <VerticalStackLayout WidthRequest="-1"
+                         HeightRequest="500"
+                         VerticalOptions="End"
+                         BackgroundColor="DimGray">
+        <CollectionView ItemsSource="{Binding OrderSpecs}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:OrderSpec">
+                    <HorizontalStackLayout>
+                        <CheckBox IsChecked="True"
+                                  BackgroundColor="White"/>
+                        <Label Text="{Binding Name}"
+                               TextColor="White" />
+                        <Label Text=" - "
+                               TextColor="White" />
+                        <Label Text="{Binding Realization}"
+                               TextColor="White" />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
-</ContentPage>
+</mopups:PopupPage>

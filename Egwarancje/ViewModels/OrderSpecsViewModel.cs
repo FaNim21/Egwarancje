@@ -9,28 +9,16 @@ using System.Collections.ObjectModel;
 namespace Egwarancje.ViewModels;
 
 public partial class OrderSpecsViewModel : BaseViewModel
-{
-    private OrderPanelViewModel orderPanelViewModel;
-
-    public OrderSpecsViewModel(OrderPanelViewModel orderPanelViewModel)
-    {
-        this.orderPanelViewModel = orderPanelViewModel;
-    }
-
+{ 
     public readonly LocalDatabaseContext database;
 
     [ObservableProperty]
     private ObservableCollection<OrderSpec>? orderSpecs;
 
-    public OrderSpecsViewModel(LocalDatabaseContext database)
+    public OrderSpecsViewModel(LocalDatabaseContext database, Order order)
     {
         this.database = database;
-        LoadSpecs();
-    }
-
-    private void LoadSpecs()
-    {
-        OrderSpecs = new(database.OrdersSpec!);
+        OrderSpecs = new(order.OrderSpecs);
     }
 }
 

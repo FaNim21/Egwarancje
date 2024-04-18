@@ -27,13 +27,19 @@
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:Order">
+                        <DataTemplate x:DataType="models:Order"
+                                      x:Name="order">
                             <Frame Padding="10"
                                    BackgroundColor="#292929"
                                    CornerRadius="20"
                                    HasShadow="True"
                                    BorderColor="White">
                                 <VerticalStackLayout>
+                                    <VerticalStackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:OrderPanelViewModel}}, Path=ShowSpecsCommand}"
+                                                              CommandParameter="{Binding .}"
+                                                              NumberOfTapsRequired="1" />
+                                    </VerticalStackLayout.GestureRecognizers>
                                     <Frame Padding="5"
                                            BackgroundColor="#858585"
                                            BorderColor="#858585">
