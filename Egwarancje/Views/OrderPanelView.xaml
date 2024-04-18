@@ -93,7 +93,8 @@
                                                    TextColor="Black" />
                                         </StackLayout>
                                     </Frame>
-                                    <CollectionView ItemsSource="{Binding OrderSpecs}">
+                                    <CollectionView ItemsSource="{Binding OrderSpecs}"
+                                                    HeightRequest="57">
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate x:DataType="models:OrderSpec">
                                                 <HorizontalStackLayout>
