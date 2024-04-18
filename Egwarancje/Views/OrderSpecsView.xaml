@@ -18,7 +18,7 @@
                 <DataTemplate x:DataType="models:OrderSpec">
                     <HorizontalStackLayout>
                         <CheckBox IsChecked="True"
-                                  BackgroundColor="Transparent"/>
+                                  BackgroundColor="Transparent" />
                         <Label Text="{Binding Name}"
                                TextColor="White" />
                         <Label Text=" - "
@@ -29,5 +29,13 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <Button Text="Usun zamowienie"
+                Command="{Binding RemoveOrderCommand}"
+                HorizontalOptions="Center"
+                Background="OrangeRed"
+                VerticalOptions="End"
+                TextColor="Black" 
+                Margin="20"/>
     </VerticalStackLayout>
 </mopups:PopupPage>

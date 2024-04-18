@@ -14,17 +14,12 @@ public partial class OrderPanelViewModel : BaseViewModel
     public readonly LocalDatabaseContext database;
 
     [ObservableProperty]
-    private ObservableCollection<Order>? orders;
+    private ObservableCollection<Order> orders;
 
 
     public OrderPanelViewModel(LocalDatabaseContext database)
     {
         this.database = database;
-        LoadOrders();
-    }
-
-    private void LoadOrders()
-    {
         Orders = new(database.User!.Orders!);
     }
 
@@ -34,6 +29,7 @@ public partial class OrderPanelViewModel : BaseViewModel
         Orders.Add(order);
         await database.SaveChangesAsync();
     }
+
     public async Task AddOrderSpecs(OrderSpec orderSpec)
     {
         await database.OrdersSpec.AddAsync(orderSpec);
@@ -47,19 +43,8 @@ public partial class OrderPanelViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    public async Task RemoveOrder()
-    {
-        if (!Orders.Any()) return;
-        var last = Orders?.Last();
-
-        database.Orders.Remove(last);
-        await database.SaveChangesAsync();
-        Orders?.Remove(last);
-    }
-
-    [RelayCommand]
     public async Task ShowSpecs(Order order)
     {
-        await MopupService.Instance.PushAsync(new OrderSpecsView(new OrderSpecsViewModel(database, order)));
+        await MopupService.Instance.PushAsync(new OrderSpecsView(new OrderSpecsViewModel(database, this, order)));
     }
 }
