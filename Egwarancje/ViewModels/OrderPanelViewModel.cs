@@ -5,7 +5,6 @@ using EgwarancjeDbLibrary;
 using EgwarancjeDbLibrary.Models;
 using Mopups.Services;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 
 namespace Egwarancje.ViewModels;

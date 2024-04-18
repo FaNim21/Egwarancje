@@ -18,7 +18,7 @@
                 <DataTemplate x:DataType="models:OrderSpec">
                     <HorizontalStackLayout>
                         <CheckBox IsChecked="True"
-                                  BackgroundColor="White"/>
+                                  BackgroundColor="Transparent"/>
                         <Label Text="{Binding Name}"
                                TextColor="White" />
                         <Label Text=" - "

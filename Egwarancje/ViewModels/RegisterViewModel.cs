@@ -17,7 +17,7 @@ public partial class RegisterViewModel : BaseViewModel
     private string? email;
 
     [ObservableProperty]
-    private int phoneNumber;
+    private string phoneNumber;
 
     [ObservableProperty]
     private string? password;
@@ -71,7 +71,7 @@ public partial class RegisterViewModel : BaseViewModel
             {
                 Name = Name,
                 Email = Email,
-                PhoneNumber = PhoneNumber,
+                PhoneNumber = int.Parse(PhoneNumber),
                 Password = Password
             };
 
@@ -95,4 +95,3 @@ public partial class RegisterViewModel : BaseViewModel
         return Regex.IsMatch(email, emailPattern);
     }
 }
- 

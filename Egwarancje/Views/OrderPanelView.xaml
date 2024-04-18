@@ -34,15 +34,16 @@
                                    CornerRadius="20"
                                    HasShadow="True"
                                    BorderColor="White">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:OrderPanelViewModel}}, Path=ShowSpecsCommand}"
+                                                          CommandParameter="{Binding .}"
+                                                          NumberOfTapsRequired="1" />
+                                </Frame.GestureRecognizers>
                                 <VerticalStackLayout>
-                                    <VerticalStackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:OrderPanelViewModel}}, Path=ShowSpecsCommand}"
-                                                              CommandParameter="{Binding .}"
-                                                              NumberOfTapsRequired="1" />
-                                    </VerticalStackLayout.GestureRecognizers>
                                     <Frame Padding="5"
                                            BackgroundColor="#858585"
-                                           BorderColor="#858585">
+                                           BorderColor="#858585"
+                                           InputTransparent="True">
                                         <StackLayout Orientation="Horizontal"
                                                      Spacing="10">
                                             <Label Text="Numer zamówienia:"
@@ -57,7 +58,8 @@
                                     <Frame Padding="5"
                                            Margin="0, 5"
                                            BackgroundColor="#858585"
-                                           BorderColor="#858585">
+                                           BorderColor="#858585"
+                                           InputTransparent="True">
                                         <StackLayout Orientation="Horizontal"
                                                      Spacing="10">
                                             <Label Text="Data:"
@@ -72,7 +74,8 @@
                                     </Frame>
                                     <Frame Padding="5"
                                            BackgroundColor="#858585"
-                                           BorderColor="#858585">
+                                           BorderColor="#858585"
+                                           InputTransparent="True">
                                         <StackLayout Orientation="Horizontal"
                                                      Spacing="10">
                                             <Label Text="Suma brutto:"
@@ -87,7 +90,8 @@
                                     <Frame Padding="5"
                                            Margin="0,5"
                                            BackgroundColor="#858585"
-                                           BorderColor="#858585">
+                                           BorderColor="#858585"
+                                           InputTransparent="True">
                                         <StackLayout Orientation="Vertical"
                                                      Spacing="10">
                                             <Label Text="Uwagi do zamówienia:"
@@ -100,11 +104,11 @@
                                         </StackLayout>
                                     </Frame>
                                     <CollectionView ItemsSource="{Binding OrderSpecs}"
-                                                    HeightRequest="57">
+                                                    HeightRequest="57"
+                                                    InputTransparent="True">
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate x:DataType="models:OrderSpec">
                                                 <HorizontalStackLayout>
-
                                                     <Label Text="{Binding Name}"
                                                            TextColor="White" />
                                                     <Label Text=" - "
