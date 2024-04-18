@@ -3,6 +3,7 @@ using EgwarancjeDbLibrary;
 using Egwarancje.ViewModels;
 using Egwarancje.Views;
 using Microsoft.Extensions.Logging;
+using Mopups.Hosting;
 
 namespace Egwarancje;
 
@@ -13,6 +14,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .ConfigureMopups()
             .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
