@@ -5,7 +5,7 @@
 namespace EgwarancjeDbLibrary.Migrations
 {
     /// <inheritdoc />
-    public partial class MoreModels : Migration
+    public partial class initial2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

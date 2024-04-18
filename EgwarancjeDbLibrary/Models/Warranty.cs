@@ -21,9 +21,11 @@ public class Warranty
 
     public string? Comments { get; set; }
 
-    [ForeignKey(nameof(Order.Id))]
+    [ForeignKey(nameof(Order))]
     public int OrderId { get; set; }
 
+    public Order Order { get; set; }
 
+    public List<WarrantySpec> WarrantySpecs { get; set; }
 }
 

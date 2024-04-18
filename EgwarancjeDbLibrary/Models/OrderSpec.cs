@@ -9,7 +9,7 @@ public class OrderSpec
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
-    [ForeignKey(nameof(Order.Id))]
+    [ForeignKey(nameof(Order))]
     public int OrderId { get; set; }
 
     public string Name { get; set; }

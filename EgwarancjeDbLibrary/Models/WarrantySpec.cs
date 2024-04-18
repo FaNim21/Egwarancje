@@ -9,12 +9,17 @@ public class WarrantySpec
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
-    [ForeignKey(nameof(Warranty.Id))]
+    [ForeignKey(nameof(Warranty))]
     public int WarrantyId { get; set; }
 
-    [ForeignKey(nameof(OrderSpec.Id))]
+    [ForeignKey(nameof(OrderSpec))]
     public int OrderSpecId { get; set; }
 
     public string Comments { get; set; }
+
+    public Warranty Warranty { get; set; }
+    public OrderSpec OrderSpec { get; set; }
+
+    public List<Attachment>? Attachments { get; set; }
 }
 

@@ -9,8 +9,11 @@ public class Attachment
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
-    [ForeignKey(nameof(WarrantySpec.Id))]
+    [ForeignKey(nameof(WarrantySpec))]
     public int WarrantySpecId { get; set; }
 
+    public string image { get; set; }
+
+    public WarrantySpec? WarrantySpec { get; set; }
 }
 

@@ -32,14 +32,15 @@ public partial class LoginViewModel : BaseViewModel
         }
 
         User? user = database.Users
-            .Include(u => u.Orders!)
-            .ThenInclude(o => o.OrderSpecs)
+            .Include(u => u.Orders!).ThenInclude(o => o.OrderSpecs)
             .FirstOrDefault(u => u.Email.Equals(Email) && u.Password.Equals(Password));
         if (user == null)
         {
             await Application.Current!.MainPage!.DisplayAlert("Message", "Nieprawidłowe dane logowania", "OK");
             return;
         }
+
+        user.Warranties = [.. database.Warranties.Where(w => w.Order.UserId == user.Id).Include(w => w.WarrantySpecs).ThenInclude(w => w.Attachments)];
 
         database.User = user;
 

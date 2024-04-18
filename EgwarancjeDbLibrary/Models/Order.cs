@@ -15,7 +15,7 @@ public class Order
 
     public DateTime OrderDate { get; set; }
 
-    [ForeignKey(nameof(User.Id))]
+    [ForeignKey(nameof(User))]
     public int UserId { get; set; }
 
     public List<OrderSpec>? OrderSpecs { get; set; }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EgwarancjeDbLibrary.Migrations
 {
     [DbContext(typeof(LocalDatabaseContext))]
-    [Migration("20240321200153_ModelsUpdates1")]
-    partial class ModelsUpdates1
+    [Migration("20240416165843_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,28 @@ namespace EgwarancjeDbLibrary.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("EgwarancjeDbLibrary.Models.Attachment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("WarrantySpecId")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("image")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WarrantySpecId");
+
+                    b.ToTable("Attachments");
+                });
 
             modelBuilder.Entity("EgwarancjeDbLibrary.Models.Order", b =>
                 {
@@ -115,6 +137,71 @@ namespace EgwarancjeDbLibrary.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("EgwarancjeDbLibrary.Models.Warranty", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comments")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateOfWarranty")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Warranties");
+                });
+
+            modelBuilder.Entity("EgwarancjeDbLibrary.Models.WarrantySpec", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comments")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrderSpecId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WarrantyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderSpecId");
+
+                    b.HasIndex("WarrantyId");
+
+                    b.ToTable("WarrantiesSpecs");
+                });
+
+            modelBuilder.Entity("EgwarancjeDbLibrary.Models.Attachment", b =>
+                {
+                    b.HasOne("EgwarancjeDbLibrary.Models.WarrantySpec", "WarrantySpec")
+                        .WithMany()
+                        .HasForeignKey("WarrantySpecId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("WarrantySpec");
+                });
+
             modelBuilder.Entity("EgwarancjeDbLibrary.Models.Order", b =>
                 {
                     b.HasOne("EgwarancjeDbLibrary.Models.User", "User")
@@ -135,6 +222,39 @@ namespace EgwarancjeDbLibrary.Migrations
                     b.Navigation("Order");
                 });
 
+            modelBuilder.Entity("EgwarancjeDbLibrary.Models.Warranty", b =>
+                {
+                    b.HasOne("EgwarancjeDbLibrary.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EgwarancjeDbLibrary.Models.User", null)
+                        .WithMany("Warranties")
+                        .HasForeignKey("OrderId");
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("EgwarancjeDbLibrary.Models.WarrantySpec", b =>
+                {
+                    b.HasOne("EgwarancjeDbLibrary.Models.OrderSpec", "OrderSpec")
+                        .WithMany()
+                        .HasForeignKey("OrderSpecId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("EgwarancjeDbLibrary.Models.Warranty", "Warranty")
+                        .WithMany("WarrantySpecs")
+                        .HasForeignKey("WarrantyId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("OrderSpec");
+
+                    b.Navigation("Warranty");
+                });
+
             modelBuilder.Entity("EgwarancjeDbLibrary.Models.Order", b =>
                 {
                     b.Navigation("OrderSpecs");
@@ -143,6 +263,13 @@ namespace EgwarancjeDbLibrary.Migrations
             modelBuilder.Entity("EgwarancjeDbLibrary.Models.User", b =>
                 {
                     b.Navigation("Orders");
+
+                    b.Navigation("Warranties");
+                });
+
+            modelBuilder.Entity("EgwarancjeDbLibrary.Models.Warranty", b =>
+                {
+                    b.Navigation("WarrantySpecs");
                 });
 #pragma warning restore 612, 618
         }
