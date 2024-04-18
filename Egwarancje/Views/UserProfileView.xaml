@@ -6,18 +6,22 @@
              x:DataType="vm:UserProfileViewModel"
              BackgroundColor="#1E1E1E"
              Title="UserProfileView">
-    <VerticalStackLayout>
-        <Label 
-            Text="TU BĘDZIE PANEL UŻYTKOWNIKA"
-               FontSize="24"
-               TextColor="White"
-               Margin="20"
-               VerticalOptions="Center"
-               HorizontalOptions="Center" />
+    <Grid>
+        <StackLayout Padding="20">
+            <Label Text="Profil użytkownika"
+           HorizontalOptions="Start" 
+           TextColor="#FFFFFF"
+           FontSize="29"
+           FontAttributes="Bold"
+           Margin="0, 20"/>
 
-        <Button Text="Wyloguj"
+            <VerticalStackLayout>
+
+                <Button Text="Wyloguj"
                 BackgroundColor="#6B5B95"
                 Command="{Binding LogoutCommand}"
                 Margin="0,10" />
-    </VerticalStackLayout>
+            </VerticalStackLayout>
+        </StackLayout>
+    </Grid>
 </ContentPage>

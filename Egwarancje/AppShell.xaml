@@ -21,14 +21,20 @@
                   Route="Recover" />
 
     <TabBar Route="MainTab"
-            Shell.TabBarBackgroundColor="#141414">
+            Shell.TabBarBackgroundColor="#141414"
+            Shell.TabBarTitleColor="#6B5B95">
         <ShellContent Title="Zamówienia"
                       ContentTemplate="{DataTemplate view:OrderPanelView}"
                       Route="OrderPanel" />
 
+        <ShellContent Title="Gwarancje"
+                      ContentTemplate="{DataTemplate view:WarrantyPanelView}"
+                      Route="WarrantyPanel" />
+        
         <ShellContent Title="Profil"
                       ContentTemplate="{DataTemplate view:UserProfileView}"
                       Route="UserProfile" />
+
     </TabBar>
 
 </Shell>
