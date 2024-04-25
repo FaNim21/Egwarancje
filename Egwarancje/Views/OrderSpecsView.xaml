@@ -17,7 +17,8 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:OrderSpec">
                     <HorizontalStackLayout>
-                        <CheckBox IsChecked="True"
+                        <CheckBox IsChecked="False"
+                                  CheckedChanged="CheckChanges"
                                   BackgroundColor="Transparent" />
                         <Label Text="{Binding Name}"
                                TextColor="White" />
@@ -35,7 +36,15 @@
                 HorizontalOptions="Center"
                 Background="OrangeRed"
                 VerticalOptions="End"
-                TextColor="Black" 
-                Margin="20"/>
+                TextColor="Black"
+                Margin="20" />
+
+        <Button Text="Stwórz gwarancje"
+                Command="{Binding CreateWarrantyCommand}"
+                Background="DarkGreen"
+                VerticalOptions="End"
+                HorizontalOptions="End"
+                TextColor="Black"
+                Margin="20" />
     </VerticalStackLayout>
 </mopups:PopupPage>
