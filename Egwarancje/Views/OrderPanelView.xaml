@@ -124,14 +124,17 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+                <BoxView HeightRequest="80"
+                         Color="#1E1E1E"/>
             </StackLayout>
         </ScrollView>
         <StackLayout VerticalOptions="End">
-            <ImageButton Source="add.png"
+            <ImageButton Source="plus.png"
                          Background="Transparent"
                          Command="{Binding AddOrderCommand}"
                          HeightRequest="100"
                          WidthRequest="100"
+                         Padding="15,15,15,15"
                          HorizontalOptions="End" />
         </StackLayout>
     </Grid>
