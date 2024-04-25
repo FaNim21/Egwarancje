@@ -5,14 +5,7 @@ namespace Egwarancje.ViewModels;
 
 public partial class UserProfileViewModel : BaseViewModel
 {
-    [ObservableProperty]
-    private string? namesurname;
 
-    [ObservableProperty]
-    private string? email;
-
-    [ObservableProperty]
-    private string? phone;
 
     public UserProfileViewModel()
     {
@@ -23,11 +16,5 @@ public partial class UserProfileViewModel : BaseViewModel
     public async Task Logout()
     {
         await Shell.Current.GoToAsync("///Login");
-    }
-
-    [RelayCommand]
-    public async Task ResetPassword()
-    {
-        await Shell.Current.GoToAsync("///Recover");
     }
 }
