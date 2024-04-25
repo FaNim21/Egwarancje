@@ -47,9 +47,6 @@ public static class MauiProgram
         builder.Services.AddTransient<WarrantyPanelView>();
         builder.Services.AddTransient<WarrantyPanelViewModel>();
 
-        /*builder.Services.AddTransient<WarrantyCreationView>();
-        builder.Services.AddTransient<WarrantyCreationViewModel>();*/
-
         return builder.Build();
     }
 }

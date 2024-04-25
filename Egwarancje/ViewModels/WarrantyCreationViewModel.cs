@@ -51,7 +51,7 @@ public partial class WarrantyCreationViewModel : BaseViewModel
     {
         //TODO: 0 tutaj dodac popup potwiedzenia czy na pewno chcesz wyjsc
 
-        await Shell.Current.GoToAsync("///OrderPanel");
+        await Shell.Current.Navigation.PopAsync();
     }
 
     public async Task Confirm()
@@ -84,6 +84,6 @@ public partial class WarrantyCreationViewModel : BaseViewModel
         }*/
 
         database.SaveChanges();
-        await Shell.Current.GoToAsync("///WarrantyPanel");
+        await Shell.Current.Navigation.PopAsync();
     }
 }
