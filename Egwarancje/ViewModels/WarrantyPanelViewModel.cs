@@ -2,9 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using EgwarancjeDbLibrary;
 using EgwarancjeDbLibrary.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Maui.Controls;
+using Mopups.Services;
 using System.Collections.ObjectModel;
 
 namespace Egwarancje.ViewModels;
@@ -16,9 +14,17 @@ public partial class WarrantyPanelViewModel : BaseViewModel
     [ObservableProperty]
     private ObservableCollection<Warranty> warranties;
 
+
     public WarrantyPanelViewModel(LocalDatabaseContext database)
     {
         this.database = database;
+        Warranties = new(database.User!.Warranties!);
+    }
+
+    [RelayCommand]
+    public async Task ShowDetails(Order order)
+    {
+        //await MopupService.Instance.PushAsync(new OrderSpecsView(new OrderSpecsViewModel(database, this, order)));
     }
 }
 

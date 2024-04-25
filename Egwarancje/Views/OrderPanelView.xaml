@@ -125,7 +125,7 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
                 <BoxView HeightRequest="80"
-                         Color="#1E1E1E"/>
+                         Color="#1E1E1E" />
             </StackLayout>
         </ScrollView>
         <StackLayout VerticalOptions="End">

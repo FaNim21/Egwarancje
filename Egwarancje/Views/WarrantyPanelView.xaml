@@ -8,13 +8,62 @@
              BackgroundColor="#1E1E1E"
              Title="OrderRegistrationView">
     <Grid>
-        <StackLayout Padding="20">
-            <Label Text="Podgląd zarejestrowanych gwarancji"
-               HorizontalOptions="Start" 
-               TextColor="#FFFFFF"
-               FontSize="29"
-               FontAttributes="Bold"
-               Margin="0, 20"/>
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Margin="20,20">
+                <Label Text="Podgląd zamówień"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       Margin="0, 20"
+                       FontSize="30"
+                       HorizontalOptions="Start" />
+                <CollectionView ItemsSource="{Binding Warranties}"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="StartAndExpand">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"
+                                           SnapPointsType="None"
+                                           SnapPointsAlignment="Start"
+                                           ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Order"
+                                      x:Name="order">
+                            <Frame Padding="10"
+                                   BackgroundColor="#292929"
+                                   CornerRadius="20"
+                                   HasShadow="True"
+                                   BorderColor="White">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:OrderPanelViewModel}}, Path=ShowDetailsCommand}"
+                                                          CommandParameter="{Binding .}"
+                                                          NumberOfTapsRequired="1" />
+                                </Frame.GestureRecognizers>
+                                <VerticalStackLayout>
+                                    <Frame Padding="5"
+                                           Margin="0,5"
+                                           BackgroundColor="#858585"
+                                           BorderColor="#858585"
+                                           InputTransparent="True">
+                                        <StackLayout Orientation="Vertical"
+                                                     Spacing="10">
+                                            <Label Text="Uwagi do zamówienia:"
+                                                   FontSize="15"
+                                                   FontAttributes="Bold"
+                                                   TextColor="Black" />
+                                            <Label Text="{Binding Comments}"
+                                                   FontSize="15"
+                                                   TextColor="Black" />
+                                        </StackLayout>
+                                    </Frame>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <BoxView HeightRequest="80"
+                         Color="#1E1E1E" />
+            </StackLayout>
+        </ScrollView>
     </Grid>
 </ContentPage>
