@@ -51,9 +51,16 @@ public partial class WarrantyCreationViewModel : BaseViewModel
     [RelayCommand]
     public async Task Back()
     {
-        //TODO: 0 tutaj dodac popup potwiedzenia czy na pewno chcesz wyjsc
+        bool result = await Application.Current!.MainPage!.DisplayAlert("Potwierdzenie", "Czy na pewno chcesz wrócić do zamówień?", "Tak", "Nie");
+        if (result)
+        {
+            await Shell.Current.Navigation.PopAsync();
+        }
+        else
+        {
+            return;
+        }
 
-        await Shell.Current.Navigation.PopAsync();
     }
 
     [RelayCommand]
