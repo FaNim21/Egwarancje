@@ -25,6 +25,8 @@ public partial class WarrantyCreationViewModel : BaseViewModel
         this.database = database;
         this.order = order;
 
+        dateOfWarranty = DateTime.Now;
+
         warranty = new()
         {
             DateOfWarranty = DateOfWarranty,
@@ -40,12 +42,11 @@ public partial class WarrantyCreationViewModel : BaseViewModel
             WarrantySpec warrantySpec = new()
             {
                 OrderSpecId = currentOrderSpec.Id,
-                OrderSpec = currentOrderSpec
+                OrderSpec = currentOrderSpec,
+                Comments = ""
             };
             WarrantySpecs.Add(warrantySpec);
         }
-
-        dateOfWarranty = DateTime.Now;
     }
 
     [RelayCommand]
@@ -79,7 +80,6 @@ public partial class WarrantyCreationViewModel : BaseViewModel
                 var current = WarrantySpecs[i];
                 current.WarrantyId = warranty.Id;
                 current.Warranty = warranty;
-                current.Comments = "";
 
                 if (current.Attachments != null && current.Attachments.Count != 0)
                     foreach (var attachment in current.Attachments)
@@ -94,6 +94,7 @@ public partial class WarrantyCreationViewModel : BaseViewModel
 
             await database.SaveChangesAsync();
         }
+
         //TODO: 0 to tutaj dzieje sie w popupie dla warranty speca
         /*List<Attachment> attachments = [];
         for (int i = 0; i < orderSpecs.Count; i++)

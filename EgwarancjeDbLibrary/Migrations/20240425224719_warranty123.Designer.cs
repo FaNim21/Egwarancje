@@ -4,6 +4,7 @@ using EgwarancjeDbLibrary;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EgwarancjeDbLibrary.Migrations
 {
     [DbContext(typeof(LocalDatabaseContext))]
-    partial class LocalDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240425224719_warranty123")]
+    partial class warranty123
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,14 +157,9 @@ namespace EgwarancjeDbLibrary.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Warranties");
                 });
@@ -234,7 +232,7 @@ namespace EgwarancjeDbLibrary.Migrations
 
                     b.HasOne("EgwarancjeDbLibrary.Models.User", null)
                         .WithMany("Warranties")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("OrderId");
 
                     b.Navigation("Order");
                 });
@@ -250,7 +248,7 @@ namespace EgwarancjeDbLibrary.Migrations
                     b.HasOne("EgwarancjeDbLibrary.Models.Warranty", "Warranty")
                         .WithMany("WarrantySpecs")
                         .HasForeignKey("WarrantyId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("OrderSpec");
 

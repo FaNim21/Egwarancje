@@ -84,14 +84,7 @@ public class LocalDatabaseContext : DbContext
             .WithOne(ws => ws.Warranty)
             .HasForeignKey(ws => ws.WarrantyId)
             .IsRequired(false)
-            .OnDelete(DeleteBehavior.NoAction);
-
-        modelBuilder.Entity<User>()
-            .HasMany(u => u.Warranties)
-            .WithOne()
-            .HasForeignKey(w => w.OrderId)
-            .IsRequired(false);
-
+            .OnDelete(DeleteBehavior.Cascade);
 
         base.OnModelCreating(modelBuilder);
     }

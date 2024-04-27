@@ -40,8 +40,6 @@ public partial class LoginViewModel : BaseViewModel
             return;
         }
 
-        user.Warranties = [.. database.Warranties.Where(w => w.Order.UserId == user.Id).Include(w => w.WarrantySpecs).ThenInclude(w => w.Attachments)];
-
         database.User = user;
 
         await Shell.Current.GoToAsync("///MainTab//OrderPanel");
