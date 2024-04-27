@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using EgwarancjeDbLibrary;
 using EgwarancjeDbLibrary.Models;
+using Microsoft.EntityFrameworkCore;
 using Mopups.Services;
 using System.Collections.ObjectModel;
 
@@ -18,7 +19,11 @@ public partial class WarrantyPanelViewModel : BaseViewModel
     public WarrantyPanelViewModel(LocalDatabaseContext database)
     {
         this.database = database;
-        Warranties = new(database.User!.Warranties!);
+
+        Warranties = new(database.Warranties
+                                .Where(w => w.Order.UserId == database.User!.Id)
+                                .Include(w => w.WarrantySpecs)
+                                .ThenInclude(w => w.Attachments));
     }
 
     [RelayCommand]

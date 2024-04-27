@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Egwarancje.Views;
 using EgwarancjeDbLibrary;
 using EgwarancjeDbLibrary.Models;
+using Microsoft.EntityFrameworkCore;
 using Mopups.Services;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -38,17 +39,43 @@ public partial class OrderSpecsViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    public void RemoveOrder()
+    public async Task RemoveOrder()
     {
         //TODO: 0 trzeba zrobic kaskadowe usuwanie w relacjach albo samemu uwzglednic co chcemy usuwac czy cos poniewaz narazie w polaczeniu z gwarancjami nie mozna tak usuwac co jest wiadome
+
+        Warranty[] warranties = [.. database.Warranties
+                                .Where(w => w.Order.UserId == database.User!.Id)
+                                .Include(w => w.WarrantySpecs)
+                                .ThenInclude(w => w.Attachments)];
+
+        for (int i = 0; i < warranties.Length; i++)
+        {
+            var warranty = warranties[i];
+
+            for (int j = 0; j < warranty.WarrantySpecs.Count; j++)
+            {
+                var spec = warranty.WarrantySpecs[j];
+
+                if (spec.Attachments == null || spec.Attachments.Count == 0) continue;
+                for (int k = 0; k < spec.Attachments.Count; k++)
+                {
+                    var attachment = spec.Attachments[k];
+                    database.Attachments.Remove(attachment);
+                    await database.SaveChangesAsync();
+                }
+            }
+
+            database.Warranties.Remove(warranty);
+            await database.SaveChangesAsync();
+        }
 
         for (int i = 0; i < order.OrderSpecs?.Count; i++)
             database.OrdersSpec.Remove(order.OrderSpecs[i]);
         database.Orders.Remove(order);
 
-        database.SaveChanges();
+        await database.SaveChangesAsync();
         orderPanel.Orders.Remove(order);
-        MopupService.Instance.PopAsync();
+        await MopupService.Instance.PopAsync();
     }
 
     public void AddOrderToWarranty(OrderSpec spec)
