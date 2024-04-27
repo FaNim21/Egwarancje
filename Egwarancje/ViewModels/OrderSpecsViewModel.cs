@@ -16,8 +16,7 @@ public partial class OrderSpecsViewModel : BaseViewModel
     private readonly OrderPanelViewModel orderPanel;
     private readonly Order order;
 
-    [ObservableProperty]
-    private ObservableCollection<OrderSpec>? orderSpecs;
+    [ObservableProperty] private ObservableCollection<OrderSpec>? orderSpecs;
     private List<OrderSpec> _warrantySpecs = [];
 
     public OrderSpecsViewModel(LocalDatabaseContext database, OrderPanelViewModel orderPanel, Order order)

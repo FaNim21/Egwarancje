@@ -6,11 +6,11 @@
              xmlns:models="clr-namespace:EgwarancjeDbLibrary.Models;assembly=EgwarancjeDbLibrary"
              x:DataType="vm:WarrantyPanelViewModel"
              BackgroundColor="#1E1E1E"
-             Title="OrderRegistrationView">
+             Title="WarrantyPanelView">
     <Grid>
         <ScrollView>
             <StackLayout Margin="20,20">
-                <Label Text="Podgląd zamówień"
+                <Label Text="Podgląd gwarancji"
                        TextColor="White"
                        FontAttributes="Bold"
                        Margin="0, 20"
@@ -27,15 +27,15 @@
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:Order"
-                                      x:Name="order">
+                        <DataTemplate x:DataType="models:Warranty"
+                                      x:Name="warranty">
                             <Frame Padding="10"
                                    BackgroundColor="#292929"
                                    CornerRadius="20"
                                    HasShadow="True"
                                    BorderColor="White">
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:OrderPanelViewModel}}, Path=ShowDetailsCommand}"
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:WarrantyPanelViewModel}}, Path=ShowDetailsCommand}"
                                                           CommandParameter="{Binding .}"
                                                           NumberOfTapsRequired="1" />
                                 </Frame.GestureRecognizers>
@@ -47,7 +47,7 @@
                                            InputTransparent="True">
                                         <StackLayout Orientation="Vertical"
                                                      Spacing="10">
-                                            <Label Text="Uwagi do zamówienia:"
+                                            <Label Text="Uwagi do gwarancji:"
                                                    FontSize="15"
                                                    FontAttributes="Bold"
                                                    TextColor="Black" />

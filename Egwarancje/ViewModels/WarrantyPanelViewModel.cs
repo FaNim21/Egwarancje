@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Egwarancje.Views;
 using EgwarancjeDbLibrary;
 using EgwarancjeDbLibrary.Models;
 using Microsoft.EntityFrameworkCore;
@@ -27,9 +28,9 @@ public partial class WarrantyPanelViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    public async Task ShowDetails(Order order)
+    public async Task ShowDetails(Warranty warranty)
     {
-        //await MopupService.Instance.PushAsync(new OrderSpecsView(new OrderSpecsViewModel(database, this, order)));
+        await MopupService.Instance.PushAsync(new WarrantyDetailsView(new WarrantyDetailsViewModel(database, this, warranty)));
     }
 }
 
