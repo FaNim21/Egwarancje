@@ -7,8 +7,20 @@ using Microsoft.EntityFrameworkCore;
 using Mopups.Services;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace Egwarancje.ViewModels;
+
+public partial class WarrantySpecDetail : BaseViewModel
+{
+    [ObservableProperty] private bool isVisible;
+    [ObservableProperty] private WarrantySpec spec;
+
+    public WarrantySpecDetail(WarrantySpec spec)
+    {
+        this.spec = spec;
+    }
+}
 
 public partial class WarrantyDetailsViewModel : BaseViewModel
 {
@@ -16,7 +28,7 @@ public partial class WarrantyDetailsViewModel : BaseViewModel
     private readonly Warranty warranty;
     private readonly WarrantyPanelViewModel warrantyPanel;
 
-    [ObservableProperty] private ObservableCollection<WarrantySpec>? warrantySpecs;
+    [ObservableProperty] private ObservableCollection<WarrantySpecDetail> warrantySpecs = [];
 
     public WarrantyDetailsViewModel(LocalDatabaseContext database, WarrantyPanelViewModel warrantyPanel, Warranty warranty)
     {
@@ -25,13 +37,23 @@ public partial class WarrantyDetailsViewModel : BaseViewModel
         this.warranty = warranty;
 
         if (warranty.WarrantySpecs != null && warranty.WarrantySpecs.Count > 0)
-            WarrantySpecs = new(warranty.WarrantySpecs);
+        {
+            for (int i = 0; i < warranty.WarrantySpecs.Count; i++)
+            {
+                var current = warranty.WarrantySpecs[i];
+                WarrantySpecDetail specDetail = new(current);
+                warrantySpecs.Add(specDetail);
+            }
+        }
     }
 
     [RelayCommand]
-    public async Task ShowSpec(WarrantySpec spec)
+    public void ShowDetails(WarrantySpecDetail specDetail)
     {
-        //await MopupService.Instance.PushAsync(new WarrantySpecView(new WarrantySpecViewModel(database, this, warrantySpecs)));
-        return;
+        foreach (var spec in WarrantySpecs)
+        {
+            spec.IsVisible = false;
+        }
+        specDetail.IsVisible = true;
     }
 }
