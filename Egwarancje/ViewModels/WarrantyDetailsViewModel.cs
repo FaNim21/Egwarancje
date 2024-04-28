@@ -1,13 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using EgwarancjeDbLibrary;
 using EgwarancjeDbLibrary.Models;
 using Mopups.Services;
 using System.Collections.ObjectModel;
 
 namespace Egwarancje.ViewModels;
 
-public partial class WarrantySpecDetail : BaseViewModel, IDisposable
+public partial class WarrantySpecDetail : BaseViewModel
 {
     [ObservableProperty] private bool isVisible;
     [ObservableProperty] private WarrantySpec spec;
@@ -25,26 +24,16 @@ public partial class WarrantySpecDetail : BaseViewModel, IDisposable
             attachments.Add(attachmentViewModel);
         }
     }
-
-    public void Dispose()
-    {
-        foreach (var attachment in Attachments)
-            attachment.Dispose();
-    }
 }
 
 public partial class WarrantyDetailsViewModel : BaseViewModel
 {
-    private readonly LocalDatabaseContext database;
     private readonly Warranty warranty;
-    private readonly WarrantyPanelViewModel warrantyPanel;
 
     [ObservableProperty] private ObservableCollection<WarrantySpecDetail> warrantySpecs = [];
 
-    public WarrantyDetailsViewModel(LocalDatabaseContext database, WarrantyPanelViewModel warrantyPanel, Warranty warranty)
+    public WarrantyDetailsViewModel(Warranty warranty)
     {
-        this.database = database;
-        this.warrantyPanel = warrantyPanel;
         this.warranty = warranty;
 
         if (warranty.WarrantySpecs != null && warranty.WarrantySpecs.Count > 0)
@@ -62,18 +51,14 @@ public partial class WarrantyDetailsViewModel : BaseViewModel
     public void ShowDetails(WarrantySpecDetail specDetail)
     {
         foreach (var spec in WarrantySpecs)
-        {
             spec.IsVisible = false;
-        }
+
         specDetail.IsVisible = true;
     }
 
     [RelayCommand]
     public async Task Close()
     {
-        foreach (var spec in WarrantySpecs)
-            spec.Dispose();
-
         await MopupService.Instance.PopAsync();
     }
 }

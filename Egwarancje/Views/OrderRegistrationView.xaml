@@ -34,15 +34,6 @@
                    TextColor="#FFFFFF" />
         </Frame>
 
-        <Frame Padding="12, 5, 5, 5"
-               BackgroundColor="#1E1E1E"
-               Margin="0,10,0,10">
-            <Entry Placeholder="Uwagi"
-                   Text="{Binding Comments, Mode=TwoWay}"
-                   Keyboard="Text"
-                   TextColor="#FFFFFF" />
-        </Frame>
-
         <Button Text="Dodaj zamowienie"
                 Command="{Binding AddOrderCommand}"
                 HorizontalOptions="Center"

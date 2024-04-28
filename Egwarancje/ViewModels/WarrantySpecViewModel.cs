@@ -1,18 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Egwarancje.Utils;
 using EgwarancjeDbLibrary;
 using EgwarancjeDbLibrary.Models;
 using Mopups.Services;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace Egwarancje.ViewModels;
 
-public partial class WarrantySpecAttachmentViewModel : BaseViewModel, IDisposable
+public partial class WarrantySpecAttachmentViewModel : BaseViewModel
 {
-    private readonly MemoryStream _memoryStream;
-
     [ObservableProperty] private Attachment attachment;
     [ObservableProperty] private ImageSource image;
 
@@ -21,14 +17,7 @@ public partial class WarrantySpecAttachmentViewModel : BaseViewModel, IDisposabl
     {
         this.attachment = attachment;
 
-        byte[] imageDataCopy = (byte[])attachment.Image!.Clone();
-        _memoryStream = new(imageDataCopy);
-        Image = ImageSource.FromStream(() => _memoryStream);
-    }
-
-    public void Dispose()
-    {
-        _memoryStream.Dispose();
+        Image = ImageSource.FromFile(attachment.ImagePath);
     }
 }
 
@@ -68,9 +57,6 @@ public partial class WarrantySpecViewModel : BaseViewModel
             warrantySpec.Attachments.Add(current.Attachment);
         }
 
-        foreach (var attachment in Attachments)
-            attachment.Dispose();
-
         await MopupService.Instance.PopAsync();
         Attachments.Clear();
     }
@@ -83,7 +69,7 @@ public partial class WarrantySpecViewModel : BaseViewModel
         FileResult? file = await MediaPicker.Default.CapturePhotoAsync();
         if (file == null) return;
 
-        CreateAttachment(File.ReadAllBytes(file.FullPath));
+        CreateAttachment(file.FullPath);
     }
 
     [RelayCommand]
@@ -94,23 +80,14 @@ public partial class WarrantySpecViewModel : BaseViewModel
         FileResult? file = await MediaPicker.Default.PickPhotoAsync();
         if (file == null) return;
 
-        CreateAttachment(File.ReadAllBytes(file.FullPath));
+        CreateAttachment(file.FullPath);
     }
 
-    private Attachment CreateAttachment(byte[] image)
+    private Attachment CreateAttachment(string imagePath)
     {
-        try
-        {
-            image = Helper.CompressImage(image, 15);
-        }
-        catch (Exception ex)
-        {
-            Trace.WriteLine(ex);
-        }
-
         Attachment attachment = new()
         {
-            Image = image,
+            ImagePath = imagePath,
             WarrantySpec = warrantySpec
         };
 

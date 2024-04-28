@@ -9,10 +9,8 @@ public partial class OrderRegistrationViewModel : BaseViewModel
     private readonly OrderPanelViewModel orderPanelViewModel;
 
     [ObservableProperty]
-    private string? comments;
-
-    [ObservableProperty]
     private string? orderNumber;
+
 
     public OrderRegistrationViewModel(OrderPanelViewModel orderPanelViewModel)
     {

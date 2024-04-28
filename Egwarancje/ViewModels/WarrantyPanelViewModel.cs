@@ -30,7 +30,7 @@ public partial class WarrantyPanelViewModel : BaseViewModel
     [RelayCommand]
     public async Task ShowDetails(Warranty warranty)
     {
-        await MopupService.Instance.PushAsync(new WarrantyDetailsView(new WarrantyDetailsViewModel(database, this, warranty)));
+        await MopupService.Instance.PushAsync(new WarrantyDetailsView(new WarrantyDetailsViewModel(warranty)));
     }
 }
 

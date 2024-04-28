@@ -30,7 +30,6 @@
                             <Label Text="{Binding Spec.OrderSpec.Name}"
                                    TextColor="White" />
                             <StackLayout IsVisible="{Binding IsVisible}">
-                                <!--Tutaj zrobic wyswietlanie szczegolow (komentarze i attachmenty)-->
                                 <Label Text="{Binding Spec.Comments}" />
 
                                 <CollectionView ItemsSource="{Binding Attachments}">
