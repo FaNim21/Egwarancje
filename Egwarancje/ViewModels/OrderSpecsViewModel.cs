@@ -32,6 +32,8 @@ public partial class OrderSpecsViewModel : BaseViewModel
     [RelayCommand]
     public async Task CreateWarranty()
     {
+        if (_warrantySpecs == null || _warrantySpecs.Count == 0) return;
+
         await MopupService.Instance.PopAsync();
         await Shell.Current.Navigation.PushAsync(new WarrantyCreationView(new WarrantyCreationViewModel(database, order, _warrantySpecs)));
         //await Shell.Current.GoToAsync("///MainTab//WarrantyCreation");

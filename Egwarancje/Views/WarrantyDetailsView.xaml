@@ -8,11 +8,11 @@
                   x:DataType="vm:WarrantyDetailsViewModel"
                   Title="WarrantyDetailsView"
                   BackgroundColor="#80000000"
-                  CloseWhenBackgroundIsClicked="True">
-    <VerticalStackLayout WidthRequest="-1"
-                         HeightRequest="500"
-                         VerticalOptions="End"
-                         BackgroundColor="DimGray">
+                  CloseWhenBackgroundIsClicked="False">
+    <Grid WidthRequest="-1"
+          HeightRequest="500"
+          VerticalOptions="End"
+          BackgroundColor="DimGray">
         <CollectionView ItemsSource="{Binding WarrantySpecs}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="vm:WarrantySpecDetail">
@@ -30,13 +30,34 @@
                             <Label Text="{Binding Spec.OrderSpec.Name}"
                                    TextColor="White" />
                             <StackLayout IsVisible="{Binding IsVisible}">
-                                <Label Text="elo" />
                                 <!--Tutaj zrobic wyswietlanie szczegolow (komentarze i attachmenty)-->
+                                <Label Text="{Binding Spec.Comments}" />
+
+                                <CollectionView ItemsSource="{Binding Attachments}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:WarrantySpecAttachmentViewModel">
+                                            <HorizontalStackLayout>
+                                                <Image Source="{Binding Image}"
+                                                       WidthRequest="150"
+                                                       HeightRequest="150" />
+                                            </HorizontalStackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
                             </StackLayout>
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </VerticalStackLayout>
+
+        <Button Text="Zamknij"
+                Command="{Binding CloseCommand}"
+                WidthRequest="100"
+                Background="DarkGreen"
+                VerticalOptions="End"
+                HorizontalOptions="End"
+                TextColor="Black"
+                Margin="20" />
+    </Grid>
 </mopups:PopupPage>

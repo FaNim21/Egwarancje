@@ -12,7 +12,7 @@ public class Attachment
     [ForeignKey(nameof(WarrantySpec))]
     public int WarrantySpecId { get; set; }
 
-    public string image { get; set; }
+    public string? ImagePath { get; set; }
 
     public WarrantySpec? WarrantySpec { get; set; }
 }

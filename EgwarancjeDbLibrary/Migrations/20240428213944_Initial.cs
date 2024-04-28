@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EgwarancjeDbLibrary.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -45,7 +45,8 @@ namespace EgwarancjeDbLibrary.Migrations
                         name: "FK_Orders_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -81,7 +82,8 @@ namespace EgwarancjeDbLibrary.Migrations
                     DateOfWarranty = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     Comments = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OrderId = table.Column<int>(type: "int", nullable: false)
+                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -93,8 +95,8 @@ namespace EgwarancjeDbLibrary.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Warranties_Users_OrderId",
-                        column: x => x.OrderId,
+                        name: "FK_Warranties_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id");
                 });
@@ -121,7 +123,8 @@ namespace EgwarancjeDbLibrary.Migrations
                         name: "FK_WarrantiesSpecs_Warranties_WarrantyId",
                         column: x => x.WarrantyId,
                         principalTable: "Warranties",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -131,7 +134,7 @@ namespace EgwarancjeDbLibrary.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     WarrantySpecId = table.Column<int>(type: "int", nullable: false),
-                    image = table.Column<byte[]>(type: "varbinary(max)", nullable: false)
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -162,6 +165,11 @@ namespace EgwarancjeDbLibrary.Migrations
                 name: "IX_Warranties_OrderId",
                 table: "Warranties",
                 column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Warranties_UserId",
+                table: "Warranties",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WarrantiesSpecs_OrderSpecId",

@@ -30,12 +30,11 @@ namespace EgwarancjeDbLibrary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("WarrantySpecId")
                         .HasColumnType("int");
-
-                    b.Property<string>("image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -208,7 +207,9 @@ namespace EgwarancjeDbLibrary.Migrations
                 {
                     b.HasOne("EgwarancjeDbLibrary.Models.User", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -250,7 +251,8 @@ namespace EgwarancjeDbLibrary.Migrations
                     b.HasOne("EgwarancjeDbLibrary.Models.Warranty", "Warranty")
                         .WithMany("WarrantySpecs")
                         .HasForeignKey("WarrantyId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("OrderSpec");
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EgwarancjeDbLibrary.Migrations
 {
     [DbContext(typeof(LocalDatabaseContext))]
-    [Migration("20240416165854_initial2")]
-    partial class initial2
+    [Migration("20240428213944_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,12 +33,11 @@ namespace EgwarancjeDbLibrary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("WarrantySpecId")
                         .HasColumnType("int");
-
-                    b.Property<byte[]>("image")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("Id");
 
@@ -157,9 +156,14 @@ namespace EgwarancjeDbLibrary.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Warranties");
                 });
@@ -206,7 +210,9 @@ namespace EgwarancjeDbLibrary.Migrations
                 {
                     b.HasOne("EgwarancjeDbLibrary.Models.User", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -232,7 +238,7 @@ namespace EgwarancjeDbLibrary.Migrations
 
                     b.HasOne("EgwarancjeDbLibrary.Models.User", null)
                         .WithMany("Warranties")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Order");
                 });
@@ -248,7 +254,8 @@ namespace EgwarancjeDbLibrary.Migrations
                     b.HasOne("EgwarancjeDbLibrary.Models.Warranty", "Warranty")
                         .WithMany("WarrantySpecs")
                         .HasForeignKey("WarrantyId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("OrderSpec");
 

@@ -13,22 +13,19 @@
         <VerticalStackLayout Spacing="25"
                              Padding="30, 100"
                              VerticalOptions="Center">
-            
             <Frame Padding="12, 5"
                    VerticalOptions="Start"
                    BackgroundColor="Transparent"
                    BorderColor="Transparent">
-                
                 <Label Text="E-Gwarancje"
-                   HorizontalOptions="Center"                    
-                   TextColor="#FFFFFF"
-                   FontSize="40"
-                   FontAttributes="Bold" 
-                   FontFamily=""
-                   CharacterSpacing="1"/>
-                
-               
+                       HorizontalOptions="Center"
+                       TextColor="#FFFFFF"
+                       FontSize="40"
+                       FontAttributes="Bold"
+                       FontFamily=""
+                       CharacterSpacing="1" />
             </Frame>
+
             <Frame Padding="12, 5"
                    BackgroundColor="#1E1E1E">
                 <Entry Placeholder="Email"
@@ -36,20 +33,18 @@
                        BackgroundColor="Transparent"
                        PlaceholderColor="White"
                        TextColor="White"
-                       FontFamily=""
-                       />
+                       FontFamily="" />
             </Frame>
+
             <Frame Padding="12, 5"
                    BackgroundColor="#1E1E1E">
-                
                 <Entry Placeholder="Password"
                        IsPassword="True"
                        Text="{Binding Password}"
                        PlaceholderColor="White"
                        TextColor="White"
                        BackgroundColor="#1E1E1E"
-                        FontFamily=""
-                       />
+                       FontFamily="" />
             </Frame>
 
             <StackLayout Orientation="Horizontal"
@@ -76,14 +71,11 @@
                 </Frame>
             </StackLayout>
 
-
-
-
             <Button Text="Zaloguj się"
-                    Command="{Binding LoginCommand}" 
+                    Command="{Binding LoginCommand}"
                     FontFamily=""
                     FontSize="Medium"
-                    BackgroundColor="#6B5B95"/>
+                    BackgroundColor="#6B5B95" />
 
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="Center"
@@ -110,12 +102,8 @@
                 </Frame>
             </StackLayout>
 
-
-
-
             <Label x:Name="versionLabel"
                    TextColor="White" />
-
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

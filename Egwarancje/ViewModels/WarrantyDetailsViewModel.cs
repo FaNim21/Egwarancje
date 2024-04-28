@@ -1,24 +1,35 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Egwarancje.Views;
 using EgwarancjeDbLibrary;
 using EgwarancjeDbLibrary.Models;
-using Microsoft.EntityFrameworkCore;
 using Mopups.Services;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
 
 namespace Egwarancje.ViewModels;
 
-public partial class WarrantySpecDetail : BaseViewModel
+public partial class WarrantySpecDetail : BaseViewModel, IDisposable
 {
     [ObservableProperty] private bool isVisible;
     [ObservableProperty] private WarrantySpec spec;
+    [ObservableProperty] private ObservableCollection<WarrantySpecAttachmentViewModel> attachments = [];
 
     public WarrantySpecDetail(WarrantySpec spec)
     {
         this.spec = spec;
+
+        if (spec.Attachments == null || spec.Attachments.Count == 0) return;
+        for (int i = 0; i < spec.Attachments.Count; i++)
+        {
+            var current = spec.Attachments[i];
+            WarrantySpecAttachmentViewModel attachmentViewModel = new(current);
+            attachments.Add(attachmentViewModel);
+        }
+    }
+
+    public void Dispose()
+    {
+        foreach (var attachment in Attachments)
+            attachment.Dispose();
     }
 }
 
@@ -55,5 +66,14 @@ public partial class WarrantyDetailsViewModel : BaseViewModel
             spec.IsVisible = false;
         }
         specDetail.IsVisible = true;
+    }
+
+    [RelayCommand]
+    public async Task Close()
+    {
+        foreach (var spec in WarrantySpecs)
+            spec.Dispose();
+
+        await MopupService.Instance.PopAsync();
     }
 }

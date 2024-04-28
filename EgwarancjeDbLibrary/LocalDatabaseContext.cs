@@ -37,14 +37,14 @@ public class LocalDatabaseContext : DbContext
             .HasMany(u => u.Orders)
             .WithOne(o => o.User)
             .HasForeignKey(o => o.UserId)
-            .IsRequired(false);
+            .IsRequired();
 
         //Order
         modelBuilder.Entity<Order>()
             .HasMany(o => o.OrderSpecs)
             .WithOne(os => os.Order)
             .HasForeignKey(os => os.OrderId)
-            .IsRequired(false);
+            .IsRequired();
 
         modelBuilder.Entity<OrderSpec>()
             .HasOne(o => o.Order)
@@ -83,7 +83,7 @@ public class LocalDatabaseContext : DbContext
             .HasMany(w => w.WarrantySpecs)
             .WithOne(ws => ws.Warranty)
             .HasForeignKey(ws => ws.WarrantyId)
-            .IsRequired(false)
+            .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
 
         base.OnModelCreating(modelBuilder);
