@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
@@ -9,42 +8,78 @@
                   Title="OrderSpecsView"
                   BackgroundColor="#80000000"
                   CloseWhenBackgroundIsClicked="True">
-    <VerticalStackLayout WidthRequest="-1"
-                         HeightRequest="500"
-                         VerticalOptions="End"
-                         BackgroundColor="DimGray">
-        <CollectionView ItemsSource="{Binding OrderSpecs}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:OrderSpec">
-                    <HorizontalStackLayout>
-                        <CheckBox IsChecked="False"
-                                  CheckedChanged="CheckChanges"
-                                  BackgroundColor="Transparent" />
-                        <Label Text="{Binding Name}"
-                               TextColor="White" />
-                        <Label Text=" - "
-                               TextColor="White" />
-                        <Label Text="{Binding Realization}"
-                               TextColor="White" />
-                    </HorizontalStackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+    <Border WidthRequest="-1"
+            HeightRequest="500"
+            VerticalOptions="End"
+            BackgroundColor="#292929"
+            StrokeShape="RoundRectangle 30,30,0,0"
+            StrokeThickness="0">
+        <Grid RowDefinitions="*, Auto, Auto"
+              ColumnDefinitions="*"
+              Padding="0,20,0,20">
+            <CollectionView Grid.Row="0"
+                            ItemsSource="{Binding OrderSpecs}">
+                <CollectionView.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="1"
+                               Text="Name"
+                               TextColor="White"
+                               FontAttributes="Bold" />
+                        <Label Grid.Column="2"
+                               Text="Realization"
+                               TextColor="White"
+                               FontAttributes="Bold" />
+                    </Grid>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:OrderSpec">
+                        <Grid Margin="0,10,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="3*" />
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Grid.Column="0"
+                                      IsChecked="False"
+                                      CheckedChanged="CheckChanges"
+                                      BackgroundColor="Transparent"
+                                      Color="White" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding Name}"
+                                   TextColor="White" 
+                                   VerticalTextAlignment="Center"/>
+                            <Label Grid.Column="2"
+                                   Text="{Binding Realization}"
+                                   TextColor="White"
+                                   LineBreakMode="WordWrap"
+                                   VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-        <Button Text="Usun zamowienie"
-                Command="{Binding RemoveOrderCommand}"
-                HorizontalOptions="Center"
-                Background="OrangeRed"
-                VerticalOptions="End"
-                TextColor="Black"
-                Margin="20" />
+            <Button Grid.Row="1"
+                    Text="Stwórz gwarancje"
+                    Command="{Binding CreateWarrantyCommand}"
+                    BackgroundColor="#6B5B95"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    TextColor="White"
+                    Margin="20" />
 
-        <Button Text="Stwórz gwarancje"
-                Command="{Binding CreateWarrantyCommand}"
-                Background="DarkGreen"
-                VerticalOptions="End"
-                HorizontalOptions="End"
-                TextColor="Black"
-                Margin="20" />
-    </VerticalStackLayout>
+            <Button Grid.Row="2"
+                    Text="Usuń zamówienie"
+                    Command="{Binding RemoveOrderCommand}"
+                    HorizontalOptions="Center"
+                    Background="#B22222"
+                    VerticalOptions="Center"
+                    TextColor="White"
+                    Margin="20" />
+        </Grid>
+    </Border>
 </mopups:PopupPage>
