@@ -50,10 +50,13 @@ public partial class WarrantyDetailsViewModel : BaseViewModel
     [RelayCommand]
     public void ShowDetails(WarrantySpecDetail specDetail)
     {
-        foreach (var spec in WarrantySpecs)
-            spec.IsVisible = false;
+        for (int i = 0; i < WarrantySpecs.Count; i++)
+        {
+            if (WarrantySpecs[i] == specDetail) continue;
+            WarrantySpecs[i].IsVisible = false;
+        }
 
-        specDetail.IsVisible = true;
+        specDetail.IsVisible = !specDetail.IsVisible;
     }
 
     [RelayCommand]
