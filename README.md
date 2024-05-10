@@ -4,4 +4,4 @@
 * Filip Gorczyca
 * Karolina Grabowska
 * Adam Hura
-* Michał Janicki
+* Michał Janicki (??? nie pomaga nic)
