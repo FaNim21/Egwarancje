@@ -103,19 +103,52 @@
                                                    TextColor="Black" />
                                         </StackLayout>
                                     </Frame>
+
+                                    <Label Text="Szczegóły zamówienia:"
+                                           TextColor="White"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="Start"
+                                           Padding="0,15"/>
+
                                     <CollectionView ItemsSource="{Binding OrderSpecs}"
-                                                    HeightRequest="57"
+                                                    HeightRequest="180"
                                                     InputTransparent="True">
+                                        <CollectionView.Header>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="3*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Column="0"
+                                                       Text="Nazwa"
+                                                       FontSize="15"
+                                                       TextColor="White"
+                                                       FontAttributes="Bold" />
+                                                <Label Grid.Column="1"
+                                                       Text="Realizacja"
+                                                       TextColor="White"
+                                                       FontSize="15"
+                                                       FontAttributes="Bold" />
+                                            </Grid>
+                                        </CollectionView.Header>
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate x:DataType="models:OrderSpec">
-                                                <HorizontalStackLayout>
-                                                    <Label Text="{Binding Name}"
-                                                           TextColor="White" />
-                                                    <Label Text=" - "
-                                                           TextColor="White" />
-                                                    <Label Text="{Binding Realization}"
-                                                           TextColor="White" />
-                                                </HorizontalStackLayout>
+                                                <Grid Margin="0,10,0,10">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="3*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Grid.Column="0"
+                                                           Text="{Binding Name}"
+                                                           TextColor="White"
+                                                           VerticalTextAlignment="Center" />
+                                                    <Label Grid.Column="1"
+                                                           Text="{Binding Realization}"
+                                                           TextColor="White"
+                                                           LineBreakMode="WordWrap"
+                                                           VerticalTextAlignment="Center" />
+                                                </Grid>
                                             </DataTemplate>
                                         </CollectionView.ItemTemplate>
                                     </CollectionView>

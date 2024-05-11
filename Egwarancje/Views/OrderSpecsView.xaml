@@ -27,12 +27,14 @@
                             <ColumnDefinition Width="3*" />
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="1"
-                               Text="Name"
+                               Text="Nazwa"
                                TextColor="White"
+                               FontSize="15"
                                FontAttributes="Bold" />
                         <Label Grid.Column="2"
-                               Text="Realization"
+                               Text="Realizacja"
                                TextColor="White"
+                               FontSize="15"
                                FontAttributes="Bold" />
                     </Grid>
                 </CollectionView.Header>
