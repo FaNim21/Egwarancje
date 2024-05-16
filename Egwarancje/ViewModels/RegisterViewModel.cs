@@ -10,20 +10,13 @@ public partial class RegisterViewModel : BaseViewModel
 {
     public readonly LocalDatabaseContext database;
 
-    [ObservableProperty]
-    private string? name;
+    [ObservableProperty] private string? name;
+    [ObservableProperty] private string? email;
+    [ObservableProperty] private string? phoneNumber;
+    [ObservableProperty] private string? password;
+    [ObservableProperty] private string? passwordAgain;
 
-    [ObservableProperty]
-    private string? email;
-
-    [ObservableProperty]
-    private string phoneNumber;
-
-    [ObservableProperty]
-    private string? password;
-
-    [ObservableProperty]
-    private string? passwordAgain;
+    [ObservableProperty] private bool isCompanyAccount;
 
 
     public RegisterViewModel(LocalDatabaseContext database)
@@ -40,7 +33,7 @@ public partial class RegisterViewModel : BaseViewModel
     [RelayCommand]
     public async Task FinalizeRegister()
     {
-        if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(PhoneNumber.ToString()) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(PasswordAgain))
+        if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(PhoneNumber) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(PasswordAgain))
         {
             await Application.Current!.MainPage!.DisplayAlert("Niepełne dane", "Uzupełnij wszystkie dane wymagagane do rejestracji", "OK");
             return;

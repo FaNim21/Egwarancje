@@ -34,7 +34,6 @@
         <ShellContent Title="Profil"
                       ContentTemplate="{DataTemplate view:UserProfileView}"
                       Route="UserProfile" />
-
     </TabBar>
 
 </Shell>

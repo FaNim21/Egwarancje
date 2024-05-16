@@ -23,7 +23,7 @@
                    TextColor="#FFFFFF"
                    FontSize="15"
                    FontAttributes="Bold" />
-            <Label Text="Tu będzie imie i nazwisko użytkownika"
+            <Label Text="{Binding User.Name}"
                    TextColor="#FFFFFF"
                    FontSize="15"
                    Padding="10" />
@@ -31,7 +31,7 @@
                    TextColor="#FFFFFF"
                    FontSize="15"
                    FontAttributes="Bold" />
-            <Label Text="Tu będzie email użytkownika"
+            <Label Text="{Binding User.Email}"
                    TextColor="#FFFFFF"
                    FontSize="15"
                    Padding="10" />

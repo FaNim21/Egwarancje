@@ -10,11 +10,10 @@ public partial class LoginViewModel : BaseViewModel
 {
     public readonly LocalDatabaseContext database;
 
-    [ObservableProperty]
-    private string? email;
+    [ObservableProperty] private string? email;
+    [ObservableProperty] private string? password;
 
-    [ObservableProperty]
-    private string? password;
+    [ObservableProperty] private bool rememberMe;
 
 
     public LoginViewModel(LocalDatabaseContext database)
