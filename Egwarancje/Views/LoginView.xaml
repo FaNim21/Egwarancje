@@ -22,29 +22,27 @@
                        TextColor="#FFFFFF"
                        FontSize="40"
                        FontAttributes="Bold"
-                       FontFamily=""
                        CharacterSpacing="1" />
             </Frame>
 
-            <Frame Padding="12, 5"
+            <Frame Padding="12,5"
+                   CornerRadius="10"
                    BackgroundColor="#1E1E1E">
                 <Entry Placeholder="Email"
                        Text="{Binding Email}"
                        BackgroundColor="Transparent"
                        PlaceholderColor="White"
-                       TextColor="White"
-                       FontFamily="" />
+                       TextColor="White"/>
             </Frame>
 
-            <Frame Padding="12, 5"
+            <Frame Padding="12,5"
+                   CornerRadius="10"
                    BackgroundColor="#1E1E1E">
                 <Entry Placeholder="Password"
                        IsPassword="True"
                        Text="{Binding Password}"
                        PlaceholderColor="White"
-                       TextColor="White"
-                       BackgroundColor="#1E1E1E"
-                       FontFamily="" />
+                       TextColor="White"/>
             </Frame>
 
             <StackLayout Orientation="Horizontal"
@@ -71,9 +69,17 @@
                 </Frame>
             </StackLayout>
 
+            <StackLayout Orientation="Horizontal"
+                         Margin="-10,-35,0,-10">
+                <CheckBox IsChecked="{Binding RememberMe}"
+                          Color="White" />
+                <Label Text="Zapamiętaj mnie"
+                       TextColor="White"
+                       VerticalOptions="Center" />
+            </StackLayout>
+
             <Button Text="Zaloguj się"
                     Command="{Binding LoginCommand}"
-                    FontFamily=""
                     FontSize="Medium"
                     BackgroundColor="#6B5B95" />
 

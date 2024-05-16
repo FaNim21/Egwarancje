@@ -39,7 +39,7 @@
                    TextColor="#FFFFFF"
                    FontSize="15"
                    FontAttributes="Bold" />
-            <Label Text="Tu będzie numer telefonu użytkownika"
+            <Label Text="{Binding User.PhoneNumber}"
                    TextColor="#FFFFFF"
                    FontSize="15"
                    Padding="10" />

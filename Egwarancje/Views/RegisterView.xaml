@@ -9,7 +9,7 @@
              Title="Register"
              BackgroundColor="#1E1E1E">
 
-    <StackLayout Padding="20">
+    <StackLayout Padding="15">
 
         <StackLayout>
             <Image Source="Images/return_image.png"
@@ -29,6 +29,26 @@
                FontSize="30"
                FontAttributes="Bold"
                Margin="0, 20" />
+
+        <StackLayout Margin="0,-10,0,0">
+            
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="Center">
+                <Label Text="Typ konta:"
+                       TextColor="#FFFFFF"
+                       VerticalOptions="Center" />
+                <RadioButton Content="Konto osobiste"
+                             Value="False"
+                             TextColor="#FFFFFF"
+                             IsChecked="{Binding IsPersonalAccount}"
+                             Margin="10,0,0,0" />
+                <RadioButton Content="Konto firmowe"
+                             Value="True"
+                             TextColor="#FFFFFF"
+                             IsChecked="{Binding IsCompanyAccount}"
+                             Margin="10,0,0,0" />
+            </StackLayout>
+        </StackLayout>
 
         <Frame Padding="12, 5, 5, 5"
                BackgroundColor="#1E1E1E"
