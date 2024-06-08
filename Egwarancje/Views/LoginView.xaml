@@ -25,30 +25,33 @@
                        CharacterSpacing="1" />
             </Frame>
 
-            <Frame Padding="12,5"
+            <Frame Padding="12, 5"
                    CornerRadius="10"
-                   BackgroundColor="#1E1E1E">
+                   BackgroundColor="#292929"
+                   BorderColor="#6B5B95">
                 <Entry Placeholder="Email"
                        Text="{Binding Email}"
                        BackgroundColor="Transparent"
-                       PlaceholderColor="White"
-                       TextColor="White"/>
+                       PlaceholderColor="Gray"
+                       TextColor="White" />
             </Frame>
 
-            <Frame Padding="12,5"
+            <Frame Padding="12, 5"
                    CornerRadius="10"
-                   BackgroundColor="#1E1E1E">
+                   BackgroundColor="#292929"
+                   BorderColor="#6B5B95">
                 <Entry Placeholder="Password"
                        IsPassword="True"
                        Text="{Binding Password}"
-                       PlaceholderColor="White"
-                       TextColor="White"/>
+                       BackgroundColor="Transparent"
+                       PlaceholderColor="Gray"
+                       TextColor="White" />
             </Frame>
 
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="End"
                          VerticalOptions="Center"
-                         Margin="0,-20,0,0">
+                         Margin="0, -20, 0, 0">
                 <Label Text="Zapomniałeś hasła?"
                        TextColor="White"
                        VerticalOptions="Center" />
@@ -57,7 +60,7 @@
                        BorderColor="Transparent"
                        HasShadow="False">
                     <Label Text="Reset hasła"
-                           TextColor="White"
+                           TextColor="#6B5B95"
                            TextDecorations="Underline"
                            FontSize="15"
                            FontAttributes="Bold"
@@ -69,34 +72,38 @@
                 </Frame>
             </StackLayout>
 
-            <StackLayout Orientation="Horizontal"
-                         Margin="-10,-35,0,-10">
+            <!--<StackLayout Orientation="Horizontal"
+                         Margin="0, -10, 0, 0">
                 <CheckBox IsChecked="{Binding RememberMe}"
                           Color="White" />
                 <Label Text="Zapamiętaj mnie"
                        TextColor="White"
-                       VerticalOptions="Center" />
-            </StackLayout>
+                       VerticalOptions="Center"
+                       Margin="10, 0, 0, 0" />
+            </StackLayout>-->
 
             <Button Text="Zaloguj się"
                     Command="{Binding LoginCommand}"
                     FontSize="Medium"
-                    BackgroundColor="#6B5B95" />
+                    BackgroundColor="#6B5B95"
+                    TextColor="White"
+                    CornerRadius="20"
+                    HeightRequest="50"
+                    Margin="0, 20, 0, 0" />
 
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="Center"
                          VerticalOptions="Center"
-                         Margin="0,40,0,0">
+                         Margin="0, 40, 0, 0">
                 <Label Text="Nie posiadasz konta?"
                        TextColor="#EEE"
-                       VerticalOptions="Center"
-                       Margin="0,0,0,0" />
+                       VerticalOptions="Center" />
                 <Frame BackgroundColor="Transparent"
                        Padding="5"
                        BorderColor="Transparent"
                        HasShadow="False">
                     <Label Text="Zarejestruj się"
-                           TextColor="#EEE"
+                           TextColor="#6B5B95"
                            TextDecorations="Underline"
                            FontAttributes="Bold"
                            FontSize="15"
@@ -109,7 +116,10 @@
             </StackLayout>
 
             <Label x:Name="versionLabel"
-                   TextColor="White" />
+                   Text="v1.0.0"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   Margin="0, 40, 0, 0" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

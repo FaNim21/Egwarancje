@@ -12,7 +12,7 @@
             HeightRequest="500"
             VerticalOptions="End"
             BackgroundColor="#292929"
-            StrokeShape="RoundRectangle 30,30,0,0"
+            StrokeShape="RoundRectangle 30,30,30,30"
             StrokeThickness="0">
         <Grid RowDefinitions="*, Auto, Auto"
               ColumnDefinitions="*"
@@ -69,19 +69,21 @@
                     Text="Stwórz gwarancje"
                     Command="{Binding CreateWarrantyCommand}"
                     BackgroundColor="#6B5B95"
-                    HorizontalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
                     VerticalOptions="Center"
                     TextColor="White"
-                    Margin="20" />
+                    Margin="20,10,20,0"
+                    CornerRadius="10" />
 
             <Button Grid.Row="2"
                     Text="Usuń zamówienie"
                     Command="{Binding RemoveOrderCommand}"
-                    HorizontalOptions="Center"
-                    Background="#B22222"
+                    BackgroundColor="#B22222"
+                    HorizontalOptions="FillAndExpand"
                     VerticalOptions="Center"
                     TextColor="White"
-                    Margin="20" />
+                    Margin="20,10,20,20"
+                    CornerRadius="10" />
         </Grid>
     </Border>
 </mopups:PopupPage>

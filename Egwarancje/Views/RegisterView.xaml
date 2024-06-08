@@ -30,10 +30,11 @@
                FontAttributes="Bold"
                Margin="0, 20" />
 
-        <StackLayout Margin="0,-10,0,0">
-            
+        <StackLayout Margin="0, -10, 0, 0">
+
             <StackLayout Orientation="Horizontal"
-                         VerticalOptions="Center">
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center">
                 <Label Text="Typ konta:"
                        TextColor="#FFFFFF"
                        VerticalOptions="Center" />
@@ -51,8 +52,10 @@
         </StackLayout>
 
         <Frame Padding="12, 5, 5, 5"
-               BackgroundColor="#1E1E1E"
-               Margin="0,10,0,10"
+               BackgroundColor="#292929"
+               CornerRadius="10"
+               BorderColor="#6B5B95"
+               Margin="0, 10, 0, 10"
                IsVisible="{Binding IsCompanyAccount}">
             <Entry Placeholder="Nazwa firmy"
                    Text="{Binding Name, Mode=TwoWay}"
@@ -61,8 +64,10 @@
         </Frame>
 
         <Frame Padding="12, 5, 5, 5"
-               BackgroundColor="#1E1E1E"
-               Margin="0,10,0,10">
+               BackgroundColor="#292929"
+               CornerRadius="10"
+               BorderColor="#6B5B95"
+               Margin="0, 10, 0, 10">
             <Entry Placeholder="Imię i nazwisko"
                    Text="{Binding Name, Mode=TwoWay}"
                    Keyboard="Text"
@@ -70,8 +75,10 @@
         </Frame>
 
         <Frame Padding="12, 5"
-               BackgroundColor="#1E1E1E"
-               Margin="0,10,0,10">
+               BackgroundColor="#292929"
+               CornerRadius="10"
+               BorderColor="#6B5B95"
+               Margin="0, 10, 0, 10">
             <Entry Placeholder="Email"
                    Text="{Binding Email, Mode=TwoWay}"
                    Keyboard="Email"
@@ -79,8 +86,10 @@
         </Frame>
 
         <Frame Padding="12, 5"
-               BackgroundColor="#1E1E1E"
-               Margin="0,10,0,10">
+               BackgroundColor="#292929"
+               CornerRadius="10"
+               BorderColor="#6B5B95"
+               Margin="0, 10, 0, 10">
             <Entry Placeholder="Numer telefonu"
                    Text="{Binding PhoneNumber, Mode=TwoWay}"
                    Keyboard="Telephone"
@@ -89,8 +98,10 @@
         </Frame>
 
         <Frame Padding="12, 5"
-               BackgroundColor="#1E1E1E"
-               Margin="0,10,0,10">
+               BackgroundColor="#292929"
+               CornerRadius="10"
+               BorderColor="#6B5B95"
+               Margin="0, 10, 0, 10">
             <Entry Placeholder="Hasło"
                    Text="{Binding Password, Mode=TwoWay}"
                    IsPassword="True"
@@ -98,8 +109,10 @@
         </Frame>
 
         <Frame Padding="12, 5"
-               BackgroundColor="#1E1E1E"
-               Margin="0,10,0,10">
+               BackgroundColor="#292929"
+               CornerRadius="10"
+               BorderColor="#6B5B95"
+               Margin="0, 10, 0, 10">
             <Entry Placeholder="Powtórz hasło"
                    Text="{Binding PasswordAgain, Mode=TwoWay}"
                    IsPassword="True"
@@ -109,8 +122,11 @@
         <Button Text="Stwórz konto"
                 BackgroundColor="#6B5B95"
                 TextColor="#EEE"
+                FontAttributes="Bold"
+                CornerRadius="20"
+                HeightRequest="50"
                 Command="{Binding FinalizeRegisterCommand}"
-                Margin="0,20,0,0" />
+                Margin="0, 20, 0, 0" />
 
         <Label Text="Tworząc konto lub podpisując umowę, wyrażasz zgodę na nasz Regulamin."
                VerticalOptions="CenterAndExpand"
