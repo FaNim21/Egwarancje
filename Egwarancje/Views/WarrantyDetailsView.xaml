@@ -49,7 +49,7 @@
                                                TextColor="LightGray"
                                                FontSize="Small" />
                                         <CollectionView ItemsSource="{Binding Attachments}"
-                                                        Margin="0,10,0,0">
+                                                        Margin="0,10,0,10">
                                             <CollectionView.ItemsLayout>
                                                 <LinearItemsLayout Orientation="Horizontal" />
                                             </CollectionView.ItemsLayout>

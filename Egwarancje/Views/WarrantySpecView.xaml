@@ -9,45 +9,79 @@
                   Title="WarrantySpecView"
                   BackgroundColor="#80000000"
                   CloseWhenBackgroundIsClicked="True">
-    <VerticalStackLayout WidthRequest="-1"
-                         HeightRequest="500"
-                         VerticalOptions="End"
-                         BackgroundColor="DimGray">
-        <StackLayout Padding="10">
-            <Frame Padding="12, 5, 5, 5"
+    <Border WidthRequest="400"
+            HeightRequest="500"
+            VerticalOptions="End"
+            BackgroundColor="#292929"
+            StrokeShape="RoundRectangle 30,30,30,30"
+            StrokeThickness="0"
+            Margin="20,2,20,20">
+        <Grid RowDefinitions="Auto, *, Auto"
+              ColumnDefinitions="*"
+              Padding="20">
+            <Frame Padding="12, 10, 12, 10"
                    BackgroundColor="#1E1E1E"
-                   Margin="0,10,0,10">
-                <Entry Placeholder="Komentarz"
-                       Text="{Binding Comment, Mode=TwoWay}"
-                       Keyboard="Text"
-                       TextColor="#FFFFFF" />
+                   CornerRadius="10"
+                   HasShadow="True"
+                   Margin="0,10,0,10"
+                   HeightRequest="150">
+                <Grid>
+                    <Editor Placeholder="Komentarz"
+                            Text="{Binding Comment, Mode=TwoWay}"
+                            Keyboard="Text"
+                            TextColor="#FFFFFF"
+                            BackgroundColor="Transparent"
+                            VerticalOptions="FillAndExpand"
+                            HeightRequest="130" />
+                    <Label Text="Max 250 znaków"
+                           TextColor="#FFFFFF"
+                           FontSize="12"
+                           HorizontalOptions="End"
+                           VerticalOptions="End"
+                           Margin="0,0,5,5" />
+                </Grid>
             </Frame>
 
-            <CollectionView ItemsSource="{Binding Attachments}">
+            <CollectionView Grid.Row="1"
+                            ItemsSource="{Binding Attachments}"
+                            Margin="0,10,0,10"
+                            BackgroundColor="Transparent">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="vm:WarrantySpecAttachmentViewModel">
-                        <HorizontalStackLayout>
-                            <Image Source="{Binding Image}" WidthRequest="150" HeightRequest="150"/>
-                        </HorizontalStackLayout>
+                        <Image Source="{Binding Image}"
+                               WidthRequest="150"
+                               HeightRequest="150"
+                               Aspect="AspectFill"
+                               Margin="5" />
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Button Text="Camera"
-                    Command="{Binding UseCameraCommand}"
-                    Background="DarkGreen"
-                    VerticalOptions="End"
-                    HorizontalOptions="End"
-                    TextColor="Black"
-                    Margin="20" />
+            <StackLayout Grid.Row="2"
+                         Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         VerticalOptions="End">
+                <Button Text="Dodaj zdjęcia"
+                        Command="{Binding UseCameraCommand}"
+                        BackgroundColor="#6B5B95"
+                        TextColor="White"
+                        CornerRadius="20"
+                        Margin="5"
+                        WidthRequest="140"
+                        HeightRequest="40" />
 
-            <Button Text="Zapisz zmiany"
-                    Command="{Binding SaveChangesCommand}"
-                    Background="DarkGreen"
-                    VerticalOptions="End"
-                    HorizontalOptions="End"
-                    TextColor="Black"
-                    Margin="20" />
-        </StackLayout>
-    </VerticalStackLayout>
+                <Button Text="Zapisz zmiany"
+                        Command="{Binding SaveChangesCommand}"
+                        BackgroundColor="#6B5B95"
+                        TextColor="White"
+                        CornerRadius="20"
+                        Margin="5"
+                        WidthRequest="140"
+                        HeightRequest="40" />
+            </StackLayout>
+        </Grid>
+    </Border>
 </mopups:PopupPage>
