@@ -3,12 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Egwarancje.Views.RegisterView"
              xmlns:vm="clr-namespace:Egwarancje.ViewModels"
+             xmlns:converters="clr-namespace:Egwarancje.Converters"
              x:DataType="vm:RegisterViewModel"
              Shell.NavBarIsVisible="False"
              Shell.FlyoutItemIsVisible="False"
              Title="Register"
              BackgroundColor="#1E1E1E">
-
+    <ContentPage.Resources>
+        <converters:BoolToObjectConverter x:Key="BoolToObjectConverter" />
+    </ContentPage.Resources>
     <StackLayout Padding="15">
 
         <StackLayout>
@@ -41,12 +44,12 @@
                 <RadioButton Content="Konto osobiste"
                              Value="False"
                              TextColor="#FFFFFF"
-                             IsChecked="{Binding IsCompanyAccount}"
+                             IsChecked="{Binding IsCompanyAccount, Converter={StaticResource BoolToObjectConverter}, ConverterParameter=false}"
                              Margin="10,0,0,0" />
                 <RadioButton Content="Konto firmowe"
                              Value="True"
                              TextColor="#FFFFFF"
-                             IsChecked="{Binding IsCompanyAccount}"
+                             IsChecked="{Binding IsCompanyAccount, Converter={StaticResource BoolToObjectConverter}, ConverterParameter=true}"
                              Margin="10,0,0,0" />
             </StackLayout>
         </StackLayout>

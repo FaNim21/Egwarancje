@@ -87,7 +87,7 @@
                                                    FontSize="15"
                                                    FontAttributes="Bold"
                                                    TextColor="White" />
-                                            <Label Text="{Binding ValueGross}"
+                                            <Label Text="{Binding OrderNumber}"
                                                FontSize="15"
                                                TextColor="White" />
                                         </StackLayout>
