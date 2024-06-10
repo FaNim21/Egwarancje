@@ -54,12 +54,16 @@
                             <Label Grid.Column="1"
                                    Text="{Binding Name}"
                                    TextColor="White" 
-                                   VerticalTextAlignment="Center"/>
+                                   VerticalTextAlignment="Center"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
                             <Label Grid.Column="2"
                                    Text="{Binding Realization}"
                                    TextColor="White"
                                    LineBreakMode="WordWrap"
-                                   VerticalTextAlignment="Center"/>
+                                   VerticalTextAlignment="Center"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
