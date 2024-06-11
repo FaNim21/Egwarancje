@@ -45,6 +45,16 @@ public partial class WarrantySpecViewModel : BaseViewModel
         }
     }
 
+    // Maksymalna długość komentarza 250 znaków
+    partial void OnCommentChanged(string value)
+    {
+        if (value.Length > 250)
+        {
+            comment = value.Substring(0, 250);
+            OnPropertyChanged(nameof(Comment));
+        }
+    }
+
     [RelayCommand]
     public async Task SaveChanges()
     {
