@@ -1,0 +1,6 @@
+@EgwarancjeAPI_HostAddress = https://localhost:7007
+
+GET {{EgwarancjeAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
