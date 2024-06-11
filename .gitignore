@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /EgwarancjeDbLibrary/DbConsts.cs
 /EgwarancjeDbLibrary/DbConsts.cs
+/EgwarancjeAPI/DbConsts.cs
