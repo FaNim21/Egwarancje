@@ -29,3 +29,14 @@ public class Warranty
     public List<WarrantySpec> WarrantySpecs { get; set; }
 }
 
+public record CreateWarrantyDto
+{
+    public DateTime DateOfWarranty { get; set; }
+
+    public WarrantyStatusType Status { get; set; }
+
+    public string? Comments { get; set; }
+
+    public int OrderId { get; set; }
+}
+

@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Egwarancje.Services;
 using Egwarancje.Views;
-using EgwarancjeDbLibrary;
 using EgwarancjeDbLibrary.Models;
 using Mopups.Services;
 using System.Collections.ObjectModel;
@@ -10,20 +10,19 @@ namespace Egwarancje.ViewModels;
 
 public partial class WarrantyCreationViewModel : BaseViewModel
 {
-    public readonly LocalDatabaseContext database;
+    public readonly UserService service;
     public readonly Order order;
 
     public Warranty warranty;
 
     [ObservableProperty] private ObservableCollection<WarrantySpec> warrantySpecs = [];
     [ObservableProperty] private string? comment;
-    [ObservableProperty] private WarrantyStatusType? status;
     [ObservableProperty] private DateTime dateOfWarranty;
 
 
-    public WarrantyCreationViewModel(LocalDatabaseContext database, Order order, List<OrderSpec> orderSpecs)
+    public WarrantyCreationViewModel(UserService serivce, Order order, List<OrderSpec> orderSpecs)
     {
-        this.database = database;
+        this.service = serivce;
         this.order = order;
 
         dateOfWarranty = DateTime.Now;
@@ -52,7 +51,7 @@ public partial class WarrantyCreationViewModel : BaseViewModel
     [RelayCommand]
     public async Task ShowSpecDetails(WarrantySpec warranty)
     {
-        await MopupService.Instance.PushAsync(new WarrantySpecView(new WarrantySpecViewModel(database, warranty)));
+        await MopupService.Instance.PushAsync(new WarrantySpecView(new WarrantySpecViewModel(warranty)));
     }
 
     [RelayCommand]
@@ -62,8 +61,17 @@ public partial class WarrantyCreationViewModel : BaseViewModel
         if (!result) return;
 
         warranty.Comments = Comment;
-        await database.Warranties.AddAsync(warranty);
+        Warranty? dbWarranty = await service.CreateWarrantyAsync(warranty);
+        if (dbWarranty is null)
+        {
+            await Application.Current!.MainPage!.DisplayAlert("Dodano", "Problem ze zgłoszeniem gwarancji", "OK");
+            return;
+        }
 
+        dbWarranty.Order = order;
+        dbWarranty.OrderId = order.Id;
+
+        dbWarranty.WarrantySpecs ??= [];
         for (int i = 0; i < WarrantySpecs.Count; i++)
         {
             var spec = WarrantySpecs[i];
@@ -72,12 +80,24 @@ public partial class WarrantyCreationViewModel : BaseViewModel
                 Comments = spec.Comments,
                 OrderSpecId = spec.OrderSpecId,
                 OrderSpec = spec.OrderSpec,
-                WarrantyId = warranty.Id,
-                Warranty = warranty,
+                WarrantyId = dbWarranty.Id,
+                Warranty = dbWarranty,
             };
 
-            await database.WarrantiesSpecs.AddAsync(warrantySpec);
+            WarrantySpec? dbSpec = await service.CreateWarrantySpecAsync(warrantySpec);
+            if (dbSpec is null)
+            {
+                await Application.Current!.MainPage!.DisplayAlert("Dodano", "Problem ze zgłoszeniem specfikacji gwarancji", "OK");
+                return;
+            }
 
+            dbSpec.OrderSpecId = warrantySpec.OrderSpecId;
+            dbSpec.OrderSpec = warrantySpec.OrderSpec;
+            dbSpec.WarrantyId = warrantySpec.WarrantyId;
+            dbSpec.Warranty = warrantySpec.Warranty;
+            dbWarranty.WarrantySpecs.Add(dbSpec);
+
+            dbSpec.Attachments ??= [];
             spec.Attachments ??= [];
             for (int j = 0; j < spec.Attachments.Count; j++)
             {
@@ -86,15 +106,25 @@ public partial class WarrantyCreationViewModel : BaseViewModel
                 Attachment newAttachment = new()
                 {
                     ImagePath = attachment.ImagePath,
-                    WarrantySpecId = warrantySpec.Id,
-                    WarrantySpec = warrantySpec,
+                    WarrantySpecId = dbSpec.Id,
+                    WarrantySpec = dbSpec,
                 };
 
-                await database.Attachments.AddAsync(newAttachment);
+                Attachment? dbAttachment = await service.CreateAttachmentAsync(newAttachment);
+                if (dbAttachment is null)
+                {
+                    await Application.Current!.MainPage!.DisplayAlert("Dodano", "Problem ze zgłoszeniem załącznika w specfikacji gwarancji", "OK");
+                    return;
+                }
+
+                dbAttachment.WarrantySpecId = newAttachment.WarrantySpecId;
+                dbAttachment.WarrantySpec = newAttachment.WarrantySpec;
+                dbSpec.Attachments.Add(dbAttachment);
             }
         }
 
-        await database.SaveChangesAsync();
+        service.User.Warranties ??= [];
+        service.User.Warranties.Add(dbWarranty);
 
         await Application.Current!.MainPage!.DisplayAlert("Dodano", "Pomyślnie zgłoszono gwarancję", "OK");
         await Shell.Current.Navigation.PopAsync();

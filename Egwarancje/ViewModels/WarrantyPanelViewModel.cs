@@ -1,9 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Egwarancje.Services;
 using Egwarancje.Views;
-using EgwarancjeDbLibrary;
 using EgwarancjeDbLibrary.Models;
-using Microsoft.EntityFrameworkCore;
 using Mopups.Services;
 using System.Collections.ObjectModel;
 
@@ -11,20 +10,18 @@ namespace Egwarancje.ViewModels;
 
 public partial class WarrantyPanelViewModel : BaseViewModel
 {
-    public readonly LocalDatabaseContext database;
+    public readonly UserService service;
 
     [ObservableProperty]
-    private ObservableCollection<Warranty> warranties;
+    private ObservableCollection<Warranty> warranties = [];
 
 
-    public WarrantyPanelViewModel(LocalDatabaseContext database)
+    public WarrantyPanelViewModel(UserService service)
     {
-        this.database = database;
+        this.service = service;
 
-        Warranties = new(database.Warranties
-                                .Where(w => w.Order.UserId == database.User!.Id)
-                                .Include(w => w.WarrantySpecs)
-                                .ThenInclude(w => w.Attachments));
+        if (service.User.Warranties == null) return;
+        warranties = new(service.User.Warranties);
     }
 
     [RelayCommand]

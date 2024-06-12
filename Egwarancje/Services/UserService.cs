@@ -104,7 +104,16 @@ public class UserService : IDisposable
         try
         {
             var requestUri = $"{_url}/User/Update";
-            var contentPost = SetPostContent(User);
+
+            User updateUser = new()
+            {
+                Id = User.Id,
+                Name = User.Name,
+                Email = User.Email,
+                PhoneNumber = User.PhoneNumber,
+                Password = User.Password,
+            };
+            var contentPost = SetPostContent(updateUser);
             var response = await _httpClient.PutAsync(requestUri, contentPost);
 
             return response.IsSuccessStatusCode;

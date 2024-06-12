@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace EgwarancjeDbLibrary.Models;
 
@@ -14,6 +15,6 @@ public class Attachment
 
     public string? ImagePath { get; set; }
 
-    public WarrantySpec? WarrantySpec { get; set; }
+    [JsonIgnore] public WarrantySpec? WarrantySpec { get; set; }
 }
 

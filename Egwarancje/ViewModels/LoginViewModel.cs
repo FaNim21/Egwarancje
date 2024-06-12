@@ -1,14 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using EgwarancjeDbLibrary;
-using EgwarancjeDbLibrary.Models;
-using Microsoft.EntityFrameworkCore;
+using Egwarancje.Services;
 
 namespace Egwarancje.ViewModels;
 
 public partial class LoginViewModel : BaseViewModel
 {
-    public readonly LocalDatabaseContext database;
+    public readonly UserService service;
 
     [ObservableProperty] private string? email;
     [ObservableProperty] private string? password;
@@ -16,9 +14,9 @@ public partial class LoginViewModel : BaseViewModel
     [ObservableProperty] private bool rememberMe;
 
 
-    public LoginViewModel(LocalDatabaseContext database)
+    public LoginViewModel(UserService service)
     {
-        this.database = database;
+        this.service = service;
     }
 
     [RelayCommand]
@@ -30,16 +28,12 @@ public partial class LoginViewModel : BaseViewModel
             return;
         }
 
-        User? user = database.Users
-            .Include(u => u.Orders!).ThenInclude(o => o.OrderSpecs)
-            .FirstOrDefault(u => u.Email.Equals(Email) && u.Password.Equals(Password));
-        if (user == null)
+        bool success = await service.LoginAsync(Email, Password);
+        if (!success)
         {
             await Application.Current!.MainPage!.DisplayAlert("Message", "Nieprawidłowe dane logowania", "OK");
             return;
         }
-
-        database.User = user;
 
         await Shell.Current.GoToAsync("///MainTab//OrderPanel");
     }

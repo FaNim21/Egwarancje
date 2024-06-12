@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using EgwarancjeDbLibrary;
+using Egwarancje.Services;
 using EgwarancjeDbLibrary.Models;
 using System.Text.RegularExpressions;
 
@@ -8,7 +8,7 @@ namespace Egwarancje.ViewModels;
 
 public partial class RegisterViewModel : BaseViewModel
 {
-    public readonly LocalDatabaseContext database;
+    public readonly UserService service;
 
     [ObservableProperty] private string? name;
     [ObservableProperty] private string? email;
@@ -19,9 +19,9 @@ public partial class RegisterViewModel : BaseViewModel
     [ObservableProperty] private bool isCompanyAccount;
 
 
-    public RegisterViewModel(LocalDatabaseContext database)
+    public RegisterViewModel(UserService service)
     {
-        this.database = database;
+        this.service = service;
     }
 
     [RelayCommand]
@@ -57,28 +57,22 @@ public partial class RegisterViewModel : BaseViewModel
             return;
         }
 
-        User? user = database.Users.FirstOrDefault(u => u.Email.Equals(Email));
-        if (user == null)
+        User newUser = new()
         {
-            User newUser = new()
-            {
-                Name = Name,
-                Email = Email,
-                PhoneNumber = int.Parse(PhoneNumber),
-                Password = Password
-            };
+            Name = Name,
+            Email = Email,
+            PhoneNumber = int.Parse(PhoneNumber),
+            Password = Password
+        };
 
-            database.Users.Add(newUser);
-            await database.SaveChangesAsync();
-
-            await Application.Current!.MainPage!.DisplayAlert("Rejestracja", "Zarejestrowano pomyślnie użytkownika", "OK");
-        }
-        else
+        bool success = await service.RegisterAsync(newUser);
+        if (!success)
         {
             await Application.Current!.MainPage!.DisplayAlert("Rejestracja", "Istnieje już użytkownik o podanym adresie e-mail", "OK");
             return;
         }
 
+        await Application.Current!.MainPage!.DisplayAlert("Rejestracja", "Zarejestrowano pomyślnie użytkownika", "OK");
         await Shell.Current.GoToAsync("///Login");
     }
 

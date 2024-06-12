@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Egwarancje.Services;
 using Egwarancje.Views;
-using EgwarancjeDbLibrary;
 using EgwarancjeDbLibrary.Models;
 using Mopups.Services;
 using System.Collections.ObjectModel;
@@ -11,29 +11,36 @@ namespace Egwarancje.ViewModels;
 
 public partial class OrderPanelViewModel : BaseViewModel
 {
-    public readonly LocalDatabaseContext database;
+    public readonly UserService service;
 
     [ObservableProperty]
-    private ObservableCollection<Order> orders;
+    private ObservableCollection<Order> orders = [];
 
 
-    public OrderPanelViewModel(LocalDatabaseContext database)
+    public OrderPanelViewModel(UserService service)
     {
-        this.database = database;
-        Orders = new(database.User!.Orders!);
+        this.service = service;
+
+        if (service.User.Orders == null) return;
+        Orders = new(service.User.Orders);
     }
 
-    public async Task AddOrder(Order order)
+    public async Task<Order?> AddOrder(Order order)
     {
-        await database.Orders.AddAsync(order);
-        Orders.Add(order);
-        await database.SaveChangesAsync();
+        Order? dbOrder = await service.CreateOrderAsync(order);
+        if (dbOrder is not null)
+        {
+            Orders.Add(dbOrder);
+            service.User.Orders ??= [];
+            service.User.Orders.Add(dbOrder);
+        }
+        return dbOrder;
     }
 
-    public async Task AddOrderSpecs(OrderSpec orderSpec)
+    public async Task<bool> AddOrderSpecs(OrderSpec orderSpec)
     {
-        await database.OrdersSpec.AddAsync(orderSpec);
-        await database.SaveChangesAsync();
+        bool success = await service.CreateOrderSpecAsync(orderSpec);
+        return success;
     }
 
     [RelayCommand]
@@ -45,6 +52,6 @@ public partial class OrderPanelViewModel : BaseViewModel
     [RelayCommand]
     public async Task ShowSpecs(Order order)
     {
-        await MopupService.Instance.PushAsync(new OrderSpecsView(new OrderSpecsViewModel(database, this, order)));
+        await MopupService.Instance.PushAsync(new OrderSpecsView(new OrderSpecsViewModel(service, this, order)));
     }
 }

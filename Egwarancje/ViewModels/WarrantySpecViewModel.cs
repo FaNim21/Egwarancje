@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using EgwarancjeDbLibrary;
 using EgwarancjeDbLibrary.Models;
 using Mopups.Services;
 using System.Collections.ObjectModel;
@@ -23,16 +22,14 @@ public partial class WarrantySpecAttachmentViewModel : BaseViewModel
 
 public partial class WarrantySpecViewModel : BaseViewModel
 {
-    private readonly LocalDatabaseContext database;
     private readonly WarrantySpec warrantySpec;
 
     [ObservableProperty] private string comment;
     [ObservableProperty] private ObservableCollection<WarrantySpecAttachmentViewModel> attachments = [];
 
 
-    public WarrantySpecViewModel(LocalDatabaseContext database, WarrantySpec warrantySpec)
+    public WarrantySpecViewModel(WarrantySpec warrantySpec)
     {
-        this.database = database;
         this.warrantySpec = warrantySpec;
 
         Comment = warrantySpec.Comments;
@@ -48,11 +45,9 @@ public partial class WarrantySpecViewModel : BaseViewModel
     // Maksymalna długość komentarza 250 znaków
     partial void OnCommentChanged(string value)
     {
-        if (value.Length > 250)
-        {
-            comment = value.Substring(0, 250);
-            OnPropertyChanged(nameof(Comment));
-        }
+        if (value.Length <= 250) return;
+
+        Comment = value.Substring(0, 250);
     }
 
     [RelayCommand]

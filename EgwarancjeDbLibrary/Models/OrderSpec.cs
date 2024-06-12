@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace EgwarancjeDbLibrary.Models;
 
@@ -24,6 +25,6 @@ public class OrderSpec
     //gwarancje chyba najlepiej bedzie podawac w dniach
     public int WarrantyLength { get; set; }
 
-    public Order? Order { get; set; }
+    [JsonIgnore] public Order? Order { get; set; }
 }
 

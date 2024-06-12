@@ -11,7 +11,7 @@ public partial class RecoverPasswordViewModel : BaseViewModel
 
     public RecoverPasswordViewModel()
     {
-        
+        email = string.Empty;
     }
 
     [RelayCommand]

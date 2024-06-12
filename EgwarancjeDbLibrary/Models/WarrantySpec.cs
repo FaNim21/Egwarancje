@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace EgwarancjeDbLibrary.Models;
 
@@ -17,9 +18,17 @@ public class WarrantySpec
 
     public string Comments { get; set; }
 
-    public Warranty Warranty { get; set; }
+    [JsonIgnore] public Warranty Warranty { get; set; }
     public OrderSpec OrderSpec { get; set; }
 
     public List<Attachment>? Attachments { get; set; }
 }
 
+public record CreateWarrantySpecDto
+{
+    public int WarrantyId { get; set; }
+
+    public int OrderSpecId { get; set; }
+
+    public string Comments { get; set; }
+}

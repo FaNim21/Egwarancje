@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Maui;
-using EgwarancjeDbLibrary;
 using Egwarancje.ViewModels;
 using Egwarancje.Views;
 using Microsoft.Extensions.Logging;
 using Mopups.Hosting;
+using Egwarancje.Services;
 
 namespace Egwarancje;
 
@@ -27,7 +27,8 @@ public static class MauiProgram
 #endif
         //xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
 
-        builder.Services.AddDbContext<LocalDatabaseContext>();
+        builder.Services.AddHttpClient();
+        builder.Services.AddSingleton<UserService>();
 
         builder.Services.AddTransient<LoginView>();
         builder.Services.AddTransient<LoginViewModel>();

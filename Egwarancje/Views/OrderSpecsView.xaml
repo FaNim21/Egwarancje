@@ -78,16 +78,6 @@
                     TextColor="White"
                     Margin="20,10,20,0"
                     CornerRadius="10" />
-
-            <Button Grid.Row="2"
-                    Text="Usuń zamówienie"
-                    Command="{Binding RemoveOrderCommand}"
-                    BackgroundColor="#B22222"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="Center"
-                    TextColor="White"
-                    Margin="20,10,20,20"
-                    CornerRadius="10" />
         </Grid>
     </Border>
 </mopups:PopupPage>

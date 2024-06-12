@@ -1,27 +1,37 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using EgwarancjeDbLibrary;
+using Egwarancje.Services;
 using EgwarancjeDbLibrary.Models;
 
 namespace Egwarancje.ViewModels;
 
 public partial class UserProfileViewModel : BaseViewModel
 {
-    public readonly LocalDatabaseContext database;
+    public readonly UserService service;
 
     [ObservableProperty] private User? user;
 
 
-    public UserProfileViewModel(LocalDatabaseContext database)
+    public UserProfileViewModel(UserService service)
     {
-        this.database = database;
-        user = database.User;
+        this.service = service;
+        User = service.User;
+    }
+
+    [RelayCommand]
+    public async Task Save()
+    {
+        bool success = await service.UpdateUserAsync();
+        if (success)
+        {
+            await Application.Current!.MainPage!.DisplayAlert("Message", "Zmiany zostały zaaktualizowane", "OK");
+        }
     }
 
     [RelayCommand]
     public async Task Logout()
     {
-        database.User = null;
+        service.Logout();
         await Shell.Current.GoToAsync("///Login");
     }
 }

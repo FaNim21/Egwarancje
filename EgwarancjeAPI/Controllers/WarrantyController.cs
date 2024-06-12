@@ -46,10 +46,24 @@ public class WarrantyController : ControllerBase
     [Route("Delete")]
     public async Task<IActionResult> DeleteWarranty(int id)
     {
-        var dbWarranty = await _database.Warranties.FindAsync(id);
+        Warranty? dbWarranty = await _database.Warranties
+                                .Where(w => w.Id == id)
+                                .Include(w => w.WarrantySpecs)
+                                .ThenInclude(w => w.Attachments).FirstOrDefaultAsync();
+
         if (dbWarranty is null) return BadRequest($"Warranty with {id} doesn't exists");
 
+        foreach (var spec in dbWarranty.WarrantySpecs)
+        {
+            spec.Attachments ??= [];
+            foreach (var attachment in spec.Attachments)
+            {
+                _database.Attachments.Remove(attachment);
+            }
+            _database.WarrantiesSpecs.Remove(spec);
+        }
         _database.Warranties.Remove(dbWarranty);
+
         await _database.SaveChangesAsync();
 
         return Ok();
@@ -84,10 +98,19 @@ public class WarrantyController : ControllerBase
     [Route("Spec/Delete")]
     public async Task<IActionResult> DeleteWarrantySpec(int id)
     {
-        var dbWarrantySpecs = await _database.WarrantiesSpecs.FindAsync(id);
-        if (dbWarrantySpecs is null) return BadRequest($"Warranty spec with {id} doesn't exists");
+        WarrantySpec? dbWarrantySpec = await _database.WarrantiesSpecs
+                                .Where(w => w.Id == id)
+                                .Include(w => w.Attachments).FirstOrDefaultAsync();
 
-        _database.WarrantiesSpecs.Remove(dbWarrantySpecs);
+        if (dbWarrantySpec is null) return BadRequest($"Warranty spec with {id} doesn't exists");
+
+        dbWarrantySpec.Attachments ??= [];
+        foreach (var attachment in dbWarrantySpec.Attachments)
+        {
+            _database.Attachments.Remove(attachment);
+        }
+        _database.WarrantiesSpecs.Remove(dbWarrantySpec);
+
         await _database.SaveChangesAsync();
 
         return Ok();

@@ -27,12 +27,26 @@ public partial class OrderRegistrationViewModel : BaseViewModel
         }
 
         OrderGenerator generator = new(int.Parse(OrderNumber));
-        Order order = generator.GenerateOrder(orderPanelViewModel.database.User!);
-        await orderPanelViewModel.AddOrder(order);
+        Order order = generator.GenerateOrder(orderPanelViewModel.service.User);
+        Order? dbOrder = await orderPanelViewModel.AddOrder(order);
+        if (dbOrder is null)
+        {
+            await Application.Current!.MainPage!.DisplayAlert("Message", "Problem w dodaniu zamówienia", "OK");
+            return;
+        }
 
-        OrderSpec[] specs = generator.GenerateOrderSpecs(order);
+        dbOrder.OrderSpecs ??= [];
+        OrderSpec[] specs = generator.GenerateOrderSpecs(dbOrder);
         for (int i = 0; i < specs.Length; i++)
-            await orderPanelViewModel.AddOrderSpecs(specs[i]);
+        {
+            bool success = await orderPanelViewModel.AddOrderSpecs(specs[i]);
+            if (!success)
+            {
+                await Application.Current!.MainPage!.DisplayAlert("Message", "Problem w dodaniu specyfikacji dla zamówienia", "OK");
+                return;
+            }
+            dbOrder.OrderSpecs.Add(specs[i]);
+        }
 
         await Application.Current!.MainPage!.DisplayAlert("Message", "Pomyślnie dodano zamówienie", "OK");
         await Shell.Current.Navigation.PopAsync(); //Po dodaniu zamowienia powrot do panelu zamowien

@@ -5,7 +5,9 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Egwarancje", "Egwarancje\Egwarancje.csproj", "{882F1DC6-8DE3-4CE5-A51A-C272C00FB5EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EgwarancjeDbLibrary", "EgwarancjeDbLibrary\EgwarancjeDbLibrary.csproj", "{35CAF240-B769-4605-B80B-2CC7C498DC1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EgwarancjeDbLibrary", "EgwarancjeDbLibrary\EgwarancjeDbLibrary.csproj", "{35CAF240-B769-4605-B80B-2CC7C498DC1C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EgwarancjeAPI", "EgwarancjeAPI\EgwarancjeAPI.csproj", "{C8BB3A5C-7A85-418D-8AE3-C2B27C6C984A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{35CAF240-B769-4605-B80B-2CC7C498DC1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35CAF240-B769-4605-B80B-2CC7C498DC1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35CAF240-B769-4605-B80B-2CC7C498DC1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8BB3A5C-7A85-418D-8AE3-C2B27C6C984A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8BB3A5C-7A85-418D-8AE3-C2B27C6C984A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8BB3A5C-7A85-418D-8AE3-C2B27C6C984A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8BB3A5C-7A85-418D-8AE3-C2B27C6C984A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
