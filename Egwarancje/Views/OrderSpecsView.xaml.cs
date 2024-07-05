@@ -1,4 +1,4 @@
-using Egwarancje.ViewModels;
+using Egwarancje.ViewModels.Orders;
 using EgwarancjeDbLibrary.Models;
 
 namespace Egwarancje.Views;

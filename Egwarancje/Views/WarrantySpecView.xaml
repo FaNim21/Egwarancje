@@ -5,7 +5,8 @@
                   x:Class="Egwarancje.Views.WarrantySpecView"
                   xmlns:vm="clr-namespace:Egwarancje.ViewModels"
                   xmlns:models="clr-namespace:EgwarancjeDbLibrary.Models;assembly=EgwarancjeDbLibrary"
-                  x:DataType="vm:WarrantySpecViewModel"
+                  xmlns:warranties="clr-namespace:Egwarancje.ViewModels.Warranties"
+                  x:DataType="warranties:WarrantySpecViewModel"
                   Title="WarrantySpecView"
                   BackgroundColor="#80000000"
                   CloseWhenBackgroundIsClicked="True">
@@ -28,6 +29,7 @@
                 <Grid>
                     <Editor Placeholder="Komentarz"
                             Text="{Binding Comment, Mode=TwoWay}"
+                            MaxLength="250"
                             Keyboard="Text"
                             TextColor="#FFFFFF"
                             BackgroundColor="Transparent"
@@ -50,7 +52,7 @@
                     <LinearItemsLayout Orientation="Horizontal" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="vm:WarrantySpecAttachmentViewModel">
+                    <DataTemplate x:DataType="warranties:WarrantySpecAttachmentViewModel">
                         <Image Source="{Binding Image}"
                                WidthRequest="150"
                                HeightRequest="150"

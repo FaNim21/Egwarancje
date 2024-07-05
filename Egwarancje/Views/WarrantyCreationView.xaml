@@ -4,7 +4,8 @@
              x:Class="Egwarancje.Views.WarrantyCreationView"
              xmlns:vm="clr-namespace:Egwarancje.ViewModels"
              xmlns:models="clr-namespace:EgwarancjeDbLibrary.Models;assembly=EgwarancjeDbLibrary"
-             x:DataType="vm:WarrantyCreationViewModel"
+             xmlns:warranties="clr-namespace:Egwarancje.ViewModels.Warranties"
+             x:DataType="warranties:WarrantyCreationViewModel"
              Shell.NavBarIsVisible="False"
              Shell.FlyoutItemIsVisible="False"
              Title="WarrantyCreationView"
@@ -39,7 +40,7 @@
                                    CornerRadius="10"
                                    Margin="0, 5">
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:WarrantyCreationViewModel}}, Path=ShowSpecDetailsCommand}"
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type warranties:WarrantyCreationViewModel}}, Path=ShowSpecDetailsCommand}"
                                                           CommandParameter="{Binding .}"
                                                           NumberOfTapsRequired="1" />
                                 </Frame.GestureRecognizers>

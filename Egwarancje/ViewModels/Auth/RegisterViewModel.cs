@@ -4,7 +4,7 @@ using Egwarancje.Services;
 using EgwarancjeDbLibrary.Models;
 using System.Text.RegularExpressions;
 
-namespace Egwarancje.ViewModels;
+namespace Egwarancje.ViewModels.Auth;
 
 public partial class RegisterViewModel : BaseViewModel
 {

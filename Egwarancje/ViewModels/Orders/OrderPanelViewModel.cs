@@ -7,7 +7,7 @@ using Mopups.Services;
 using System.Collections.ObjectModel;
 
 
-namespace Egwarancje.ViewModels;
+namespace Egwarancje.ViewModels.Orders;
 
 public partial class OrderPanelViewModel : BaseViewModel
 {

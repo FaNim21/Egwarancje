@@ -1,5 +1,8 @@
 ﻿using CommunityToolkit.Maui;
 using Egwarancje.ViewModels;
+using Egwarancje.ViewModels.Auth;
+using Egwarancje.ViewModels.Warranties;
+using Egwarancje.ViewModels.Orders;
 using Egwarancje.Views;
 using Microsoft.Extensions.Logging;
 using Mopups.Hosting;

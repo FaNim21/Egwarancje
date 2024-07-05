@@ -2,7 +2,7 @@
 using EgwarancjeDbLibrary.Models;
 using System.Collections.ObjectModel;
 
-namespace Egwarancje.ViewModels;
+namespace Egwarancje.ViewModels.Warranties;
 
 public partial class WarrantySpecDetail : BaseViewModel
 {

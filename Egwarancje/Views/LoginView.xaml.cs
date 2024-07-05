@@ -1,5 +1,5 @@
 using Egwarancje.Utils;
-using Egwarancje.ViewModels;
+using Egwarancje.ViewModels.Auth;
 
 namespace Egwarancje.Views;
 

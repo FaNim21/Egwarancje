@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Egwarancje.Utils;
 using EgwarancjeDbLibrary.Models;
 
-namespace Egwarancje.ViewModels;
+namespace Egwarancje.ViewModels.Orders;
 public partial class OrderRegistrationViewModel : BaseViewModel
 {
     private readonly OrderPanelViewModel orderPanelViewModel;

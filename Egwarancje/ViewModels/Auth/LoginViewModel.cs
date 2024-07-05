@@ -2,7 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Egwarancje.Services;
 
-namespace Egwarancje.ViewModels;
+namespace Egwarancje.ViewModels.Auth;
 
 public partial class LoginViewModel : BaseViewModel
 {

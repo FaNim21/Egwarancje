@@ -4,7 +4,7 @@ using EgwarancjeDbLibrary.Models;
 using Mopups.Services;
 using System.Collections.ObjectModel;
 
-namespace Egwarancje.ViewModels;
+namespace Egwarancje.ViewModels.Warranties;
 
 public partial class WarrantyDetailsViewModel : BaseViewModel
 {

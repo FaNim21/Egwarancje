@@ -4,7 +4,8 @@
                   x:Class="Egwarancje.Views.OrderSpecsView"
                   xmlns:vm="clr-namespace:Egwarancje.ViewModels"
                   xmlns:models="clr-namespace:EgwarancjeDbLibrary.Models;assembly=EgwarancjeDbLibrary"
-                  x:DataType="vm:OrderSpecsViewModel"
+                  xmlns:orders="clr-namespace:Egwarancje.ViewModels.Orders"
+                  x:DataType="orders:OrderSpecsViewModel"
                   Title="OrderSpecsView"
                   BackgroundColor="#80000000"
                   CloseWhenBackgroundIsClicked="True">

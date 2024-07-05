@@ -1,13 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Egwarancje.Services;
+using Egwarancje.ViewModels.Warranties;
 using Egwarancje.Views;
 using EgwarancjeDbLibrary.Models;
 using Mopups.Services;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
-namespace Egwarancje.ViewModels;
+namespace Egwarancje.ViewModels.Orders;
 
 public partial class OrderSpecsViewModel : BaseViewModel
 {

@@ -4,21 +4,7 @@ using EgwarancjeDbLibrary.Models;
 using Mopups.Services;
 using System.Collections.ObjectModel;
 
-namespace Egwarancje.ViewModels;
-
-public partial class WarrantySpecAttachmentViewModel : BaseViewModel
-{
-    [ObservableProperty] private Attachment attachment;
-    [ObservableProperty] private ImageSource image;
-
-
-    public WarrantySpecAttachmentViewModel(Attachment attachment)
-    {
-        this.attachment = attachment;
-
-        Image = ImageSource.FromFile(attachment.ImagePath);
-    }
-}
+namespace Egwarancje.ViewModels.Warranties;
 
 public partial class WarrantySpecViewModel : BaseViewModel
 {
@@ -40,14 +26,6 @@ public partial class WarrantySpecViewModel : BaseViewModel
             WarrantySpecAttachmentViewModel attachmentViewModel = new(current);
             attachments.Add(attachmentViewModel);
         }
-    }
-
-    // Maksymalna długość komentarza 250 znaków
-    partial void OnCommentChanged(string value)
-    {
-        if (value.Length <= 250) return;
-
-        Comment = value.Substring(0, 250);
     }
 
     [RelayCommand]

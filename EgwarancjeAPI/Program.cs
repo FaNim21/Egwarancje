@@ -1,8 +1,10 @@
 using EgwarancjeAPI;
+using EgwarancjeAPI.Services.Messages;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<IMessagesService, MessagesService>();
 
 builder.Services.AddCors(options =>
 {
@@ -18,7 +20,6 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 
 builder.Services.AddDbContext<LocalDatabaseContext>();
 
