@@ -34,6 +34,9 @@ public static class MauiProgram
 
         builder.Services.AddHttpClient();
         builder.Services.AddSingleton<UserService>();
+        
+        builder.Services.AddTransient<HomeView>();
+        builder.Services.AddTransient<HomeViewModel>();
 
         builder.Services.AddTransient<LoginView>();
         builder.Services.AddTransient<LoginViewModel>();

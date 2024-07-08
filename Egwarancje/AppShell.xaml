@@ -8,6 +8,10 @@
        Shell.NavBarIsVisible="False"
        Title="Egwarancje">
     
+    <ShellContent Title="HomePage"
+                  ContentTemplate="{DataTemplate view:HomeView}"
+                  Route="Home" />
+
     <ShellContent Title="LoginPage"
                   ContentTemplate="{DataTemplate view:LoginView}"
                   Route="Login" />

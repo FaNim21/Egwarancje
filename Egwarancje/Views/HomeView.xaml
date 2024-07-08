@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Egwarancje.Views.HomeView"
+             xmlns:vm="clr-namespace:Egwarancje.ViewModels"
+             xmlns:converters="clr-namespace:Egwarancje.Converters"
+             xmlns:auth="clr-namespace:Egwarancje.ViewModels.Auth"
+             x:DataType="auth:HomeViewModel"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutItemIsVisible="False"
+             Title="HomeView"
+             BackgroundColor="#1C1C1E">
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <StackLayout>
+            <Button Text="Login"
+                    FontAttributes="Bold"
+                    BackgroundColor="#97D8FE"
+                    TextColor="#1C1C1E"
+                    CornerRadius="15"
+                    HeightRequest="45"
+                    FontFamily="BalooBhaiRegular"
+                    Command="{Binding LoginCommand}" />
+
+            <Button Text="Register"
+                    FontAttributes="Bold"
+                    BackgroundColor="#97D8FE"
+                    TextColor="#1C1C1E"
+                    CornerRadius="15"
+                    HeightRequest="45"
+                    FontFamily="BalooBhaiRegular"
+                    Command="{Binding RegisterCommand}" />
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>

@@ -45,6 +45,12 @@ public partial class LoginViewModel : BaseViewModel
     }
 
     [RelayCommand]
+    public async Task Back()
+    {
+        await Shell.Current.GoToAsync("///Home");
+    }
+
+    [RelayCommand]
     public async Task ResetPassword()
     {
         await Shell.Current.GoToAsync("///Recover");

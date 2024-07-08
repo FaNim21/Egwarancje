@@ -15,6 +15,11 @@ public partial class RegisterViewModel : BaseViewModel
     [ObservableProperty] private string? phoneNumber;
     [ObservableProperty] private string? password;
     [ObservableProperty] private string? passwordAgain;
+    [ObservableProperty] private string? nip;
+    [ObservableProperty] private string? companyName;
+    [ObservableProperty] private string? street;
+    [ObservableProperty] private string? zipCode;
+    [ObservableProperty] private string? country;
 
     [ObservableProperty] private bool isCompanyAccount;
 
@@ -73,7 +78,7 @@ public partial class RegisterViewModel : BaseViewModel
         }
 
         await Application.Current!.MainPage!.DisplayAlert("Rejestracja", "Zarejestrowano pomyślnie użytkownika", "OK");
-        await Shell.Current.GoToAsync("///Login");
+        await Shell.Current.GoToAsync("///Home");
     }
 
     private bool IsValidEmail(string email)
