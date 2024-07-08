@@ -9,7 +9,5 @@ public partial class LoginView : ContentPage
     {
         InitializeComponent();
         BindingContext = viewModel;
-
-        versionLabel.Text = Consts.Version;
     }
 }

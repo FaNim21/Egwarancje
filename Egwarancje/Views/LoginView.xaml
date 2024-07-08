@@ -18,13 +18,11 @@
                HorizontalOptions="Center"
                TextColor="#FFFFFF"
                FontSize="32"
-               FontAttributes="Bold"
                FontFamily="BakbakOneRegular"
                CharacterSpacing="1" />
 
         <Label Text="Login"
                TextColor="White"
-               FontAttributes="Bold"
                FontFamily="BakbakOneRegular"
                Margin="0,0,0,15"/>
 
@@ -42,7 +40,6 @@
 
         <Label Text="Hasło"
                TextColor="White"
-               FontAttributes="Bold"
                FontFamily="BakbakOneRegular"
                Margin="0,32,0,15" />
         
@@ -64,8 +61,7 @@
                VerticalOptions="Center"
                HorizontalOptions="End"
                Margin="0, 0, 0, 0"
-               FontAttributes="Bold"
-               FontFamily="BakbakOneRegular"
+               FontFamily="BalooBhaiRegular"
                Padding="0,25">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding ResetPasswordCommand}" />
@@ -89,7 +85,7 @@
                 TextColor="#1C1C1E"
                 CornerRadius="15"
                 HeightRequest="45"
-                FontFamily="BakbakOneRegular" />
+                FontFamily="BalooBhaiRegular" />
 
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="Center"
@@ -98,7 +94,7 @@
             <Label Text="Nie posiadasz konta?"
                    TextColor="#EEE"
                    VerticalOptions="Center"
-                   FontFamily="BakbakOneRegular"/>
+                   FontFamily="BalooBhaiRegular"/>
             <Frame BackgroundColor="Transparent"
                    Padding="5"
                    BorderColor="Transparent"
@@ -106,8 +102,7 @@
                 <Label Text="Zarejestruj się"
                        TextColor="#97D8FE"
                        TextDecorations="Underline"
-                       FontAttributes="Bold"
-                       FontFamily="BakbakOneRegular"
+                       FontFamily="BalooBhaiRegular"
                        VerticalOptions="Center">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding RegisterCommand}" />
