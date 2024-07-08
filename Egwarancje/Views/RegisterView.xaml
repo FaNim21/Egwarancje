@@ -9,135 +9,113 @@
              Shell.NavBarIsVisible="False"
              Shell.FlyoutItemIsVisible="False"
              Title="Register"
-             BackgroundColor="#1E1E1E">
+             BackgroundColor="#1C1C1E">
+    
     <ContentPage.Resources>
         <converters:BoolToObjectConverter x:Key="BoolToObjectConverter" />
     </ContentPage.Resources>
-    <StackLayout Padding="15">
 
-        <StackLayout>
-            <Image Source="Images/return_image.png"
-                   Aspect="AspectFit"
-                   WidthRequest="40"
-                   HeightRequest="40"
-                   HorizontalOptions="Start">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding BackCommand}" />
-                </Image.GestureRecognizers>
-            </Image>
-        </StackLayout>
+    <StackLayout Padding="10">
 
-        <Label Text="Tworzenie konta"
-               HorizontalOptions="Start"
-               TextColor="#FFFFFF"
-               FontSize="30"
-               FontAttributes="Bold"
-               Margin="0, 20" />
-
-        <StackLayout Margin="0, -10, 0, 0">
-
-            <StackLayout Orientation="Horizontal"
-                         VerticalOptions="Center"
-                         HorizontalOptions="Center">
-                <Label Text="Typ konta:"
-                       TextColor="#FFFFFF"
-                       VerticalOptions="Center" />
+        <Image Source="Images/return_image.png"
+               Aspect="AspectFit"
+               WidthRequest="40"
+               HeightRequest="40"
+               HorizontalOptions="Start">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding BackCommand}" />
+            </Image.GestureRecognizers>
+        </Image>
+        
+        <StackLayout Padding="20,0,20,0"
+                     Spacing="20" >
+            <Label Text="Tworzenie konta"
+                   HorizontalOptions="Center"
+                   TextColor="#FFFFFF"
+                   FontSize="32"
+                   FontFamily="BakbakOneRegular" />
+            <HorizontalStackLayout HorizontalOptions="Center">
                 <RadioButton Content="Konto osobiste"
                              Value="False"
                              TextColor="#FFFFFF"
-                             IsChecked="{Binding IsCompanyAccount, Converter={StaticResource BoolToObjectConverter}, ConverterParameter=false}"
-                             Margin="10,0,0,0" />
+                             IsChecked="{Binding IsCompanyAccount, Converter={StaticResource BoolToObjectConverter}, ConverterParameter=false}" />
                 <RadioButton Content="Konto firmowe"
                              Value="True"
                              TextColor="#FFFFFF"
-                             IsChecked="{Binding IsCompanyAccount, Converter={StaticResource BoolToObjectConverter}, ConverterParameter=true}"
-                             Margin="10,0,0,0" />
-            </StackLayout>
+                             IsChecked="{Binding IsCompanyAccount, Converter={StaticResource BoolToObjectConverter}, ConverterParameter=true}" />
+            </HorizontalStackLayout>
+
+            <Frame Padding="12, 5"
+                   BackgroundColor="Transparent"
+                   BorderColor="#FEFEFF"
+                   CornerRadius="24"
+                   IsVisible="{Binding IsCompanyAccount}">
+                <Entry Placeholder="Nazwa firmy"
+                       Text="{Binding Name, Mode=TwoWay}"
+                       Keyboard="Text"
+                       TextColor="#FFFFFF" />
+            </Frame>
+
+            <Frame Padding="12, 5"
+                   BackgroundColor="Transparent"
+                   BorderColor="#FEFEFF"
+                   CornerRadius="24"
+                   IsVisible="{Binding IsCompanyAccount, Converter={StaticResource BoolToObjectConverter}, ConverterParameter=false}">
+                <Entry Placeholder="Imię i nazwisko"
+                       Text="{Binding Name, Mode=TwoWay}"
+                       Keyboard="Text"
+                       TextColor="#FFFFFF" />
+            </Frame>
+
+            <Frame Padding="12, 5"
+                   BackgroundColor="Transparent"
+                   BorderColor="#FEFEFF"
+                   CornerRadius="24">
+                <Entry Placeholder="Email"
+                       Text="{Binding Email, Mode=TwoWay}"
+                       Keyboard="Email"
+                       TextColor="#FFFFFF" />
+            </Frame>
+
+            <Frame Padding="12, 5"
+                   BackgroundColor="Transparent"
+                   BorderColor="#FEFEFF"
+                   CornerRadius="24">
+                <Entry Placeholder="Numer telefonu"
+                       Text="{Binding PhoneNumber, Mode=TwoWay}"
+                       Keyboard="Telephone"
+                       TextColor="#FFFFFF"
+                       MaxLength="9" />
+            </Frame>
+
+            <Frame Padding="12, 5"
+                   BackgroundColor="Transparent"
+                   BorderColor="#FEFEFF"
+                   CornerRadius="24">
+                <Entry Placeholder="Hasło"
+                       Text="{Binding Password, Mode=TwoWay}"
+                       IsPassword="True"
+                       TextColor="#FFFFFF" />
+            </Frame>
+
+            <Frame Padding="12, 5"
+                   BackgroundColor="Transparent"
+                   BorderColor="#FEFEFF"
+                   CornerRadius="24">
+                <Entry Placeholder="Powtórz hasło"
+                       Text="{Binding PasswordAgain, Mode=TwoWay}"
+                       IsPassword="True"
+                       TextColor="#FFFFFF" />
+            </Frame>
+
+            <Button Text="STWÓRZ KONTO"
+                    FontAttributes="Bold"
+                    BackgroundColor="#97D8FE"
+                    TextColor="#1C1C1E"
+                    CornerRadius="15"
+                    HeightRequest="45"
+                    FontFamily="BalooBhaiRegular"
+                    Command="{Binding FinalizeRegisterCommand}" />
         </StackLayout>
-
-        <Frame Padding="12, 5, 5, 5"
-               BackgroundColor="#292929"
-               CornerRadius="10"
-               BorderColor="#6B5B95"
-               Margin="0, 10, 0, 10"
-               IsVisible="{Binding IsCompanyAccount}">
-            <Entry Placeholder="Nazwa firmy"
-                   Text="{Binding Name, Mode=TwoWay}"
-                   Keyboard="Text"
-                   TextColor="#FFFFFF" />
-        </Frame>
-
-        <Frame Padding="12, 5, 5, 5"
-               BackgroundColor="#292929"
-               CornerRadius="10"
-               BorderColor="#6B5B95"
-               Margin="0, 10, 0, 10">
-            <Entry Placeholder="Imię i nazwisko"
-                   Text="{Binding Name, Mode=TwoWay}"
-                   Keyboard="Text"
-                   TextColor="#FFFFFF" />
-        </Frame>
-
-        <Frame Padding="12, 5"
-               BackgroundColor="#292929"
-               CornerRadius="10"
-               BorderColor="#6B5B95"
-               Margin="0, 10, 0, 10">
-            <Entry Placeholder="Email"
-                   Text="{Binding Email, Mode=TwoWay}"
-                   Keyboard="Email"
-                   TextColor="#FFFFFF" />
-        </Frame>
-
-        <Frame Padding="12, 5"
-               BackgroundColor="#292929"
-               CornerRadius="10"
-               BorderColor="#6B5B95"
-               Margin="0, 10, 0, 10">
-            <Entry Placeholder="Numer telefonu"
-                   Text="{Binding PhoneNumber, Mode=TwoWay}"
-                   Keyboard="Telephone"
-                   TextColor="#FFFFFF"
-                   MaxLength="9" />
-        </Frame>
-
-        <Frame Padding="12, 5"
-               BackgroundColor="#292929"
-               CornerRadius="10"
-               BorderColor="#6B5B95"
-               Margin="0, 10, 0, 10">
-            <Entry Placeholder="Hasło"
-                   Text="{Binding Password, Mode=TwoWay}"
-                   IsPassword="True"
-                   TextColor="#FFFFFF" />
-        </Frame>
-
-        <Frame Padding="12, 5"
-               BackgroundColor="#292929"
-               CornerRadius="10"
-               BorderColor="#6B5B95"
-               Margin="0, 10, 0, 10">
-            <Entry Placeholder="Powtórz hasło"
-                   Text="{Binding PasswordAgain, Mode=TwoWay}"
-                   IsPassword="True"
-                   TextColor="#FFFFFF" />
-        </Frame>
-
-        <Button Text="Stwórz konto"
-                BackgroundColor="#6B5B95"
-                TextColor="#EEE"
-                FontAttributes="Bold"
-                CornerRadius="20"
-                HeightRequest="50"
-                Command="{Binding FinalizeRegisterCommand}"
-                Margin="0, 20, 0, 0" />
-
-        <Label Text="Tworząc konto lub podpisując umowę, wyrażasz zgodę na nasz Regulamin."
-               VerticalOptions="CenterAndExpand"
-               HorizontalTextAlignment="Center"
-               TextColor="#FFFFFF"
-               FontSize="Small"
-               Margin="0, 20" />
-
     </StackLayout>
 </ContentPage>
