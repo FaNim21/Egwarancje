@@ -8,72 +8,71 @@
              Shell.NavBarIsVisible="False"
              Shell.FlyoutItemIsVisible="False"
              Title="Login"
-             BackgroundColor="#1E1E1E">
+             BackgroundColor="#1C1C1E">
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="25"
-                             Padding="30, 100"
-                             VerticalOptions="Center">
-            <Frame Padding="12, 5"
-                   VerticalOptions="Start"
+    <StackLayout Padding="30, 0, 30, 0"
+                 VerticalOptions="Center">
+    
+        <Label Margin="0,0,0,60"
+               Text="Zaloguj się"
+               HorizontalOptions="Center"
+               TextColor="#FFFFFF"
+               FontSize="32"
+               FontAttributes="Bold"
+               FontFamily="BakbakOneRegular"
+               CharacterSpacing="1" />
+
+        <Label Text="Login"
+               TextColor="White"
+               FontAttributes="Bold"
+               FontFamily="BakbakOneRegular"
+               Margin="0,0,0,15"/>
+
+
+        <Frame Padding="12, 5"
+               CornerRadius="24"
+               HeightRequest="50"
+               BackgroundColor="Transparent"
+               BorderColor="#FEFEFF">
+            <Entry
+                   Text="{Binding Email}"
+                   PlaceholderColor="Gray"
+                   TextColor="White" />
+        </Frame>
+
+        <Label Text="Hasło"
+               TextColor="White"
+               FontAttributes="Bold"
+               FontFamily="BakbakOneRegular"
+               Margin="0,32,0,15" />
+        
+        <Frame Padding="12, 5"
+               CornerRadius="24"
+               HeightRequest="50"
+               BackgroundColor="Transparent"
+               BorderColor="#FEFEFF">
+            <Entry
+                   IsPassword="True"
+                   Text="{Binding Password}"
                    BackgroundColor="Transparent"
-                   BorderColor="Transparent">
-                <Label Text="E-Gwarancje"
-                       HorizontalOptions="Center"
-                       TextColor="#FFFFFF"
-                       FontSize="40"
-                       FontAttributes="Bold"
-                       CharacterSpacing="1" />
-            </Frame>
+                   PlaceholderColor="Gray"
+                   TextColor="White" />
+        </Frame>
 
-            <Frame Padding="12, 5"
-                   CornerRadius="10"
-                   BackgroundColor="#292929"
-                   BorderColor="#6B5B95">
-                <Entry Placeholder="Email"
-                       Text="{Binding Email}"
-                       BackgroundColor="Transparent"
-                       PlaceholderColor="Gray"
-                       TextColor="White" />
-            </Frame>
+        <Label Text="Zapomniałeś hasła?"
+               TextColor="#97D8FE"
+               VerticalOptions="Center"
+               HorizontalOptions="End"
+               Margin="0, 0, 0, 0"
+               FontAttributes="Bold"
+               FontFamily="BakbakOneRegular"
+               Padding="0,25">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ResetPasswordCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
 
-            <Frame Padding="12, 5"
-                   CornerRadius="10"
-                   BackgroundColor="#292929"
-                   BorderColor="#6B5B95">
-                <Entry Placeholder="Password"
-                       IsPassword="True"
-                       Text="{Binding Password}"
-                       BackgroundColor="Transparent"
-                       PlaceholderColor="Gray"
-                       TextColor="White" />
-            </Frame>
-
-            <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="End"
-                         VerticalOptions="Center"
-                         Margin="0, -20, 0, 0">
-                <Label Text="Zapomniałeś hasła?"
-                       TextColor="White"
-                       VerticalOptions="Center" />
-                <Frame BackgroundColor="Transparent"
-                       Padding="5"
-                       BorderColor="Transparent"
-                       HasShadow="False">
-                    <Label Text="Reset hasła"
-                           TextColor="#6B5B95"
-                           TextDecorations="Underline"
-                           FontSize="15"
-                           FontAttributes="Bold"
-                           VerticalOptions="Center">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ResetPasswordCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </Frame>
-            </StackLayout>
-
-            <!--<StackLayout Orientation="Horizontal"
+        <!--<StackLayout Orientation="Horizontal"
                          Margin="0, -10, 0, 0">
                 <CheckBox IsChecked="{Binding RememberMe}"
                           Color="White" />
@@ -83,44 +82,38 @@
                        Margin="10, 0, 0, 0" />
             </StackLayout>-->
 
-            <Button Text="Zaloguj się"
-                    Command="{Binding LoginCommand}"
-                    FontSize="Medium"
-                    BackgroundColor="#6B5B95"
-                    TextColor="White"
-                    CornerRadius="20"
-                    HeightRequest="50"
-                    Margin="0, 20, 0, 0" />
+        <Button Text="ZALOGUJ SIĘ"
+                Command="{Binding LoginCommand}"
+                FontAttributes="Bold"
+                BackgroundColor="#97D8FE"
+                TextColor="#1C1C1E"
+                CornerRadius="15"
+                HeightRequest="45"
+                FontFamily="BakbakOneRegular" />
 
-            <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                         Margin="0, 40, 0, 0">
-                <Label Text="Nie posiadasz konta?"
-                       TextColor="#EEE"
-                       VerticalOptions="Center" />
-                <Frame BackgroundColor="Transparent"
-                       Padding="5"
-                       BorderColor="Transparent"
-                       HasShadow="False">
-                    <Label Text="Zarejestruj się"
-                           TextColor="#6B5B95"
-                           TextDecorations="Underline"
-                           FontAttributes="Bold"
-                           FontSize="15"
-                           VerticalOptions="Center">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding RegisterCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </Frame>
-            </StackLayout>
-
-            <Label x:Name="versionLabel"
-                   Text="v1.0.0"
-                   TextColor="White"
-                   HorizontalOptions="Center"
-                   Margin="0, 40, 0, 0" />
-        </VerticalStackLayout>
-    </ScrollView>
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Margin="0, 40, 0, 0">
+            <Label Text="Nie posiadasz konta?"
+                   TextColor="#EEE"
+                   VerticalOptions="Center"
+                   FontFamily="BakbakOneRegular"/>
+            <Frame BackgroundColor="Transparent"
+                   Padding="5"
+                   BorderColor="Transparent"
+                   HasShadow="False">
+                <Label Text="Zarejestruj się"
+                       TextColor="#97D8FE"
+                       TextDecorations="Underline"
+                       FontAttributes="Bold"
+                       FontFamily="BakbakOneRegular"
+                       VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Frame>
+        </StackLayout>
+    </StackLayout>
 </ContentPage>
