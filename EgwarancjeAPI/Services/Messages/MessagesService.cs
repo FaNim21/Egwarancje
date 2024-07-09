@@ -16,6 +16,7 @@ namespace EgwarancjeAPI.Services.Messages
             this.config = config;
             this.logger = logger;
         }
+
         public bool Email(string subject, string body, string to)
         {
             try

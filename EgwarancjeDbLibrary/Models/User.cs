@@ -13,6 +13,8 @@ public class User
 
     public string Email { get; set; }
 
+    public bool IsActivated { get; set; }
+    
     public string Password { get; set; }
 
     public int PhoneNumber { get; set; }

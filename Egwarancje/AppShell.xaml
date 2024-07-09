@@ -31,21 +31,21 @@
                       ContentTemplate="{DataTemplate view:OrderPanelView}"
                       Route="OrderPanel" />
 
-        <ShellContent Title="Gwarancje"
-                      ContentTemplate="{DataTemplate view:WarrantyPanelView}"
-                      Route="WarrantyPanel" />
-        
-        <ShellContent Title="Profil"
-                      ContentTemplate="{DataTemplate view:UserProfileView}"
-                      Route="UserProfile" />
-
         <ShellContent Title="Koszyk"
                       ContentTemplate="{DataTemplate view:CartView}"
                       Route="Cart"/>
 
-        <ShellContent Title="Śledź zamówienia"
+        <ShellContent Title="Gwarancje"
+                      ContentTemplate="{DataTemplate view:WarrantyPanelView}"
+                      Route="WarrantyPanel" />
+        
+        <ShellContent Title="Śledź"
                       ContentTemplate="{DataTemplate view:TrackingView}"
                       Route="Tracking"/>
+
+        <ShellContent Title="Profil"
+                      ContentTemplate="{DataTemplate view:UserProfileView}"
+                      Route="UserProfile" />
     </TabBar>
 
 </Shell>
