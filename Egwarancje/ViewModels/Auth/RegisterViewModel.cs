@@ -32,7 +32,7 @@ public partial class RegisterViewModel : BaseViewModel
     [RelayCommand]
     public async Task Back()
     {
-        await Shell.Current.GoToAsync("///Login");
+        await Shell.Current.GoToAsync("///Home");
     }
 
     [RelayCommand]

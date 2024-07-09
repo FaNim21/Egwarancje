@@ -10,30 +10,42 @@
              Shell.FlyoutItemIsVisible="False"
              Title="HomeView"
              BackgroundColor="#1C1C1E">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <Grid>
+        <VerticalStackLayout VerticalOptions="Center">
+            <Label Text="E-gwarancje 2.0"
+                   HorizontalOptions="Center"
+                   TextColor="#FFFFFF"
+                   FontSize="32"
+                   FontFamily="BakbakOneRegular" />
+            <Label Text="Załatwiaj swoje spracy szybko i wygodnie."
+                   HorizontalOptions="Center"
+                   TextColor="#FFFFFF"
+                   FontSize="13"
+                   FontFamily="BakbakOneRegular"
+                   CharacterSpacing="1" />
+        </VerticalStackLayout>
+            <VerticalStackLayout Padding="30,0,30,0"
+                                 Margin="0,0,0,60"
+                                 Spacing="10"
+                                 VerticalOptions="EndAndExpand">
+                <Button Text="ZALOGUJ SIĘ"
+                        FontAttributes="Bold"
+                        BackgroundColor="#97D8FE"
+                        TextColor="#1C1C1E"
+                        CornerRadius="15"
+                        HeightRequest="45"
+                        FontFamily="BalooBhaiRegular"
+                        Command="{Binding LoginCommand}" />
 
-        <StackLayout>
-            <Button Text="Login"
-                    FontAttributes="Bold"
-                    BackgroundColor="#97D8FE"
-                    TextColor="#1C1C1E"
-                    CornerRadius="15"
-                    HeightRequest="45"
-                    FontFamily="BalooBhaiRegular"
-                    Command="{Binding LoginCommand}" />
-
-            <Button Text="Register"
-                    FontAttributes="Bold"
-                    BackgroundColor="#97D8FE"
-                    TextColor="#1C1C1E"
-                    CornerRadius="15"
-                    HeightRequest="45"
-                    FontFamily="BalooBhaiRegular"
-                    Command="{Binding RegisterCommand}" />
-        </StackLayout>
-    </VerticalStackLayout>
+                <Button Text="STWÓRZ KONTO"
+                        FontAttributes="Bold"
+                        BackgroundColor="#FFFFFF"
+                        BorderColor="#D3D3D3"
+                        TextColor="#3A3A3A"
+                        CornerRadius="15"
+                        HeightRequest="45"
+                        FontFamily="BalooBhaiRegular"
+                        Command="{Binding RegisterCommand}" />
+            </VerticalStackLayout>
+    </Grid>
 </ContentPage>
