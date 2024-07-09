@@ -38,6 +38,14 @@
         <ShellContent Title="Profil"
                       ContentTemplate="{DataTemplate view:UserProfileView}"
                       Route="UserProfile" />
+
+        <ShellContent Title="Koszyk"
+                      ContentTemplate="{DataTemplate view:CartView}"
+                      Route="Cart"/>
+
+        <ShellContent Title="Śledź zamówienia"
+                      ContentTemplate="{DataTemplate view:TrackingView}"
+                      Route="Tracking"/>
     </TabBar>
 
 </Shell>
