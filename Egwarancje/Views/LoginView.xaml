@@ -30,14 +30,12 @@
                    HorizontalOptions="Center"
                    TextColor="#FFFFFF"
                    FontSize="32"
-                   FontFamily="BakbakOneRegular"
-                   CharacterSpacing="1" />
+                   FontFamily="BakbakOneRegular" />
 
             <Label Text="E-mail"
                    TextColor="White"
                    FontFamily="BakbakOneRegular"
                    Margin="0,0,0,15" />
-
 
             <Frame Padding="12, 5"
                    CornerRadius="24"
