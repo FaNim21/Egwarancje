@@ -10,105 +10,114 @@
              Title="Login"
              BackgroundColor="#1C1C1E">
 
-    <StackLayout Padding="30, 0, 30, 0"
-                 VerticalOptions="Center">
-    
-        <Label Margin="0,0,0,60"
-               Text="Zaloguj się"
-               HorizontalOptions="Center"
-               TextColor="#FFFFFF"
-               FontSize="32"
-               FontFamily="BakbakOneRegular"
-               CharacterSpacing="1" />
+    <Grid>
+        <VerticalStackLayout HorizontalOptions="Start"
+                             Margin="10,10">
+            <Image Source="Images/return_image.png"
+                   Aspect="AspectFit"
+                   WidthRequest="40"
+                   HeightRequest="40">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </VerticalStackLayout>
 
-        <Label Text="Login"
-               TextColor="White"
-               FontFamily="BakbakOneRegular"
-               Margin="0,0,0,15"/>
+        <VerticalStackLayout Padding="30,0,30,0"
+                             VerticalOptions="Center">
 
+            <Label Text="Zaloguj się"
+                   HorizontalOptions="Center"
+                   TextColor="#FFFFFF"
+                   FontSize="32"
+                   FontFamily="BakbakOneRegular" />
 
-        <Frame Padding="12, 5"
-               CornerRadius="24"
-               HeightRequest="50"
-               BackgroundColor="Transparent"
-               BorderColor="#FEFEFF">
-            <Entry
-                   Text="{Binding Email}"
-                   PlaceholderColor="Gray"
-                   TextColor="White" />
-        </Frame>
+            <Label Text="E-mail"
+                   TextColor="White"
+                   FontFamily="BakbakOneRegular"
+                   Margin="0,0,0,15" />
 
-        <Label Text="Hasło"
-               TextColor="White"
-               FontFamily="BakbakOneRegular"
-               Margin="0,32,0,15" />
-        
-        <Frame Padding="12, 5"
-               CornerRadius="24"
-               HeightRequest="50"
-               BackgroundColor="Transparent"
-               BorderColor="#FEFEFF">
-            <Entry
-                   IsPassword="True"
-                   Text="{Binding Password}"
+            <Frame Padding="12, 5"
+                   CornerRadius="24"
+                   HeightRequest="50"
                    BackgroundColor="Transparent"
-                   PlaceholderColor="Gray"
-                   TextColor="White" />
-        </Frame>
-
-        <Label Text="Zapomniałeś hasła?"
-               TextColor="#97D8FE"
-               VerticalOptions="Center"
-               HorizontalOptions="End"
-               Margin="0, 0, 0, 0"
-               FontFamily="BalooBhaiRegular"
-               Padding="0,25">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding ResetPasswordCommand}" />
-            </Label.GestureRecognizers>
-        </Label>
-
-        <!--<StackLayout Orientation="Horizontal"
-                         Margin="0, -10, 0, 0">
-                <CheckBox IsChecked="{Binding RememberMe}"
-                          Color="White" />
-                <Label Text="Zapamiętaj mnie"
-                       TextColor="White"
-                       VerticalOptions="Center"
-                       Margin="10, 0, 0, 0" />
-            </StackLayout>-->
-
-        <Button Text="ZALOGUJ SIĘ"
-                Command="{Binding LoginCommand}"
-                FontAttributes="Bold"
-                BackgroundColor="#97D8FE"
-                TextColor="#1C1C1E"
-                CornerRadius="15"
-                HeightRequest="45"
-                FontFamily="BalooBhaiRegular" />
-
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center"
-                     VerticalOptions="Center"
-                     Margin="0, 40, 0, 0">
-            <Label Text="Nie posiadasz konta?"
-                   TextColor="#EEE"
-                   VerticalOptions="Center"
-                   FontFamily="BalooBhaiRegular"/>
-            <Frame BackgroundColor="Transparent"
-                   Padding="5"
-                   BorderColor="Transparent"
-                   HasShadow="False">
-                <Label Text="Zarejestruj się"
-                       TextColor="#97D8FE"
-                       TextDecorations="Underline"
-                       FontFamily="BalooBhaiRegular"
-                       VerticalOptions="Center">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding RegisterCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
+                   BorderColor="#FEFEFF">
+                <Entry Text="{Binding Email}"
+                       PlaceholderColor="Gray"
+                       TextColor="White" />
             </Frame>
-        </StackLayout>
-    </StackLayout>
+
+            <Label Text="Hasło"
+                   TextColor="White"
+                   FontFamily="BakbakOneRegular"
+                   Margin="0,32,0,15" />
+
+            <Frame Padding="12, 5"
+                   CornerRadius="24"
+                   HeightRequest="50"
+                   BackgroundColor="Transparent"
+                   BorderColor="#FEFEFF">
+                <Entry IsPassword="True"
+                       Text="{Binding Password}"
+                       BackgroundColor="Transparent"
+                       PlaceholderColor="Gray"
+                       TextColor="White" />
+            </Frame>
+
+            <Label Text="Zapomniałeś hasła?"
+                   TextColor="#97D8FE"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End"
+                   Margin="0, 0, 0, 0"
+                   FontFamily="BalooBhaiRegular"
+                   Padding="0,25">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ResetPasswordCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <!--<StackLayout Orientation="Horizontal"
+                     Margin="0, -10, 0, 0">
+            <CheckBox IsChecked="{Binding RememberMe}"
+                      Color="White" />
+            <Label Text="Zapamiętaj mnie"
+                   TextColor="White"
+                   VerticalOptions="Center"
+                   Margin="10, 0, 0, 0" />
+        </StackLayout>-->
+
+            <Button Text="ZALOGUJ SIĘ"
+                    Command="{Binding LoginCommand}"
+                    FontAttributes="Bold"
+                    BackgroundColor="#97D8FE"
+                    TextColor="#1C1C1E"
+                    CornerRadius="15"
+                    HeightRequest="45"
+                    FontFamily="BalooBhaiRegular" />
+
+            <!--<StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                         Margin="0, 40, 0, 0">
+                <Label Text="Nie posiadasz konta?"
+                       TextColor="#EEE"
+                       VerticalOptions="Center"
+                       FontFamily="BalooBhaiRegular" />
+                <Frame BackgroundColor="Transparent"
+                       Padding="5"
+                       BorderColor="Transparent"
+                       HasShadow="False">
+                    <Label Text="Zarejestruj się"
+                           TextColor="#97D8FE"
+                           TextDecorations="Underline"
+                           FontFamily="BalooBhaiRegular"
+                           VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Frame>
+            </StackLayout>-->
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>
