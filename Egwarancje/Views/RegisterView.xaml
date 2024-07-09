@@ -10,57 +10,46 @@
              Shell.FlyoutItemIsVisible="False"
              Title="Register"
              BackgroundColor="#1C1C1E">
-    
-    <ContentPage.Resources>
+
+    <!--<ContentPage.Resources>
         <converters:BoolToObjectConverter x:Key="BoolToObjectConverter" />
-    </ContentPage.Resources>
+    </ContentPage.Resources>-->
+    <Grid>
+        <VerticalStackLayout HorizontalOptions="Start"
+                             Margin="10,10">
+            <Image Source="Images/return_image.png"
+                   Aspect="AspectFit"
+                   WidthRequest="40"
+                   HeightRequest="40">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </VerticalStackLayout>
 
-    <StackLayout Padding="10">
-
-        <Image Source="Images/return_image.png"
-               Aspect="AspectFit"
-               WidthRequest="40"
-               HeightRequest="40"
-               HorizontalOptions="Start">
-            <Image.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding BackCommand}" />
-            </Image.GestureRecognizers>
-        </Image>
-        
-        <StackLayout Padding="20,0,20,0"
-                     Spacing="20" >
+        <VerticalStackLayout Padding="20,0,20,0"
+                             Spacing="20"
+                             VerticalOptions="Center">
             <Label Text="Tworzenie konta"
                    HorizontalOptions="Center"
                    TextColor="#FFFFFF"
                    FontSize="32"
                    FontFamily="BakbakOneRegular" />
-            <HorizontalStackLayout HorizontalOptions="Center">
-                <RadioButton Content="Konto osobiste"
-                             Value="False"
-                             TextColor="#FFFFFF"
-                             IsChecked="{Binding IsCompanyAccount, Converter={StaticResource BoolToObjectConverter}, ConverterParameter=false}" />
-                <RadioButton Content="Konto firmowe"
-                             Value="True"
-                             TextColor="#FFFFFF"
-                             IsChecked="{Binding IsCompanyAccount, Converter={StaticResource BoolToObjectConverter}, ConverterParameter=true}" />
-            </HorizontalStackLayout>
+            <!--<HorizontalStackLayout HorizontalOptions="Center">
+                    <RadioButton Content="Konto osobiste"
+                                    Value="False"
+                                    TextColor="#FFFFFF"
+                                    IsChecked="{Binding IsCompanyAccount, Converter={StaticResource BoolToObjectConverter}, ConverterParameter=false}" />
+                    <RadioButton Content="Konto firmowe"
+                                    Value="True"
+                                    TextColor="#FFFFFF"
+                                    IsChecked="{Binding IsCompanyAccount, Converter={StaticResource BoolToObjectConverter}, ConverterParameter=true}" />
+                </HorizontalStackLayout>-->
 
             <Frame Padding="12, 5"
                    BackgroundColor="Transparent"
                    BorderColor="#FEFEFF"
-                   CornerRadius="24"
-                   IsVisible="{Binding IsCompanyAccount}">
-                <Entry Placeholder="Nazwa firmy"
-                       Text="{Binding Name, Mode=TwoWay}"
-                       Keyboard="Text"
-                       TextColor="#FFFFFF" />
-            </Frame>
-
-            <Frame Padding="12, 5"
-                   BackgroundColor="Transparent"
-                   BorderColor="#FEFEFF"
-                   CornerRadius="24"
-                   IsVisible="{Binding IsCompanyAccount, Converter={StaticResource BoolToObjectConverter}, ConverterParameter=false}">
+                   CornerRadius="24">
                 <Entry Placeholder="Imię i nazwisko"
                        Text="{Binding Name, Mode=TwoWay}"
                        Keyboard="Text"
@@ -71,7 +60,7 @@
                    BackgroundColor="Transparent"
                    BorderColor="#FEFEFF"
                    CornerRadius="24">
-                <Entry Placeholder="Email"
+                <Entry Placeholder="E-mail"
                        Text="{Binding Email, Mode=TwoWay}"
                        Keyboard="Email"
                        TextColor="#FFFFFF" />
@@ -116,6 +105,6 @@
                     HeightRequest="45"
                     FontFamily="BalooBhaiRegular"
                     Command="{Binding FinalizeRegisterCommand}" />
-        </StackLayout>
-    </StackLayout>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>

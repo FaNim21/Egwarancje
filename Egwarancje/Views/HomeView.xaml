@@ -24,28 +24,28 @@
                    FontFamily="BakbakOneRegular"
                    CharacterSpacing="1" />
         </VerticalStackLayout>
-            <VerticalStackLayout Padding="30,0,30,0"
-                                 Margin="0,0,0,60"
-                                 Spacing="10"
-                                 VerticalOptions="EndAndExpand">
-                <Button Text="ZALOGUJ SIĘ"
-                        FontAttributes="Bold"
-                        BackgroundColor="#97D8FE"
-                        TextColor="#1C1C1E"
-                        CornerRadius="15"
-                        HeightRequest="45"
-                        FontFamily="BalooBhaiRegular"
-                        Command="{Binding LoginCommand}" />
+        <VerticalStackLayout Padding="30,0,30,0"
+                             Margin="0,0,0,60"
+                             Spacing="10"
+                             VerticalOptions="EndAndExpand">
+            <Button Text="ZALOGUJ SIĘ"
+                    FontAttributes="Bold"
+                    BackgroundColor="#97D8FE"
+                    TextColor="#1C1C1E"
+                    CornerRadius="15"
+                    HeightRequest="45"
+                    FontFamily="BalooBhaiRegular"
+                    Command="{Binding LoginCommand}" />
 
-                <Button Text="STWÓRZ KONTO"
-                        FontAttributes="Bold"
-                        BackgroundColor="#FFFFFF"
-                        BorderColor="#D3D3D3"
-                        TextColor="#3A3A3A"
-                        CornerRadius="15"
-                        HeightRequest="45"
-                        FontFamily="BalooBhaiRegular"
-                        Command="{Binding RegisterCommand}" />
-            </VerticalStackLayout>
+            <Button Text="STWÓRZ KONTO"
+                    FontAttributes="Bold"
+                    BackgroundColor="#FFFFFF"
+                    BorderColor="#D3D3D3"
+                    TextColor="#3A3A3A"
+                    CornerRadius="15"
+                    HeightRequest="45"
+                    FontFamily="BalooBhaiRegular"
+                    Command="{Binding RegisterCommand}" />
+        </VerticalStackLayout>
     </Grid>
 </ContentPage>

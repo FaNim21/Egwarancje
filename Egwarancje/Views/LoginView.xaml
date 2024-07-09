@@ -10,19 +10,21 @@
              Title="Login"
              BackgroundColor="#1C1C1E">
 
-    <StackLayout>
-        <Image Source="Images/return_image.png"
-               Aspect="AspectFit"
-               WidthRequest="40"
-               HeightRequest="40"
-               HorizontalOptions="Start"
-               Margin="10,10">
-            <Image.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding BackCommand}" />
-            </Image.GestureRecognizers>
-        </Image>
-        <StackLayout Padding="30,0,30,0"
-                     VerticalOptions="CenterAndExpand">
+    <Grid>
+        <VerticalStackLayout HorizontalOptions="Start"
+                             Margin="10,10">
+            <Image Source="Images/return_image.png"
+                   Aspect="AspectFit"
+                   WidthRequest="40"
+                   HeightRequest="40">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Padding="30,0,30,0"
+                             VerticalOptions="Center">
 
             <Label Text="Zaloguj się"
                    HorizontalOptions="Center"
@@ -31,7 +33,7 @@
                    FontFamily="BakbakOneRegular"
                    CharacterSpacing="1" />
 
-            <Label Text="Login"
+            <Label Text="E-mail"
                    TextColor="White"
                    FontFamily="BakbakOneRegular"
                    Margin="0,0,0,15" />
@@ -95,7 +97,7 @@
                     HeightRequest="45"
                     FontFamily="BalooBhaiRegular" />
 
-            <StackLayout Orientation="Horizontal"
+            <!--<StackLayout Orientation="Horizontal"
                          HorizontalOptions="Center"
                          VerticalOptions="Center"
                          Margin="0, 40, 0, 0">
@@ -117,7 +119,7 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </Frame>
-            </StackLayout>
-        </StackLayout>
-    </StackLayout>
+            </StackLayout>-->
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>
