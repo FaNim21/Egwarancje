@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Egwarancje.Views.Orders.OrderPanelView"
+             xmlns:vm="clr-namespace:Egwarancje.ViewModels"
+             xmlns:models="clr-namespace:EgwarancjeDbLibrary.Models;assembly=EgwarancjeDbLibrary"
+             xmlns:orders="clr-namespace:Egwarancje.ViewModels.Orders"
+             x:DataType="orders:OrderPanelViewModel"
+             BackgroundColor="#1C1C1E"
+             Title="OrderPanelView">
+    <Grid>
+        <ScrollView>
+            <StackLayout Margin="20">
+                <Label Text="Podgląd zamówień"
+                       TextColor="White"
+                       Margin="0, 30"
+                       FontSize="30"
+                       HorizontalOptions="Center"
+                       FontFamily="BakbakOneRegular"
+                       />
+                <CollectionView ItemsSource="{Binding Orders}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="StartAndExpand">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"
+                                           SnapPointsType="None"
+                                           SnapPointsAlignment="Start"
+                                           ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Order"
+                                      x:Name="order">
+                            <Frame Padding="10"
+                                   BackgroundColor="#393E46"
+                                   CornerRadius="20"
+                                   HasShadow="True"
+                                   BorderColor="#616161"
+                                   Margin="0, 5">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type orders:OrderPanelViewModel}}, Path=ShowOrderDetailsCommand}"
+                                                          CommandParameter="{Binding .}"
+                                                          NumberOfTapsRequired="1" />
+                                </Frame.GestureRecognizers>
+                                <VerticalStackLayout>
+                                    <Frame Padding="5"
+                                           Margin="0,0,0,-15"
+                                           BackgroundColor="Transparent"
+                                           BorderColor="Transparent"
+                                           CornerRadius="10"
+                                           InputTransparent="True">
+                                        <StackLayout Orientation="Horizontal"
+                                                     Spacing="10">
+                                            <Label Text="Numer zamówienia:"
+                                                   FontSize="20"
+                                                   FontFamily="BakbakOneRegular"
+                                                   TextColor="White" />
+                                            <Label Text="{Binding OrderNumber}"
+                                                   FontFamily="BakbakOneRegular"
+                                                   FontSize="20"
+                                                   TextColor="White" />
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame Padding="5"
+                                           Margin="0, 0"
+                                           BackgroundColor="Transparent"
+                                           BorderColor="Transparent"
+                                           CornerRadius="10"
+                                           InputTransparent="True">
+                                        <StackLayout Orientation="Horizontal"
+                                                     Spacing="5">
+                                            <Label Text="{Binding OrderDate}"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="|"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="{Binding OrderNumber}"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="zł"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="|"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="{Binding OrderNumber}"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="przedmiotów"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                        </StackLayout>
+                                    </Frame>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <BoxView HeightRequest="80"
+                         Color="#1E1E1E" />
+            </StackLayout>
+        </ScrollView>
+        <StackLayout VerticalOptions="CenterAndExpand" 
+                     Padding="20"
+                     Margin="0,600,0,0"
+                     >
+            <Button Text="Dodaj zamówienie"
+                    FontFamily="BakbakOneRegular"
+                    FontSize="20"
+                    TextColor="#282830"
+                    BackgroundColor="#97D8FE"
+                    CornerRadius="20"
+                    Padding="10"
+                    Command="{Binding AddOrderCommand}"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

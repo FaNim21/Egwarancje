@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Egwarancje.Views.Auth.RegisterView"
+             xmlns:vm="clr-namespace:Egwarancje.ViewModels"
+             xmlns:converters="clr-namespace:Egwarancje.Converters"
+             xmlns:auth="clr-namespace:Egwarancje.ViewModels.Auth"
+             x:DataType="auth:RegisterViewModel"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutItemIsVisible="False"
+             Title="Register"
+             BackgroundColor="#1C1C1E">
+
+    <!--<ContentPage.Resources>
+        <converters:BoolToObjectConverter x:Key="BoolToObjectConverter" />
+    </ContentPage.Resources>-->
+    <Grid>
+        <VerticalStackLayout HorizontalOptions="Start"
+                             Margin="10,10">
+            <Image Source="Images/return_image.png"
+                   Aspect="AspectFit"
+                   WidthRequest="40"
+                   HeightRequest="40">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Padding="20,0,20,0"
+                             Spacing="20"
+                             VerticalOptions="Center">
+            <Label Text="Tworzenie konta"
+                   HorizontalOptions="Center"
+                   TextColor="#FFFFFF"
+                   FontSize="32"
+                   FontFamily="BakbakOneRegular" />
+            <!--<HorizontalStackLayout HorizontalOptions="Center">
+                    <RadioButton Content="Konto osobiste"
+                                    Value="False"
+                                    TextColor="#FFFFFF"
+                                    IsChecked="{Binding IsCompanyAccount, Converter={StaticResource BoolToObjectConverter}, ConverterParameter=false}" />
+                    <RadioButton Content="Konto firmowe"
+                                    Value="True"
+                                    TextColor="#FFFFFF"
+                                    IsChecked="{Binding IsCompanyAccount, Converter={StaticResource BoolToObjectConverter}, ConverterParameter=true}" />
+                </HorizontalStackLayout>-->
+
+            <Frame Padding="12, 5"
+                   BackgroundColor="Transparent"
+                   BorderColor="#FEFEFF"
+                   CornerRadius="24">
+                <Entry Placeholder="Imię i nazwisko"
+                       Text="{Binding Name, Mode=TwoWay}"
+                       Keyboard="Text"
+                       TextColor="#FFFFFF" />
+            </Frame>
+
+            <Frame Padding="12, 5"
+                   BackgroundColor="Transparent"
+                   BorderColor="#FEFEFF"
+                   CornerRadius="24">
+                <Entry Placeholder="E-mail"
+                       Text="{Binding Email, Mode=TwoWay}"
+                       Keyboard="Email"
+                       TextColor="#FFFFFF" />
+            </Frame>
+
+            <Frame Padding="12, 5"
+                   BackgroundColor="Transparent"
+                   BorderColor="#FEFEFF"
+                   CornerRadius="24">
+                <Entry Placeholder="Numer telefonu"
+                       Text="{Binding PhoneNumber, Mode=TwoWay}"
+                       Keyboard="Telephone"
+                       TextColor="#FFFFFF"
+                       MaxLength="9" />
+            </Frame>
+
+            <Frame Padding="12, 5"
+                   BackgroundColor="Transparent"
+                   BorderColor="#FEFEFF"
+                   CornerRadius="24">
+                <Entry Placeholder="Hasło"
+                       Text="{Binding Password, Mode=TwoWay}"
+                       IsPassword="True"
+                       TextColor="#FFFFFF" />
+            </Frame>
+
+            <Frame Padding="12, 5"
+                   BackgroundColor="Transparent"
+                   BorderColor="#FEFEFF"
+                   CornerRadius="24">
+                <Entry Placeholder="Powtórz hasło"
+                       Text="{Binding PasswordAgain, Mode=TwoWay}"
+                       IsPassword="True"
+                       TextColor="#FFFFFF" />
+            </Frame>
+
+            <Button Text="STWÓRZ KONTO"
+                    FontAttributes="Bold"
+                    BackgroundColor="#97D8FE"
+                    TextColor="#1C1C1E"
+                    CornerRadius="15"
+                    HeightRequest="45"
+                    FontFamily="BalooBhaiRegular"
+                    Command="{Binding FinalizeRegisterCommand}" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

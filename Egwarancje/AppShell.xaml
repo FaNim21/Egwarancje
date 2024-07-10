@@ -4,48 +4,59 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:Egwarancje"
        xmlns:view="clr-namespace:Egwarancje.Views"
+       xmlns:viewAuth="clr-namespace:Egwarancje.Views.Auth"
+       xmlns:viewOrders="clr-namespace:Egwarancje.Views.Orders"
+       xmlns:viewProfileDetails="clr-namespace:Egwarancje.Views.ProfileDetails"
+       xmlns:viewWarranties="clr-namespace:Egwarancje.Views.Warranties"
        Shell.FlyoutBehavior="Disabled"
        Shell.NavBarIsVisible="False"
        Title="Egwarancje">
     
     <ShellContent Title="HomePage"
-                  ContentTemplate="{DataTemplate view:HomeView}"
+                  ContentTemplate="{DataTemplate viewAuth:HomeView}"
                   Route="Home" />
 
     <ShellContent Title="LoginPage"
-                  ContentTemplate="{DataTemplate view:LoginView}"
+                  ContentTemplate="{DataTemplate viewAuth:LoginView}"
                   Route="Login" />
 
     <ShellContent Title="RegisterPage"
-                  ContentTemplate="{DataTemplate view:RegisterView}"
+                  ContentTemplate="{DataTemplate viewAuth:RegisterView}"
                   Route="Register" />
 
     <ShellContent Title="RecoverPage"
-                  ContentTemplate="{DataTemplate view:RecoverPasswordView}"
+                  ContentTemplate="{DataTemplate viewAuth:RecoverPasswordView}"
                   Route="Recover" />
 
     <TabBar Route="MainTab"
-            Shell.TabBarBackgroundColor="#141414"
-            Shell.TabBarTitleColor="#6B5B95">
+            Shell.TabBarBackgroundColor="#242424"
+            Shell.TabBarUnselectedColor="#a6a6a6"
+            Shell.TabBarTitleColor="#97D8FE"
+            Shell.TabBarForegroundColor="#97D8FE">
         <ShellContent Title="Zamówienia"
-                      ContentTemplate="{DataTemplate view:OrderPanelView}"
-                      Route="OrderPanel" />
+                      ContentTemplate="{DataTemplate viewOrders:OrderPanelView}"
+                      Route="OrderPanel" 
+                      Icon="order_list.png"/>
 
         <ShellContent Title="Koszyk"
-                      ContentTemplate="{DataTemplate view:CartView}"
-                      Route="Cart"/>
+                      ContentTemplate="{DataTemplate viewOrders:CartView}"
+                      Route="Cart"
+                      Icon="shopping_cart.png"/>
 
         <ShellContent Title="Gwarancje"
-                      ContentTemplate="{DataTemplate view:WarrantyPanelView}"
-                      Route="WarrantyPanel" />
+                      ContentTemplate="{DataTemplate viewWarranties:WarrantyPanelView}"
+                      Route="WarrantyPanel"
+                      Icon="transport_truck.png"/>
         
         <ShellContent Title="Śledź"
-                      ContentTemplate="{DataTemplate view:TrackingView}"
-                      Route="Tracking"/>
+                      ContentTemplate="{DataTemplate viewOrders:TrackingView}"
+                      Route="Tracking"
+                      Icon="map_pin.png"/>
 
         <ShellContent Title="Profil"
                       ContentTemplate="{DataTemplate view:UserProfileView}"
-                      Route="UserProfile" />
+                      Route="UserProfile"
+                      Icon="profile_icon.png"/>
     </TabBar>
 
 </Shell>

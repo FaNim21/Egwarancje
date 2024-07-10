@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+                  x:Class="Egwarancje.Views.ProfileDetails.PersonalDataView"
+                  xmlns:vm="clr-namespace:Egwarancje.ViewModels"
+                  xmlns:models="clr-namespace:EgwarancjeDbLibrary.Models;assembly=EgwarancjeDbLibrary"
+                  xmlns:profile="clr-namespace:Egwarancje.ViewModels.ProfileDetails"
+                  x:DataType="profile:PersonalDataViewModel"
+                  Title="PersonalDataView"
+                  BackgroundColor="#80000000"
+                  CloseWhenBackgroundIsClicked="True">
+    <Border WidthRequest="-1"
+            HeightRequest="500"
+            VerticalOptions="End"
+            BackgroundColor="#292929"
+            StrokeShape="RoundRectangle 30,30,30,30"
+            StrokeThickness="0">
+        <Grid RowDefinitions="*, Auto, Auto"
+              ColumnDefinitions="*"
+              Padding="0,20,0,20">
+            <VerticalStackLayout Padding="20,0,20,0"
+                                 Spacing="20"
+                                 VerticalOptions="Center">
+                <Frame Padding="12, 5"
+                       BackgroundColor="Transparent"
+                       BorderColor="#FEFEFF"
+                       CornerRadius="24">
+                    <Entry Placeholder="Imię i nazwisko"
+                           Text="{Binding Name, Mode=TwoWay}"
+                           Keyboard="Text"
+                           TextColor="#FFFFFF" />
+                </Frame>
+
+                <Frame Padding="12, 5"
+                       BackgroundColor="Transparent"
+                       BorderColor="#FEFEFF"
+                       CornerRadius="24">
+                    <Entry Placeholder="E-mail"
+                           Text="{Binding Email, Mode=TwoWay}"
+                           Keyboard="Email"
+                           TextColor="#FFFFFF" />
+                </Frame>
+
+                <Frame Padding="12, 5"
+                       BackgroundColor="Transparent"
+                       BorderColor="#FEFEFF"
+                       CornerRadius="24">
+                    <Entry Placeholder="Numer telefonu"
+                           Text="{Binding PhoneNumber, Mode=TwoWay}"
+                           Keyboard="Telephone"
+                           TextColor="#FFFFFF"
+                           MaxLength="9" />
+                </Frame>
+                <Button Grid.Row="1"
+                        Text="Zapisz zmiany"
+                        Command="{Binding SaveUserDataCommand}"
+                        BackgroundColor="#6B5B95"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        TextColor="White"
+                        Margin="20,10,20,0"
+                        CornerRadius="10" />
+            </VerticalStackLayout>
+        </Grid>
+    </Border>
+</mopups:PopupPage>

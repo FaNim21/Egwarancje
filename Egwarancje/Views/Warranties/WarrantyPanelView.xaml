@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Egwarancje.Views.Warranties.WarrantyPanelView"
+             xmlns:converters="clr-namespace:Egwarancje.Converters"
+             xmlns:vm="clr-namespace:Egwarancje.ViewModels"
+             xmlns:models="clr-namespace:EgwarancjeDbLibrary.Models;assembly=EgwarancjeDbLibrary"
+             xmlns:warranties="clr-namespace:Egwarancje.ViewModels.Warranties"
+             x:DataType="warranties:WarrantyPanelViewModel"
+             BackgroundColor="#1C1C1E"
+             Title="WarrantyPanelView">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:WarrantyStatusTypeToPolishConverter x:Key="StatusConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <ScrollView>
+            <StackLayout Margin="20">
+                <Label Text="Podgląd gwarancji"
+                       TextColor="White"
+                       Margin="0, 30"
+                       FontSize="30"
+                       HorizontalOptions="Center"
+                       FontFamily="BakbakOneRegular"/>
+                <CollectionView ItemsSource="{Binding Warranties}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="StartAndExpand">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"
+                                           SnapPointsType="None"
+                                           SnapPointsAlignment="Start"
+                                           ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Warranty"
+                                      x:Name="warranty">
+                            <Frame Padding="10"
+                                   BackgroundColor="#393E46"
+                                   CornerRadius="20"
+                                   HasShadow="True"
+                                   BorderColor="#616161"
+                                   Margin="0, 5">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type warranties:WarrantyPanelViewModel}}, Path=ShowDetailsCommand}"
+                                                          CommandParameter="{Binding .}"
+                                                          NumberOfTapsRequired="1" />
+                                </Frame.GestureRecognizers>
+                                <VerticalStackLayout>
+                                    <Frame Padding="5"
+                                           Margin="0, 0, 0, -15"
+                                           BackgroundColor="Transparent"
+                                           BorderColor="Transparent"
+                                           CornerRadius="10"
+                                           InputTransparent="True">
+                                        <StackLayout Orientation="Horizontal"
+                                                     Spacing="10">
+                                            <Label Text="Numer gwarancji:"
+                                                   FontSize="20"
+                                                   FontFamily="BakbakOneRegular"
+                                                   TextColor="White" />
+                                            <Label Text="{Binding Id}"
+                                                   FontSize="20"
+                                                   FontFamily="BakbakOneRegular"
+                                                   TextColor="White" />
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame Padding="5"
+                                           Margin="0, 0"
+                                           BackgroundColor="Transparent"
+                                           BorderColor="Transparent"
+                                           CornerRadius="10"
+                                           InputTransparent="True">
+                                        <StackLayout Orientation="Horizontal"
+                                                     Spacing="10">
+                                            <Label Text="{Binding DateOfWarranty}"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="|"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="Status:"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="{Binding Status, Converter={StaticResource StatusConverter}}"
+                                                   FontSize="13"
+                                                   TextColor="White"
+                                                   Margin="-5, 0, 0, 0">
+                                                <Label.Triggers>
+                                                    <DataTrigger TargetType="Label"
+                                                                 Binding="{Binding Status}"
+                                                                 Value="Awaitng">
+                                                        <Setter Property="TextColor"
+                                                                Value="Yellow" />
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Label"
+                                                                 Binding="{Binding Status}"
+                                                                 Value="Accepted">
+                                                        <Setter Property="TextColor"
+                                                                Value="Green" />
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Label"
+                                                                 Binding="{Binding Status}"
+                                                                 Value="Declined">
+                                                        <Setter Property="TextColor"
+                                                                Value="Red" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                        </StackLayout>
+                                    </Frame>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,7 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Egwarancje.Services;
+using Egwarancje.Views;
 using EgwarancjeDbLibrary.Models;
+using Mopups.Services;
+using Egwarancje.ViewModels.ProfileDetails;
+using Egwarancje.Views.ProfileDetails;
 
 namespace Egwarancje.ViewModels;
 
@@ -33,5 +37,17 @@ public partial class UserProfileViewModel : BaseViewModel
     {
         service.Logout();
         await Shell.Current.GoToAsync("///Login");
+    }
+
+    [RelayCommand]
+    public async Task OpenPersonalData()
+    {
+        await MopupService.Instance.PushAsync(new PersonalDataView(new PersonalDataViewModel(service)));
+    }
+
+    [RelayCommand]
+    public async Task OpenPasswordChange()
+    {
+        await MopupService.Instance.PushAsync(new PasswordChangeView(new PasswordChangeViewModel(service)));
     }
 }

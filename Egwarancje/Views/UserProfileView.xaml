@@ -4,13 +4,13 @@
              x:Class="Egwarancje.Views.UserProfileView"
              xmlns:vm="clr-namespace:Egwarancje.ViewModels"
              x:DataType="vm:UserProfileViewModel"
-             BackgroundColor="#282830"
+             BackgroundColor="#1C1C1E"
              Title="UserProfileView">
     <ScrollView>
         <Grid Padding="20, 20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="20" />
+                <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
@@ -22,12 +22,13 @@
                    TextColor="#FFFFFF"
                    FontSize="30"
                    FontFamily="BakbakOneRegular"
-                   Margin="0, 10, 0, -10" />
+                   Margin="0, 30, 0, -10" />
             <Label Grid.Row="1"
                    Text="{Binding User.Name}"
                    TextColor="#FFFFFF"
                    FontSize="15"
                    HorizontalOptions="Center"
+                   Margin="0, 0, 0, 20"
                    />
 
             <StackLayout Grid.Row="2"
@@ -36,7 +37,7 @@
                        CornerRadius="20"
                        Padding="0"
                        BorderColor="#616161"
-                       Margin="0, 10">
+                       Margin="0, 0">
                     <VerticalStackLayout>
                         <StackLayout Orientation="Horizontal" Spacing="10" Margin="5, 0, 0, 0" Padding="10">
                             <Image Source="white_gear.png"
@@ -55,12 +56,15 @@
                         <Frame BackgroundColor="Transparent"
                                BorderColor="Transparent"
                                Margin="0, -10, 0, -10">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenPersonalDataCommand}" />
+                            </Frame.GestureRecognizers>
                             <StackLayout Orientation="Vertical">
                                 <Label Text="Dane osobowe"
                                        TextColor="White"
                                        FontSize="15"
                                        FontFamily="BakbakOneRegular"
-                                       Margin="0, 0, 0, -5"/>
+                                       Margin="0, 0, 0, -5" />
                                 <Label Text="Informacje o Tobie i Twoim koncie"
                                        TextColor="White"
                                        FontSize="12"/>
@@ -74,6 +78,9 @@
                         <Frame BackgroundColor="Transparent"
                                BorderColor="Transparent"
                                Margin="0, -10, 0, -10">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                            </Frame.GestureRecognizers>
                             <StackLayout Orientation="Vertical">
                                 <Label Text="Adres dostawy"
                                        TextColor="White"
@@ -93,6 +100,9 @@
                         <Frame BackgroundColor="Transparent"
                                BorderColor="Transparent"
                                Margin="0, -10, 0, -10">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                            </Frame.GestureRecognizers>
                             <StackLayout Orientation="Vertical">
                                 <Label Text="Metody płatności"
                                        TextColor="White"
@@ -112,6 +122,9 @@
                         <Frame BackgroundColor="Transparent"
                                BorderColor="Transparent"
                                Margin="0, -10, 0, -10">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenPasswordChangeCommand}" />
+                            </Frame.GestureRecognizers>
                             <StackLayout Orientation="Vertical">
                                 <Label Text="Hasło i zabezpieczenia"
                                        TextColor="White"
@@ -131,6 +144,9 @@
                         <Frame BackgroundColor="Transparent"
                                BorderColor="Transparent"
                                Margin="0, -10, 0, -15">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                            </Frame.GestureRecognizers>
                             <StackLayout Orientation="Vertical">
                                 <Label Text="Dane do faktury"
                                        TextColor="White"
@@ -168,6 +184,9 @@
                         <Frame BackgroundColor="Transparent"
                                BorderColor="Transparent"
                                Margin="0, -10, 0, -10">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                            </Frame.GestureRecognizers>
                             <StackLayout Orientation="Vertical">
                                 <Label Text="Powiadomienia"
                                        TextColor="White"
@@ -187,6 +206,9 @@
                         <Frame BackgroundColor="Transparent"
                                BorderColor="Transparent"
                                Margin="0, -10, 0, -10">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                            </Frame.GestureRecognizers>
                             <StackLayout Orientation="Vertical">
                                 <Label Text="Dźwięk"
                                        TextColor="White"

@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Egwarancje.Services;
 using Egwarancje.ViewModels.Warranties;
 using Egwarancje.Views;
+using Egwarancje.Views.Warranties;
 using EgwarancjeDbLibrary.Models;
 using Mopups.Services;
 using System.Collections.ObjectModel;

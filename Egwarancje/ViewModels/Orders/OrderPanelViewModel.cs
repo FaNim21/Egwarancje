@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Egwarancje.Services;
 using Egwarancje.Views;
+using Egwarancje.Views.Orders;
 using EgwarancjeDbLibrary.Models;
 using Mopups.Services;
 using System.Collections.ObjectModel;
@@ -53,5 +54,11 @@ public partial class OrderPanelViewModel : BaseViewModel
     public async Task ShowSpecs(Order order)
     {
         await MopupService.Instance.PushAsync(new OrderSpecsView(new OrderSpecsViewModel(service, this, order)));
+    }
+
+    [RelayCommand]
+    public async Task ShowOrderDetails(Order order)
+    {
+        await Shell.Current.Navigation.PushAsync(new OrderDetailsView(new OrderDetailsViewModel(service, order)));
     }
 }
