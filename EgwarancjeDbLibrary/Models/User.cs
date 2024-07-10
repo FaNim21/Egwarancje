@@ -22,4 +22,17 @@ public class User
     public List<Order>? Orders { get; set; }
 
     public List<Warranty>? Warranties { get; set; }
+
+    public string? ConfirmationToken { get; set; }
+}
+
+public class UserDto
+{
+    public string Name { get; set; }
+
+    public string Email { get; set; }
+
+    public string Password { get; set; }
+
+    public int PhoneNumber { get; set; }
 }

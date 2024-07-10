@@ -3,19 +3,16 @@ using EgwarancjeAPI.Services.Messages;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddSingleton<IMessagesService, MessagesService>();
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAllOrigins",
-        builder =>
-        {
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-        });
-});
+builder.Services.AddCors(options => options.AddPolicy(name: "All",
+    policy =>
+    {
+        policy.WithOrigins("http://0.0.0.0:5190", "https://0.0.0.0:7007")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowCredentials();
+    }));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -25,7 +22,6 @@ builder.Services.AddDbContext<LocalDatabaseContext>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -35,11 +31,9 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-//app.UseHttpsRedirection();
+app.UseCors("All");
 
 app.UseRouting();
-
-app.UseCors("AllowAllOrigins");
 
 app.UseAuthorization();
 

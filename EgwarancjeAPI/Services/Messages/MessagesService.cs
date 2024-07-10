@@ -41,5 +41,20 @@ namespace EgwarancjeAPI.Services.Messages
                 return false;
             }
         }
+
+        public bool SendAccountConfirmationEmail(string to, string userName, string confirmationLink)
+        {
+            string body = $@"
+                <html>
+                <body>
+                    <p>Dear {userName},</p>
+                    <p>Thank you for registering. Please <a href='{confirmationLink}'>click here</a> to confirm your account.</p>
+                    <p>Regards,<br>Your Company</p>
+                </body>
+                </html>";
+            string subject = "Confirm your account";
+
+            return Email(subject, body, to);
+        }
     }
 }

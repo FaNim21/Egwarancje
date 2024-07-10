@@ -12,7 +12,6 @@ public class UserService : IDisposable
 
     private readonly JsonSerializerOptions _jsonSerializerOptions;
 
-    private readonly IHttpClientFactory _httpClientFactory;
     private HttpClient _httpClient;
 
     private readonly string _baseAddress;
@@ -21,11 +20,17 @@ public class UserService : IDisposable
     private bool _disposed = false;
 
 
-    public UserService(IHttpClientFactory httpClientFactory)
+    public UserService()
     {
         User = new();
-        _httpClientFactory = httpClientFactory;
-        _httpClient = _httpClientFactory.CreateClient();
+        var httpClientHandler = new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; }
+        };
+        _httpClient = new HttpClient(httpClientHandler)
+        {
+            Timeout = TimeSpan.FromSeconds(30)
+        };
 
         _baseAddress = DeviceInfo.Platform == DevicePlatform.Android ? Consts.AndroidAddress : Consts.WindowsAddress;
         _url = $"{_baseAddress}/api";

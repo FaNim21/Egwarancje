@@ -1,4 +1,5 @@
-﻿using EgwarancjeDbLibrary.Models;
+﻿using EgwarancjeAPI.Services.Messages;
+using EgwarancjeDbLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,17 +9,20 @@ namespace EgwarancjeAPI.Controllers;
 /// Lepiej zamiast bezposrednio user zrobic dto dla user
 /// ktory bedzie mial tylko najwazniejsz dane do stworzenia uzytkownika
 /// ale na ten moment nie jest to az tak wazne
+/// i tak samo zeby uzyc repository pattern
 /// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class UserController : ControllerBase
 {
+    private readonly IMessagesService _messagesService;
     private readonly LocalDatabaseContext _database;
 
 
-    public UserController(LocalDatabaseContext database)
+    public UserController(IMessagesService messagesService, LocalDatabaseContext database)
     {
         _database = database;
+        _messagesService = messagesService;
     }
 
     [HttpGet]
@@ -70,7 +74,7 @@ public class UserController : ControllerBase
         _database.Users.Add(user);
         await _database.SaveChangesAsync();
 
-        return Created();
+        return Ok();
     }
 
     [HttpPut]

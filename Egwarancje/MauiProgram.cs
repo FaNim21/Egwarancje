@@ -30,9 +30,7 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
-        //xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
 
-        builder.Services.AddHttpClient();
         builder.Services.AddSingleton<UserService>();
         
         builder.Services.AddTransient<HomeView>();
