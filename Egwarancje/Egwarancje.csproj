@@ -94,58 +94,58 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\WarrantyDetailsView.xaml.cs">
+	  <Compile Update="Views\Warranties\WarrantyDetailsView.xaml.cs">
 	    <DependentUpon>WarrantyDetailsView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\CartView.xaml">
+	  <MauiXaml Update="Views\Orders\CartView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\HomeView.xaml">
+	  <MauiXaml Update="Views\Auth\HomeView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\OrderDetailsView.xaml">
+	  <MauiXaml Update="Views\Orders\OrderDetailsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\OrderPanelView.xaml">
+	  <MauiXaml Update="Views\Orders\OrderPanelView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\OrderRegistrationView.xaml">
+	  <MauiXaml Update="Views\Orders\OrderRegistrationView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\OrderSpecsView.xaml">
+	  <MauiXaml Update="Views\Orders\OrderSpecsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\PasswordChangeView.xaml">
+	  <MauiXaml Update="Views\ProfileDetails\PasswordChangeView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\PersonalDataView.xaml">
+	  <MauiXaml Update="Views\ProfileDetails\PersonalDataView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\RecoverPasswordView.xaml">
+	  <MauiXaml Update="Views\Auth\RecoverPasswordView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\RegisterView.xaml">
+	  <MauiXaml Update="Views\Auth\RegisterView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\TrackingView.xaml">
+	  <MauiXaml Update="Views\Orders\TrackingView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\UserProfileView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\WarrantyCreationView.xaml">
+	  <MauiXaml Update="Views\Warranties\WarrantyCreationView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\WarrantyPanelView.xaml">
+	  <MauiXaml Update="Views\Warranties\WarrantyPanelView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\WarrantyDetailsView.xaml">
+	  <MauiXaml Update="Views\Warranties\WarrantyDetailsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\WarrantySpecView.xaml">
+	  <MauiXaml Update="Views\Warranties\WarrantySpecView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
