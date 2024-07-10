@@ -1,6 +1,6 @@
 using Egwarancje.ViewModels.Auth;
 
-namespace Egwarancje.Views;
+namespace Egwarancje.Views.Auth;
 
 public partial class RegisterView : ContentPage
 {

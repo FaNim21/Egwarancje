@@ -5,6 +5,7 @@ using Egwarancje.Views;
 using EgwarancjeDbLibrary.Models;
 using Mopups.Services;
 using Egwarancje.ViewModels.ProfileDetails;
+using Egwarancje.Views.ProfileDetails;
 
 namespace Egwarancje.ViewModels;
 

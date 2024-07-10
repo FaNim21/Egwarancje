@@ -2,7 +2,7 @@
 <mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
-                  x:Class="Egwarancje.Views.PersonalDataView"
+                  x:Class="Egwarancje.Views.ProfileDetails.PersonalDataView"
                   xmlns:vm="clr-namespace:Egwarancje.ViewModels"
                   xmlns:models="clr-namespace:EgwarancjeDbLibrary.Models;assembly=EgwarancjeDbLibrary"
                   xmlns:profile="clr-namespace:Egwarancje.ViewModels.ProfileDetails"

@@ -1,6 +1,6 @@
 using Egwarancje.ViewModels.Warranties;
 
-namespace Egwarancje.Views;
+namespace Egwarancje.Views.Warranties;
 
 public partial class WarrantyPanelView : ContentPage
 {

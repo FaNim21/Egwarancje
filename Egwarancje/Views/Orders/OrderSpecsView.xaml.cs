@@ -1,7 +1,7 @@
 using Egwarancje.ViewModels.Orders;
 using EgwarancjeDbLibrary.Models;
 
-namespace Egwarancje.Views;
+namespace Egwarancje.Views.Orders;
 
 public partial class OrderSpecsView
 {

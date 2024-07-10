@@ -1,6 +1,6 @@
 using Egwarancje.ViewModels.Orders;
 
-namespace Egwarancje.Views;
+namespace Egwarancje.Views.Orders;
 
 public partial class OrderRegistrationView : ContentPage
 {

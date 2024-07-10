@@ -1,6 +1,6 @@
 using Egwarancje.ViewModels.ProfileDetails;
 
-namespace Egwarancje.Views;
+namespace Egwarancje.Views.ProfileDetails;
 
 public partial class PersonalDataView
 {
