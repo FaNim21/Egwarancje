@@ -25,27 +25,34 @@
                   Route="Recover" />
 
     <TabBar Route="MainTab"
-            Shell.TabBarBackgroundColor="#141414"
-            Shell.TabBarTitleColor="#6B5B95">
+            Shell.TabBarBackgroundColor="#242424"
+            Shell.TabBarUnselectedColor="##a6a6a6"
+            Shell.TabBarTitleColor="#97D8FE"
+            Shell.TabBarForegroundColor="#97D8FE">
         <ShellContent Title="Zamówienia"
                       ContentTemplate="{DataTemplate view:OrderPanelView}"
-                      Route="OrderPanel" />
+                      Route="OrderPanel" 
+                      Icon="order_list.png"/>
 
         <ShellContent Title="Koszyk"
                       ContentTemplate="{DataTemplate view:CartView}"
-                      Route="Cart"/>
+                      Route="Cart"
+                      Icon="shopping_cart.png"/>
 
         <ShellContent Title="Gwarancje"
                       ContentTemplate="{DataTemplate view:WarrantyPanelView}"
-                      Route="WarrantyPanel" />
+                      Route="WarrantyPanel"
+                      Icon="transport_truck.png"/>
         
         <ShellContent Title="Śledź"
                       ContentTemplate="{DataTemplate view:TrackingView}"
-                      Route="Tracking"/>
+                      Route="Tracking"
+                      Icon="map_pin.png"/>
 
         <ShellContent Title="Profil"
                       ContentTemplate="{DataTemplate view:UserProfileView}"
-                      Route="UserProfile" />
+                      Route="UserProfile"
+                      Icon="profile_icon.png"/>
     </TabBar>
 
 </Shell>
