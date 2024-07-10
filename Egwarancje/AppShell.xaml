@@ -26,7 +26,7 @@
 
     <TabBar Route="MainTab"
             Shell.TabBarBackgroundColor="#242424"
-            Shell.TabBarUnselectedColor="##a6a6a6"
+            Shell.TabBarUnselectedColor="#a6a6a6"
             Shell.TabBarTitleColor="#97D8FE"
             Shell.TabBarForegroundColor="#97D8FE">
         <ShellContent Title="Zamówienia"
