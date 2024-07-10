@@ -43,4 +43,10 @@ public partial class UserProfileViewModel : BaseViewModel
     {
         await MopupService.Instance.PushAsync(new PersonalDataView(new PersonalDataViewModel(service)));
     }
+
+    [RelayCommand]
+    public async Task OpenPasswordChange()
+    {
+        await MopupService.Instance.PushAsync(new PasswordChangeView(new PasswordChangeViewModel(service)));
+    }
 }
