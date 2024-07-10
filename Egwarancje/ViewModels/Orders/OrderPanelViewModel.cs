@@ -54,4 +54,10 @@ public partial class OrderPanelViewModel : BaseViewModel
     {
         await MopupService.Instance.PushAsync(new OrderSpecsView(new OrderSpecsViewModel(service, this, order)));
     }
+
+    [RelayCommand]
+    public async Task ShowOrderDetails(Order order)
+    {
+        await Shell.Current.Navigation.PushAsync(new OrderDetailsView(new OrderDetailsViewModel(service, order)));
+    }
 }

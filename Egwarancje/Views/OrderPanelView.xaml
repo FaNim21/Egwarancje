@@ -38,7 +38,7 @@
                                    BorderColor="#616161"
                                    Margin="0, 5">
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type orders:OrderPanelViewModel}}, Path=ShowSpecsCommand}"
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type orders:OrderPanelViewModel}}, Path=ShowOrderDetailsCommand}"
                                                           CommandParameter="{Binding .}"
                                                           NumberOfTapsRequired="1" />
                                 </Frame.GestureRecognizers>
