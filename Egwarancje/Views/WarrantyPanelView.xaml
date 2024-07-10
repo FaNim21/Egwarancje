@@ -7,7 +7,7 @@
              xmlns:models="clr-namespace:EgwarancjeDbLibrary.Models;assembly=EgwarancjeDbLibrary"
              xmlns:warranties="clr-namespace:Egwarancje.ViewModels.Warranties"
              x:DataType="warranties:WarrantyPanelViewModel"
-             BackgroundColor="#1E1E1E"
+             BackgroundColor="#1C1C1E"
              Title="WarrantyPanelView">
 
     <ContentPage.Resources>
@@ -21,10 +21,10 @@
             <StackLayout Margin="20">
                 <Label Text="Podgląd gwarancji"
                        TextColor="White"
-                       FontAttributes="Bold"
-                       Margin="0, 20"
+                       Margin="0, 30"
                        FontSize="30"
-                       HorizontalOptions="Start" />
+                       HorizontalOptions="Center"
+                       FontFamily="BakbakOneRegular"/>
                 <CollectionView ItemsSource="{Binding Warranties}"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="StartAndExpand">
@@ -38,67 +38,57 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Warranty"
                                       x:Name="warranty">
-                            <Frame Padding="15"
-                                   BackgroundColor="#292929"
+                            <Frame Padding="10"
+                                   BackgroundColor="#393E46"
                                    CornerRadius="20"
                                    HasShadow="True"
-                                   BorderColor="White"
-                                   Margin="0, 10">
+                                   BorderColor="#616161"
+                                   Margin="0, 5">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type warranties:WarrantyPanelViewModel}}, Path=ShowDetailsCommand}"
                                                           CommandParameter="{Binding .}"
                                                           NumberOfTapsRequired="1" />
                                 </Frame.GestureRecognizers>
                                 <VerticalStackLayout>
-                                    <Frame Padding="10"
-                                           Margin="0,5"
-                                           BackgroundColor="#3E3E3E"
-                                           BorderColor="#3E3E3E"
+                                    <Frame Padding="5"
+                                           Margin="0, 0, 0, -15"
+                                           BackgroundColor="Transparent"
+                                           BorderColor="Transparent"
                                            CornerRadius="10"
                                            InputTransparent="True">
                                         <StackLayout Orientation="Horizontal"
                                                      Spacing="10">
                                             <Label Text="Numer gwarancji:"
-                                                   FontSize="15"
-                                                   FontAttributes="Bold"
+                                                   FontSize="20"
+                                                   FontFamily="BakbakOneRegular"
                                                    TextColor="White" />
                                             <Label Text="{Binding Id}"
-                                                   FontSize="15"
+                                                   FontSize="20"
+                                                   FontFamily="BakbakOneRegular"
                                                    TextColor="White" />
                                         </StackLayout>
                                     </Frame>
-                                    <Frame Padding="10"
-                                           Margin="0, 5"
-                                           BackgroundColor="#3E3E3E"
-                                           BorderColor="#3E3E3E"
+                                    <Frame Padding="5"
+                                           Margin="0, 0"
+                                           BackgroundColor="Transparent"
+                                           BorderColor="Transparent"
                                            CornerRadius="10"
                                            InputTransparent="True">
                                         <StackLayout Orientation="Horizontal"
                                                      Spacing="10">
-                                            <Label Text="Data zgłoszenia:"
-                                                   FontSize="15"
-                                                   FontAttributes="Bold"
-                                                   TextColor="White" />
                                             <Label Text="{Binding DateOfWarranty}"
-                                                   FontSize="15"
+                                                   FontSize="13"
                                                    TextColor="White" />
-                                        </StackLayout>
-                                    </Frame>
-                                    <Frame Padding="10"
-                                           Margin="0,5"
-                                           BackgroundColor="#3E3E3E"
-                                           BorderColor="#3E3E3E"
-                                           CornerRadius="10"
-                                           InputTransparent="True">
-                                        <StackLayout Orientation="Horizontal"
-                                                     Spacing="10">
-                                            <Label Text="Status gwarancji:"
-                                                   FontSize="15"
-                                                   FontAttributes="Bold"
+                                            <Label Text="|"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="Status:"
+                                                   FontSize="13"
                                                    TextColor="White" />
                                             <Label Text="{Binding Status, Converter={StaticResource StatusConverter}}"
-                                                   FontSize="15"
-                                                   TextColor="White">
+                                                   FontSize="13"
+                                                   TextColor="White"
+                                                   Margin="-5, 0, 0, 0">
                                                 <Label.Triggers>
                                                     <DataTrigger TargetType="Label"
                                                                  Binding="{Binding Status}"
@@ -120,24 +110,6 @@
                                                     </DataTrigger>
                                                 </Label.Triggers>
                                             </Label>
-
-                                        </StackLayout>
-                                    </Frame>
-                                    <Frame Padding="10"
-                                           Margin="0,5"
-                                           BackgroundColor="#3E3E3E"
-                                           BorderColor="#3E3E3E"
-                                           CornerRadius="10"
-                                           InputTransparent="True">
-                                        <StackLayout Orientation="Vertical"
-                                                     Spacing="10">
-                                            <Label Text="Uwagi do gwarancji:"
-                                                   FontSize="15"
-                                                   FontAttributes="Bold"
-                                                   TextColor="White" />
-                                            <Label Text="{Binding Comments}"
-                                                   FontSize="15"
-                                                   TextColor="White" />
                                         </StackLayout>
                                     </Frame>
                                 </VerticalStackLayout>
@@ -145,8 +117,6 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-                <BoxView HeightRequest="80"
-                         Color="#1E1E1E" />
             </StackLayout>
         </ScrollView>
     </Grid>
