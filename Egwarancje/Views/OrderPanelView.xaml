@@ -111,7 +111,8 @@
                     TextColor="#282830"
                     BackgroundColor="#97D8FE"
                     CornerRadius="20"
-                    Padding="10"/>
+                    Padding="10"
+                    Command="{Binding AddOrderCommand}"/>
         </StackLayout>
     </Grid>
 </ContentPage>

@@ -57,11 +57,12 @@
                                BorderColor="Transparent"
                                Margin="0, -10, 0, -10">
                             <StackLayout Orientation="Vertical">
-                                <Label Text="Dane osobowe"
+                                <Button Text="Dane osobowe"
                                        TextColor="White"
                                        FontSize="15"
                                        FontFamily="BakbakOneRegular"
-                                       Margin="0, 0, 0, -5"/>
+                                       Margin="0, 0, 0, -5"
+                                        Command="{Binding OpenPersonalDataCommand}"/>
                                 <Label Text="Informacje o Tobie i Twoim koncie"
                                        TextColor="White"
                                        FontSize="12"/>
