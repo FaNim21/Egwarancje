@@ -80,7 +80,8 @@ public class AccountController : ControllerBase
     [Route("ResetPassword")]
     public async Task<IActionResult> ResetPassword()
     {
-        return Ok();
+        string tempPassword = Guid.NewGuid().ToString("N");
+        return Ok(tempPassword);
     }
 }
 
