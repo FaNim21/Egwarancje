@@ -65,22 +65,32 @@ public class AccountController : ControllerBase
 
     [HttpPost]
     [Route("ActivateWithoutToken")]
-    public async Task<IActionResult> ActivateProfile(string to)
+    public async Task<IActionResult> ActivateProfile(string email)
     {
-        var user = await _database.Users.FirstOrDefaultAsync(u => u.Email.Equals(to));
+        var user = await _database.Users.FirstOrDefaultAsync(u => u.Email.Equals(email));
         if (user == null) return BadRequest("User not found");
         user.IsActivated = true;
 
         _database.SaveChanges();
 
-        return Ok($"Account '{to}' has been activated");
+        return Ok($"Account '{email}' has been activated");
     }
 
     [HttpPost]
     [Route("ResetPassword")]
-    public async Task<IActionResult> ResetPassword()
+    public async Task<IActionResult> ResetPassword(string email)
     {
+        var user = await _database.Users.FirstOrDefaultAsync(u => u.Email.Equals(email));
+        if (user == null) return BadRequest("User not found");
+
         string tempPassword = Guid.NewGuid().ToString("N");
+
+        bool success = _messagesService.SendNewPassword(email, user.Name, tempPassword);
+        if (!success) return BadRequest(new { Message = "Could not send the email to reset password" });
+
+        user.Password = tempPassword;
+        await _database.SaveChangesAsync();
+
         return Ok(tempPassword);
     }
 }
