@@ -5,6 +5,12 @@ using System.Text.Json;
 
 namespace Egwarancje.Services;
 
+public struct MessageResponse
+{
+    public bool Success { get; set; }
+    public string Message { get; set; }
+}
+
 public class UserService : IDisposable
 {
     public User User { get; private set; }
@@ -41,29 +47,55 @@ public class UserService : IDisposable
         };
     }
 
-    public async Task<bool> RegisterAsync(User newUser)
+    public async Task<MessageResponse> RestartPassword(string email)
     {
         bool access = await CheckForNetworkAccess();
-        if (!access) return false;
+        if (!access) return new MessageResponse() { Success = false, Message = "Brak połączenia z internetem" };
 
         try
         {
-            var requestUri = $"{_url}/User/Add";
-            var content = SetPostContent(newUser);
-            var response = await _httpClient.PostAsync(requestUri, content);
+            var requestUri = $"{_url}/Account/ResetPassword";
+            var contentPost = SetPostContent(email);
+            var response = await _httpClient.PostAsync(requestUri, contentPost);
 
-            return response.IsSuccessStatusCode;
+            string content = await response.Content.ReadAsStringAsync();
+            MessageResponse messageResponse = JsonSerializer.Deserialize<MessageResponse>(content, _jsonSerializerOptions);
+
+            return messageResponse;
         }
         catch (Exception ex)
         {
             Trace.WriteLine(ex.Message);
-            return false;
+            return new MessageResponse() { Success = false, Message = "Błąd API" };
         }
     }
-    public async Task<bool> LoginAsync(string email, string password)
+
+    public async Task<MessageResponse> RegisterAsync(User newUser)
     {
         bool access = await CheckForNetworkAccess();
-        if (!access) return false;
+        if (!access) return new MessageResponse() { Success = false, Message = "Brak połączenia z internetem" };
+
+        try
+        {
+            var requestUri = $"{_url}/Account/Register";
+            var contentPost = SetPostContent(newUser);
+            var response = await _httpClient.PostAsync(requestUri, contentPost);
+
+            string content = await response.Content.ReadAsStringAsync();
+            MessageResponse messageResponse = JsonSerializer.Deserialize<MessageResponse>(content, _jsonSerializerOptions);
+
+            return messageResponse;
+        }
+        catch (Exception ex)
+        {
+            Trace.WriteLine(ex.Message);
+            return new MessageResponse() { Success = false, Message = "Błąd API" };
+        }
+    }
+    public async Task<MessageResponse> LoginAsync(string email, string password)
+    {
+        bool access = await CheckForNetworkAccess();
+        if (!access) return new MessageResponse() { Success = false, Message = "Brak połączenia z internetem" };
 
         try
         {
@@ -77,22 +109,27 @@ public class UserService : IDisposable
                 if (user is null)
                 {
                     IsAuthenticated = false;
-                    return false;
+                    return new MessageResponse() { Success = false, Message = "Nieprawidłowe dane logowania" };
+                }
+
+                if(!user.IsActivated)
+                {
+                    return new MessageResponse() { Success = false, Message = "Konto nie zostało aktywowane" };
                 }
 
                 User = user;
                 IsAuthenticated = true;
-                return true;
+                return new MessageResponse() { Success = true, Message = "Pomyślnie zalogowano" };
             }
 
             IsAuthenticated = false;
-            return false;
+            return new MessageResponse() { Success = false, Message = "Błąd połączenia z API" };
         }
         catch (Exception ex)
         {
             Trace.WriteLine(ex.Message);
             IsAuthenticated = false;
-            return false;
+            return new MessageResponse() { Success = false, Message = "Błąd API" };
         }
     }
     public void Logout()

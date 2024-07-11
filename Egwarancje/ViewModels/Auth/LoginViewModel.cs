@@ -28,10 +28,10 @@ public partial class LoginViewModel : BaseViewModel
             return;
         }
 
-        bool success = await service.LoginAsync(Email, Password);
-        if (!success)
+        MessageResponse reponse = await service.LoginAsync(Email, Password);
+        if (!reponse.Success)
         {
-            await Application.Current!.MainPage!.DisplayAlert("Message", "Nieprawidłowe dane logowania", "OK");
+            await Application.Current!.MainPage!.DisplayAlert("Message", reponse.Message, "OK");
             return;
         }
 

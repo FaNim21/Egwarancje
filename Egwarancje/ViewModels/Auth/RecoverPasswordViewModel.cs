@@ -17,7 +17,7 @@ public partial class RecoverPasswordViewModel : BaseViewModel
     [RelayCommand]
     public async Task RecoverPassword()
     {
-        await Application.Current!.MainPage!.DisplayAlert("Message", $"Wysłano link do zmiany hasla na adres: {email}", "OK");
+        await Application.Current!.MainPage!.DisplayAlert("Message", $"Wysłano link do zmiany hasla na adres: {Email}", "OK");
     }
 
     [RelayCommand]

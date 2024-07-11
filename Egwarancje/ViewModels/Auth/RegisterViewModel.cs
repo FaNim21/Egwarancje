@@ -70,14 +70,14 @@ public partial class RegisterViewModel : BaseViewModel
             Password = Password
         };
 
-        bool success = await service.RegisterAsync(newUser);
-        if (!success)
+        MessageResponse response = await service.RegisterAsync(newUser);
+        if (!response.Success)
         {
-            await Application.Current!.MainPage!.DisplayAlert("Rejestracja", "Istnieje już użytkownik o podanym adresie e-mail", "OK");
+            await Application.Current!.MainPage!.DisplayAlert("Rejestracja", response.Message, "OK");
             return;
         }
 
-        await Application.Current!.MainPage!.DisplayAlert("Rejestracja", "Zarejestrowano pomyślnie użytkownika", "OK");
+        await Application.Current!.MainPage!.DisplayAlert("Rejestracja", response.Message, "OK");
         await Shell.Current.GoToAsync("///Home");
     }
 
