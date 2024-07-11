@@ -76,15 +76,15 @@
                 </Label.GestureRecognizers>
             </Label>
 
-            <!--<StackLayout Orientation="Horizontal"
-                     Margin="0, -10, 0, 0">
-            <CheckBox IsChecked="{Binding RememberMe}"
-                      Color="White" />
-            <Label Text="Zapamiętaj mnie"
-                   TextColor="White"
-                   VerticalOptions="Center"
-                   Margin="10, 0, 0, 0" />
-        </StackLayout>-->
+            <StackLayout Orientation="Horizontal"
+                         Margin="0, -10, 0, 0">
+                <CheckBox IsChecked="{Binding RememberMe}"
+                          Color="White" />
+                <Label Text="Zapamiętaj mnie"
+                       TextColor="White"
+                       VerticalOptions="Center"
+                       Margin="10, 0, 0, 0" />
+            </StackLayout>
 
             <Button Text="ZALOGUJ SIĘ"
                     Command="{Binding LoginCommand}"

@@ -35,6 +35,19 @@ public partial class LoginViewModel : BaseViewModel
             return;
         }
 
+        if (RememberMe)
+        {
+            Preferences.Set("RememberMe", true);
+            Preferences.Set("Email", Email);
+            Preferences.Set("Password", Password);
+        }
+        else
+        {
+            Preferences.Set("RememberMe", false);
+            Preferences.Remove("email");
+            Preferences.Remove("password");
+        }
+
         await Shell.Current.GoToAsync("///MainTab//OrderPanel");
     }
 
