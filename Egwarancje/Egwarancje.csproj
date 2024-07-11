@@ -145,7 +145,7 @@
 	  <MauiXaml Update="Views\Orders\TrackingView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\UserProfileView.xaml">
+	  <MauiXaml Update="Views\ProfileDetails\UserProfileView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Warranties\WarrantyCreationView.xaml">
