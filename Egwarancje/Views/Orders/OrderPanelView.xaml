@@ -10,17 +10,17 @@
              Title="OrderPanelView">
     <Grid>
         <ScrollView>
-            <StackLayout Margin="20">
+            <Grid Margin="20">
                 <Label Text="Podgląd zamówień"
                        TextColor="White"
-                       Margin="0, 30"
+                       Margin="0, 20"
                        FontSize="30"
                        HorizontalOptions="Center"
-                       FontFamily="BakbakOneRegular"
-                       />
+                       FontFamily="BakbakOneRegular" />
                 <CollectionView ItemsSource="{Binding Orders}"
                                 HorizontalOptions="FillAndExpand"
-                                VerticalOptions="StartAndExpand">
+                                VerticalOptions="StartAndExpand"
+                                Margin="0, 90, 0, 0">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical"
                                            SnapPointsType="None"
@@ -31,7 +31,7 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Order"
                                       x:Name="order">
-                            <Frame Padding="10"
+                                <Frame Padding="10"
                                    BackgroundColor="#393E46"
                                    CornerRadius="20"
                                    HasShadow="True"
@@ -97,14 +97,11 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-                <BoxView HeightRequest="80"
-                         Color="#1E1E1E" />
-            </StackLayout>
+            </Grid>
         </ScrollView>
-        <StackLayout VerticalOptions="CenterAndExpand" 
+        <StackLayout VerticalOptions="CenterAndExpand"
                      Padding="20"
-                     Margin="0,600,0,0"
-                     >
+                     Margin="0,600,0,0">
             <Button Text="Dodaj zamówienie"
                     FontFamily="BakbakOneRegular"
                     FontSize="20"
@@ -112,7 +109,7 @@
                     BackgroundColor="#97D8FE"
                     CornerRadius="20"
                     Padding="10"
-                    Command="{Binding AddOrderCommand}"/>
+                    Command="{Binding AddOrderCommand}" />
         </StackLayout>
     </Grid>
 </ContentPage>

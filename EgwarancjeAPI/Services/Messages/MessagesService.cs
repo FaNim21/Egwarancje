@@ -56,5 +56,20 @@ namespace EgwarancjeAPI.Services.Messages
 
             return Email(subject, body, to);
         }
+
+        public bool SendNewPassword(string to, string userName, string newPassword)
+        {
+            string body = $@"
+                <html>
+                <body>
+                    <p>Dear {userName},</p>
+                    <p>Here is your new temporary password: {newPassword}</p>
+                    <p>Regards,<br>Your Company</p>
+                </body>
+                </html>";
+            string subject = "Password has been reset";
+
+            return Email(subject, body, to);
+        }
     }
 }

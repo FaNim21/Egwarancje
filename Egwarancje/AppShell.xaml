@@ -54,7 +54,7 @@
                       Icon="map_pin.png"/>
 
         <ShellContent Title="Profil"
-                      ContentTemplate="{DataTemplate view:UserProfileView}"
+                      ContentTemplate="{DataTemplate viewProfileDetails:UserProfileView}"
                       Route="UserProfile"
                       Icon="profile_icon.png"/>
     </TabBar>

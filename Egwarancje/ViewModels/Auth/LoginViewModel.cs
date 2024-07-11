@@ -28,11 +28,24 @@ public partial class LoginViewModel : BaseViewModel
             return;
         }
 
-        bool success = await service.LoginAsync(Email, Password);
-        if (!success)
+        MessageResponse reponse = await service.LoginAsync(Email, Password);
+        if (!reponse.Success)
         {
-            await Application.Current!.MainPage!.DisplayAlert("Message", "Nieprawidłowe dane logowania", "OK");
+            await Application.Current!.MainPage!.DisplayAlert("Message", reponse.Message, "OK");
             return;
+        }
+
+        if (RememberMe)
+        {
+            Preferences.Set("RememberMe", true);
+            Preferences.Set("Email", Email);
+            Preferences.Set("Password", Password);
+        }
+        else
+        {
+            Preferences.Set("RememberMe", false);
+            Preferences.Remove("email");
+            Preferences.Remove("password");
         }
 
         await Shell.Current.GoToAsync("///MainTab//OrderPanel");
