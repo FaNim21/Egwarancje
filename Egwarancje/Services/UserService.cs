@@ -5,6 +5,11 @@ using System.Text.Json;
 
 namespace Egwarancje.Services;
 
+public struct PostEmail
+{
+    public string Email { get; set; }
+}
+
 public struct MessageResponse
 {
     public bool Success { get; set; }
@@ -55,7 +60,7 @@ public class UserService : IDisposable
         try
         {
             var requestUri = $"{_url}/Account/ResetPassword";
-            var contentPost = SetPostContent(email);
+            var contentPost = SetPostContent(new PostEmail() { Email = email});
             var response = await _httpClient.PostAsync(requestUri, contentPost);
 
             string content = await response.Content.ReadAsStringAsync();

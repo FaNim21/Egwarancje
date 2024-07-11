@@ -26,8 +26,8 @@ public partial class HomeViewModel : BaseViewModel
             string password = Preferences.Get("Password", string.Empty);
             if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
             {
-                bool success = await _service.LoginAsync(email, password);
-                if (success)
+                MessageResponse response = await _service.LoginAsync(email, password);
+                if (response.Success)
                 {
                     Application.Current?.Dispatcher.Dispatch(async delegate
                     {
@@ -37,7 +37,7 @@ public partial class HomeViewModel : BaseViewModel
                 else
                 {
                     Logging = false;
-                    await Application.Current!.MainPage!.DisplayAlert("Message", "Nie udało się zalogować :(", "OK");
+                    await Application.Current!.MainPage!.DisplayAlert("Message", response.Message, "OK");
                 }
 
             }

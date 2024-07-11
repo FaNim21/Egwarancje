@@ -5,6 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EgwarancjeAPI.Controllers;
 
+public struct PostEmail
+{
+    public string Email { get; set; }
+}
+
 [Route("api/[controller]")]
 [ApiController]
 public class AccountController : ControllerBase
@@ -65,20 +70,20 @@ public class AccountController : ControllerBase
 
     [HttpPost]
     [Route("ResetPassword")]
-    public async Task<IActionResult> ResetPassword(string email)
+    public async Task<IActionResult> ResetPassword(PostEmail postEmail)
     {
-        var user = await _database.Users.FirstOrDefaultAsync(u => u.Email.Equals(email));
+        var user = await _database.Users.FirstOrDefaultAsync(u => u.Email.Equals(postEmail.Email));
         if (user is null) return BadRequest(new { Success = false, Message= $"Nie istnieje użytkownik o podanym mailu" });
 
         string tempPassword = Guid.NewGuid().ToString("N");
 
-        bool success = _messagesService.SendNewPassword(email, user.Name, tempPassword);
+        bool success = _messagesService.SendNewPassword(postEmail.Email, user.Name, tempPassword);
         if (!success) return BadRequest(new { Success = false, Message = "Nie udało się wysłać maila" });
 
         user.Password = tempPassword;
         await _database.SaveChangesAsync();
 
-        return Ok(new { Success = true, Message = "Pomyślnie zresetowano hasło" });
+        return Ok(new { Success = true, Message = $"Wysłano na podanego maila '{postEmail.Email}' nowe hasło" });
     }
 }
 
