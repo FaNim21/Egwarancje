@@ -35,8 +35,11 @@ public partial class UserProfileViewModel : BaseViewModel
     [RelayCommand]
     public async Task Logout()
     {
+        Preferences.Set("RememberMe", false);
+        Preferences.Remove("email");
+        Preferences.Remove("password");
         service.Logout();
-        await Shell.Current.GoToAsync("///Login");
+        await Shell.Current.GoToAsync("///Home");
     }
 
     [RelayCommand]
