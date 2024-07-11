@@ -14,20 +14,19 @@ namespace Egwarancje.ViewModels.ProfileDetails;
 public partial class PasswordChangeViewModel : BaseViewModel
 {
     private readonly UserService service;
+    [ObservableProperty] private string oldPassword;
     [ObservableProperty] private string password;
     [ObservableProperty] private string passwordAgain;
 
     public PasswordChangeViewModel(UserService service)
     {
         this.service = service;
-        Password = service.User.Password;
-        PasswordAgain = service.User.Password;
     }
 
     [RelayCommand]
     public async Task ChangePassword()
     {
-        if (password == passwordAgain)
+        if (Password.Equals(PasswordAgain) && OldPassword.Equals(service.User.Password))
         {
             service.User.Password = Password;
             bool success = await service.UpdateUserAsync();
@@ -39,7 +38,7 @@ public partial class PasswordChangeViewModel : BaseViewModel
         }
         else
         {
-            await Application.Current!.MainPage!.DisplayAlert("Message", "Hasła nie są identyczne", "OK");
+            await Application.Current!.MainPage!.DisplayAlert("Message", "Hasła nie są identyczne, lub stare hasło jest błędne", "OK");
         }
     }
 }
