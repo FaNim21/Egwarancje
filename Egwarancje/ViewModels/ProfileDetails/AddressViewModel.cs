@@ -11,27 +11,23 @@ using System.Threading.Tasks;
 
 namespace Egwarancje.ViewModels.ProfileDetails;
 
-public partial class InvoiceDetailsViewModel : BaseViewModel
+public partial class AddressViewModel : BaseViewModel
 {
     private readonly UserService _service;
-    [ObservableProperty] private string? nip;
-    [ObservableProperty] private string? companyName;
     [ObservableProperty] private string? street;
     [ObservableProperty] private string? zipCode;
     [ObservableProperty] private string? country;
 
-    public InvoiceDetailsViewModel(UserService service)
+    public AddressViewModel(UserService service)
     {
-        _service = service; 
+        _service = service;
     }
 
     [RelayCommand]
     public async Task UpdateDetails()
     {
-        if (!Nip.IsNullOrEmpty() && !CompanyName.IsNullOrEmpty() && !Street.IsNullOrEmpty() && !ZipCode.IsNullOrEmpty() && !Country.IsNullOrEmpty())
+        if (!Street.IsNullOrEmpty() && !ZipCode.IsNullOrEmpty() && !Country.IsNullOrEmpty())
         {
-            //_service.User.Nip = Nip;
-            //_service.User.CompanyName = CompanyName;
             //_service.User.Street = Street;
             //_service.User.ZipCode = ZipCode;
             //_service.User.Country = Country;

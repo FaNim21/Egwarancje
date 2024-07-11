@@ -13,23 +13,23 @@ namespace Egwarancje.ViewModels.ProfileDetails;
 
 public partial class PasswordChangeViewModel : BaseViewModel
 {
-    private readonly UserService service;
+    private readonly UserService _service;
     [ObservableProperty] private string oldPassword;
     [ObservableProperty] private string password;
     [ObservableProperty] private string passwordAgain;
 
     public PasswordChangeViewModel(UserService service)
     {
-        this.service = service;
+        _service = service;
     }
 
     [RelayCommand]
     public async Task ChangePassword()
     {
-        if (Password.Equals(PasswordAgain) && OldPassword.Equals(service.User.Password))
+        if (Password.Equals(PasswordAgain) && OldPassword.Equals(_service.User.Password))
         {
-            service.User.Password = Password;
-            bool success = await service.UpdateUserAsync();
+            _service.User.Password = Password;
+            bool success = await _service.UpdateUserAsync();
             if (success)
             {
                 await Application.Current!.MainPage!.DisplayAlert("Message", "Zmiany zostały zaaktualizowane", "OK");

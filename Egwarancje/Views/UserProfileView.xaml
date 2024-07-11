@@ -79,7 +79,7 @@
                                BorderColor="Transparent"
                                Margin="0, -10, 0, -10">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                                <TapGestureRecognizer Command="{Binding OpenAddressDetailsCommand}" />
                             </Frame.GestureRecognizers>
                             <StackLayout Orientation="Vertical">
                                 <Label Text="Adres dostawy"
@@ -101,7 +101,7 @@
                                BorderColor="Transparent"
                                Margin="0, -10, 0, -10">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                                <TapGestureRecognizer Command="{Binding OpenPaymentDetailsCommand}" />
                             </Frame.GestureRecognizers>
                             <StackLayout Orientation="Vertical">
                                 <Label Text="Metody płatności"
@@ -145,7 +145,7 @@
                                BorderColor="Transparent"
                                Margin="0, -10, 0, -15">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                                <TapGestureRecognizer Command="{Binding OpenInvoiceDetailsCommand}" />
                             </Frame.GestureRecognizers>
                             <StackLayout Orientation="Vertical">
                                 <Label Text="Dane do faktury"
@@ -185,7 +185,7 @@
                                BorderColor="Transparent"
                                Margin="0, -10, 0, -10">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                                <TapGestureRecognizer Command="{Binding OpenNotificationsDetailsCommand}" />
                             </Frame.GestureRecognizers>
                             <StackLayout Orientation="Vertical">
                                 <Label Text="Powiadomienia"
@@ -201,25 +201,8 @@
                         <BoxView HeightRequest="1"
                                  Color="#616161"
                                  HorizontalOptions="FillAndExpand"
-                                 VerticalOptions="Center"/>
-
-                        <Frame BackgroundColor="Transparent"
-                               BorderColor="Transparent"
-                               Margin="0, -10, 0, -10">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
-                            </Frame.GestureRecognizers>
-                            <StackLayout Orientation="Vertical">
-                                <Label Text="Dźwięk"
-                                       TextColor="White"
-                                       FontSize="15"
-                                       FontFamily="BakbakOneRegular"
-                                       Margin="0, 0, 0, -5"/>
-                                <Label Text="Dostępne dźwięki i wibracje aplikacji"
-                                       TextColor="White"
-                                       FontSize="12"/>
-                            </StackLayout>
-                        </Frame>
+                                 VerticalOptions="Center" />
+                        
                     </VerticalStackLayout>
                 </Frame>
             </StackLayout>

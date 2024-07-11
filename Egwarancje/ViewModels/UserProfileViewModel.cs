@@ -6,6 +6,7 @@ using EgwarancjeDbLibrary.Models;
 using Mopups.Services;
 using Egwarancje.ViewModels.ProfileDetails;
 using Egwarancje.Views.ProfileDetails;
+using System.ComponentModel;
 
 namespace Egwarancje.ViewModels;
 
@@ -52,5 +53,29 @@ public partial class UserProfileViewModel : BaseViewModel
     public async Task OpenPasswordChange()
     {
         await MopupService.Instance.PushAsync(new PasswordChangeView(new PasswordChangeViewModel(service)));
+    }
+
+    [RelayCommand]
+    public async Task OpenInvoiceDetails()
+    {
+        await MopupService.Instance.PushAsync(new InvoiceDetailsView(new InvoiceDetailsViewModel(service)));
+    }
+
+    [RelayCommand]
+    public async Task OpenAddressDetails()
+    {
+        await MopupService.Instance.PushAsync(new AddressView(new AddressViewModel(service)));
+    }
+
+    [RelayCommand]
+    public async Task OpenPaymentDetails()
+    {
+        await MopupService.Instance.PushAsync(new PaymentView(new PaymentViewModel(service)));
+    }
+
+    [RelayCommand]
+    public async Task OpenNotificationsDetails()
+    {
+        await MopupService.Instance.PushAsync(new NotificationsView(new NotificationsViewModel(service)));
     }
 }
