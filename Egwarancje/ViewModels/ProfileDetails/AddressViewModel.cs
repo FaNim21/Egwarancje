@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Egwarancje.Services;
-using EgwarancjeDbLibrary.Models;
+using Microsoft.IdentityModel.Tokens;
 using Mopups.Services;
 using System;
 using System.Collections.Generic;
@@ -11,24 +11,26 @@ using System.Threading.Tasks;
 
 namespace Egwarancje.ViewModels.ProfileDetails;
 
-public partial class PasswordChangeViewModel : BaseViewModel
+public partial class AddressViewModel : BaseViewModel
 {
     private readonly UserService _service;
-    [ObservableProperty] private string oldPassword;
-    [ObservableProperty] private string password;
-    [ObservableProperty] private string passwordAgain;
+    [ObservableProperty] private string? street;
+    [ObservableProperty] private string? zipCode;
+    [ObservableProperty] private string? country;
 
-    public PasswordChangeViewModel(UserService service)
+    public AddressViewModel(UserService service)
     {
         _service = service;
     }
 
     [RelayCommand]
-    public async Task ChangePassword()
+    public async Task UpdateDetails()
     {
-        if (Password.Equals(PasswordAgain) && OldPassword.Equals(_service.User.Password))
+        if (!Street.IsNullOrEmpty() && !ZipCode.IsNullOrEmpty() && !Country.IsNullOrEmpty())
         {
-            _service.User.Password = Password;
+            //_service.User.Street = Street;
+            //_service.User.ZipCode = ZipCode;
+            //_service.User.Country = Country;
             bool success = await _service.UpdateUserAsync();
             if (success)
             {
@@ -38,7 +40,7 @@ public partial class PasswordChangeViewModel : BaseViewModel
         }
         else
         {
-            await Application.Current!.MainPage!.DisplayAlert("Message", "Hasła nie są identyczne, lub stare hasło jest błędne", "OK");
+            await Application.Current!.MainPage!.DisplayAlert("Message", "Coś poszło nie tak", "OK");
         }
     }
 }
