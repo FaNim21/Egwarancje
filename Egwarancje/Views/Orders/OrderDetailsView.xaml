@@ -9,7 +9,142 @@
              Title="Order Details">
 
     <ScrollView>
-        <StackLayout Padding="20">
+        <Grid Padding="20, 20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0"
+                   Source="Images/return_image.png"
+                   Aspect="AspectFit"
+                   WidthRequest="40"
+                   HeightRequest="40"
+                   HorizontalOptions="Start" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+            
+            <Label Grid.Row="1"
+                   Text="Szczegóły zamówienia"
+                   HorizontalOptions="Center"
+                   TextColor="#FFFFFF"
+                   FontSize="30"
+                   FontFamily="BakbakOneRegular"
+                   Margin="0,20,0,0" />
+            <StackLayout Grid.Row="2"
+                         Padding="0, 10"
+                         Spacing="20">
+                <Frame BackgroundColor="#393E46"
+                       CornerRadius="20"
+                       Padding="0"
+                       BorderColor="#616161"
+                       Margin="0, 0"
+                       VerticalOptions="Center">
+                    <VerticalStackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="5"
+                                     Margin="5, 0, 0, 0"
+                                     Padding="10">
+                            <Label Text="Numer zamówienia: "
+                                   TextColor="White"
+                                   FontSize="20"
+                                   FontFamily="BakbakOneRegular" />
+                            <Label Text="{Binding Order.OrderNumber}"
+                                   FontFamily="BakbakOneRegular"
+                                   FontSize="20"
+                                   TextColor="White" />
+                        </StackLayout>
+                        <BoxView HeightRequest="1"
+                                 Color="#616161"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="Center" />
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="5"
+                                     Margin="5, 0, 0, 0"
+                                     Padding="10">
+                            <Label Text="Data zamówienia: "
+                                   TextColor="White"
+                                   FontSize="20"
+                                   FontFamily="BakbakOneRegular" />
+                            <Label Text="{Binding Order.OrderDate}"
+                                   FontSize="10"
+                                   FontFamily="BakbakOneRegular"
+                                   LineBreakMode="TailTruncation"
+                                   TextColor="White" />
+                        </StackLayout>
+                        <BoxView HeightRequest="1"
+                                 Color="#616161"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="Center" />
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="5"
+                                     Margin="5, 0, 0, 0"
+                                     Padding="10">
+                            <Label Text="Suma brutto: "
+                                   TextColor="White"
+                                   FontSize="20"
+                                   FontFamily="BakbakOneRegular" />
+                            <Label Text="tu będzie cena"
+                                   FontSize="20"
+                                   FontFamily="BakbakOneRegular"
+                                   LineBreakMode="TailTruncation"
+                                   TextColor="White" />
+                        </StackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame BackgroundColor="#393E46"
+                       CornerRadius="20"
+                       Padding="0"
+                       BorderColor="#616161"
+                       Margin="0, 0">
+                    <VerticalStackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="5"
+                                     Margin="5, 0, 0, 0"
+                                     Padding="10">
+                            <Label Text="Uwagi do zamówienia: "
+                                   TextColor="White"
+                                   FontSize="20"
+                                   FontFamily="BakbakOneRegular" />
+                        </StackLayout>
+                        <BoxView HeightRequest="1"
+                                 Color="#616161"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="Center" />
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Order.Comments}"
+                                   FontSize="15"
+                                   LineBreakMode="WordWrap"
+                                   TextColor="White"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="CenterAndExpand"
+                                   MaxLines="5"
+                                   WidthRequest="320"
+                   />
+                        </StackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
+
+<!--<StackLayout Padding="20">
+            <Image Source="Images/return_image.png"
+                   Aspect="AspectFit"
+                   WidthRequest="40"
+                   HeightRequest="40">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
             <Label Text="Szczegóły zamówienia"
                    TextColor="White"
                    FontSize="30"
@@ -86,4 +221,4 @@
 
         </StackLayout>
     </ScrollView>
-</ContentPage>
+</ContentPage>-->
