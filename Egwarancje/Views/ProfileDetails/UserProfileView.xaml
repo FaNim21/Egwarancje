@@ -198,20 +198,17 @@
                                        FontSize="12"/>
                             </StackLayout>
                         </Frame>
-                        <BoxView HeightRequest="1"
-                                 Color="#616161"
-                                 HorizontalOptions="FillAndExpand"
-                                 VerticalOptions="Center" />
-                        
+
                     </VerticalStackLayout>
                 </Frame>
             </StackLayout>
 
             <Button Grid.Row="3"
                     Text="Wyloguj"
+                    FontFamily="BakbakOneRegular"
+                    FontSize="17"
                     BackgroundColor="#97D8FE"
                     TextColor="#282830"
-                    FontAttributes="Bold"
                     CornerRadius="20"
                     HeightRequest="50"
                     Command="{Binding LogoutCommand}"
