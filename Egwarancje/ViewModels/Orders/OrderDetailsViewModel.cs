@@ -1,9 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Egwarancje.Services;
-using Egwarancje.Views;
 using EgwarancjeDbLibrary.Models;
-using Mopups.Services;
 using System.Collections.ObjectModel;
 
 namespace Egwarancje.ViewModels.Orders;
@@ -14,12 +12,19 @@ public partial class OrderDetailsViewModel : BaseViewModel
 
     [ObservableProperty] private Order order;
     [ObservableProperty] private ObservableCollection<OrderSpec> orderSpecs;
+    [ObservableProperty] private ObservableCollection<string> shipmentStatuses = [];
+
 
     public OrderDetailsViewModel(UserService service, Order order)
     {
         this.service = service;
-        this.Order = order;
-        OrderSpecs = new ObservableCollection<OrderSpec>(order.OrderSpecs);
+        Order = order;
+
+        OrderSpecs = new ObservableCollection<OrderSpec>(order.OrderSpecs ?? []);
+
+        //Temp
+        shipmentStatuses.Add("Zamówienie w realizacji");
+        shipmentStatuses.Add("Zamówienie zostało wysłane");
     }
 
     [RelayCommand]

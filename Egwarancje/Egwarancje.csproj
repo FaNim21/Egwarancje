@@ -142,9 +142,6 @@
 	  <MauiXaml Update="Views\Auth\RegisterView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Orders\TrackingView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\ProfileDetails\UserProfileView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

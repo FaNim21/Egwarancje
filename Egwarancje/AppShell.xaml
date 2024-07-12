@@ -47,12 +47,7 @@
                       ContentTemplate="{DataTemplate viewWarranties:WarrantyPanelView}"
                       Route="WarrantyPanel"
                       Icon="transport_truck.png"/>
-        
-        <ShellContent Title="Śledź"
-                      ContentTemplate="{DataTemplate viewOrders:TrackingView}"
-                      Route="Tracking"
-                      Icon="map_pin.png"/>
-
+      
         <ShellContent Title="Profil"
                       ContentTemplate="{DataTemplate viewProfileDetails:UserProfileView}"
                       Route="UserProfile"
