@@ -1,10 +1,8 @@
 ﻿using CommunityToolkit.Maui;
-using Egwarancje.ViewModels;
 using Egwarancje.ViewModels.Auth;
 using Egwarancje.ViewModels.Warranties;
 using Egwarancje.ViewModels.Orders;
 using Egwarancje.ViewModels.ProfileDetails;
-using Egwarancje.Views;
 using Egwarancje.Views.Auth;
 using Egwarancje.Views.Warranties;
 using Egwarancje.Views.Orders;
@@ -61,9 +59,6 @@ public static class MauiProgram
 
         builder.Services.AddTransient<CartView>();
         builder.Services.AddTransient<CartViewModel>();
-
-        builder.Services.AddTransient<TrackingView>();
-        builder.Services.AddTransient<TrackingViewModel>();
 
         return builder.Build();
     }
