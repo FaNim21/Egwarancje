@@ -18,6 +18,7 @@ public partial class InvoiceDetailsViewModel : BaseViewModel
     [ObservableProperty] private string? companyName;
     [ObservableProperty] private string? street;
     [ObservableProperty] private string? zipCode;
+    [ObservableProperty] private string? town;
     [ObservableProperty] private string? country;
 
     public InvoiceDetailsViewModel(UserService service)
