@@ -64,27 +64,32 @@
                        TextColor="White" />
             </Frame>
 
-            <Label Text="Zapomniałeś hasła?"
-                   TextColor="#97D8FE"
-                   VerticalOptions="Center"
-                   HorizontalOptions="End"
-                   Margin="0, 0, 0, 0"
-                   FontFamily="BalooBhaiRegular"
-                   Padding="0,25">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ResetPasswordCommand}" />
-                </Label.GestureRecognizers>
-            </Label>
-
-            <StackLayout Orientation="Horizontal"
-                         Margin="0, -10, 0, 0">
-                <CheckBox IsChecked="{Binding RememberMe}"
-                          Color="White" />
-                <Label Text="Zapamiętaj mnie"
-                       TextColor="White"
+            <Grid ColumnDefinitions="*,*"
+                  VerticalOptions="Center"
+                  Margin="0, 10, 0, 0">
+                <StackLayout Orientation="Horizontal"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Start">
+                    <CheckBox IsChecked="{Binding RememberMe}"
+                              Color="#97D8FE" />
+                    <Label Text="Zapamiętaj mnie"
+                           TextColor="#97D8FE"
+                           FontFamily="BalooBhaiRegular"
+                           VerticalOptions="Center"
+                           Margin="0, 0, 0, 0" />
+                </StackLayout>
+                <Label Grid.Column="1"
+                       Text="Zapomniałeś hasła?"
+                       TextColor="#97D8FE"
                        VerticalOptions="Center"
-                       Margin="10, 0, 0, 0" />
-            </StackLayout>
+                       HorizontalOptions="End"
+                       FontFamily="BalooBhaiRegular"
+                       Padding="0,25">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ResetPasswordCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
 
             <Button Text="ZALOGUJ SIĘ"
                     Command="{Binding LoginCommand}"
