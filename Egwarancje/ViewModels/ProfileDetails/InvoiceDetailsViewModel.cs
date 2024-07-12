@@ -15,6 +15,7 @@ public partial class InvoiceDetailsViewModel : BaseViewModel
 {
     private readonly UserService _service;
     [ObservableProperty] private string? nip;
+    [ObservableProperty] private string? regon;
     [ObservableProperty] private string? companyName;
     [ObservableProperty] private string? street;
     [ObservableProperty] private string? zipCode;
@@ -29,9 +30,10 @@ public partial class InvoiceDetailsViewModel : BaseViewModel
     [RelayCommand]
     public async Task UpdateDetails()
     {
-        if (!Nip.IsNullOrEmpty() && !CompanyName.IsNullOrEmpty() && !Street.IsNullOrEmpty() && !ZipCode.IsNullOrEmpty() && !Country.IsNullOrEmpty())
+        if (!Nip.IsNullOrEmpty() && !Regon.IsNullOrEmpty() && !CompanyName.IsNullOrEmpty() && !Street.IsNullOrEmpty() && !ZipCode.IsNullOrEmpty() && !Country.IsNullOrEmpty())
         {
             //_service.User.Nip = Nip;
+            //_service.User.Regon = Regon;
             //_service.User.CompanyName = CompanyName;
             //_service.User.Street = Street;
             //_service.User.ZipCode = ZipCode;

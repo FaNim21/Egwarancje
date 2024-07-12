@@ -46,6 +46,22 @@
                                TextColor="#FFFFFF" />
                     </Frame>
 
+                    <Label Text="Regon"
+                           TextColor="White"
+                           FontFamily="BakbakOneRegular"
+                           Margin="0, 0, 0, -5" />
+
+                    <Frame Padding="12, 5"
+                           BackgroundColor="Transparent"
+                           BorderColor="#616161"
+                           CornerRadius="24"
+                           Margin="0, -10, 0, 0">
+                        <Entry Placeholder="Regon"
+                               Text="{Binding Regon, Mode=TwoWay}"
+                               Keyboard="Text"
+                               TextColor="#FFFFFF" />
+                    </Frame>
+
                     <Label Text="Nazwa Firmy"
                            TextColor="White"
                            FontFamily="BakbakOneRegular"
