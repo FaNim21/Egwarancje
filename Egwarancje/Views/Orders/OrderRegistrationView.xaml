@@ -8,7 +8,7 @@
              x:DataType="orders:OrderRegistrationViewModel"
              BackgroundColor="#1E1E1E"
              Title="OrderRegistrationView">
-    <VerticalStackLayout Margin="20">
+    <!--<VerticalStackLayout Margin="20">
         <Image Source="Images/return_image.png"
                Aspect="AspectFit"
                WidthRequest="40"
@@ -40,5 +40,56 @@
                 HorizontalOptions="Center"
                 BackgroundColor="#6B5B95"
                 TextColor="Black" />
-    </VerticalStackLayout>
+    </VerticalStackLayout>-->
+    <Grid Padding="20, 20"
+          RowSpacing="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0"
+               Source="Images/return_image.png"
+               Aspect="AspectFit"
+               WidthRequest="40"
+               HeightRequest="40"
+               HorizontalOptions="Start">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding BackCommand}" />
+            </Image.GestureRecognizers>
+        </Image>
+
+        <Label Grid.Row="1"
+               Text="Rejestracja zamówienia"
+               HorizontalOptions="Center"
+               TextColor="#FFFFFF"
+               FontSize="30"
+               FontFamily="BakbakOneRegular" />
+
+        <Frame Grid.Row="2"
+               Padding="12, 5"
+               CornerRadius="24"
+               HeightRequest="50"
+               BackgroundColor="Transparent"
+               BorderColor="#FEFEFF">
+            <Entry Placeholder="Numer zamówienia"
+                   Text="{Binding OrderNumber, Mode=TwoWay}"
+                   Keyboard="Numeric"
+                   BackgroundColor="Transparent"
+                   PlaceholderColor="Gray"
+                   TextColor="White" />
+        </Frame>
+
+        <Button Grid.Row="3" 
+                Text="DODAJ ZAMÓWIENIE"
+                Command="{Binding AddOrderCommand}"
+                BackgroundColor="#97D8FE"
+                FontAttributes="Bold"
+                TextColor="#1C1C1E"
+                CornerRadius="15"
+                HeightRequest="45"
+                FontFamily="BalooBhaiRegular" />
+    </Grid>
 </ContentPage>
