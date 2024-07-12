@@ -1,4 +1,5 @@
 ﻿using EgwarancjeDbLibrary.Models;
+using System.Globalization;
 
 namespace Egwarancje.Utils;
 
@@ -93,12 +94,13 @@ public class OrderGenerator
 
     public Order GenerateOrder(User user)
     {
+        CultureInfo polishCulture = new("pl-PL");
         Order order = new()
         {
             UserId = user.Id,
             Comments = orderComments[random.Next(orderComments.Length)],
             OrderSpecs = [],
-            OrderDate = DateTime.Now,
+            OrderDate = DateTime.Now.ToString("d", polishCulture),
             OrderNumber = seed,
             User = user
         };
@@ -123,8 +125,8 @@ public class OrderGenerator
                 OrderId = order.Id,
                 Name = name,
                 Realization = realisation,
-                ValueNet = (float)(random.NextDouble() * 1000.0D),
-                ValueGross = (float)(random.NextDouble() * 1000.0D),
+                ValueNet = MathF.Round((float)(random.NextDouble() * 1000.0D) * 100f) / 100f,
+                ValueGross = MathF.Round((float)(random.NextDouble() * 1000.0D) * 100f) / 100f,
                 WarrantyLength = random.Next(100),
                 Order = order
             };
