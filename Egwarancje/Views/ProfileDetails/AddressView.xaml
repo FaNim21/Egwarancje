@@ -13,14 +13,35 @@
     <Border WidthRequest="-1"
             HeightRequest="500"
             VerticalOptions="End"
-            BackgroundColor="#292929"
+            BackgroundColor="#1C1C1E"
             StrokeShape="RoundRectangle 30,30,30,30"
             StrokeThickness="0">
-    <VerticalStackLayout>
-        <Label 
-            Text="Placeholder dla zarządzania adresami"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+        <Grid RowDefinitions="40, 360, 60"
+              ColumnDefinitions="*"
+              Padding="0,20,0,20">
+
+            <Label Grid.Row="0"
+                   Text="Dostępne adresy"
+                   TextColor="White"
+                   FontSize="30"
+                   HorizontalOptions="Center"
+                   FontFamily="BakbakOneRegular"/>
+
+
+            <ScrollView Grid.Row="1">
+                
+            </ScrollView>
+            
+            <Button Grid.Row="2"
+                    Text="Dodaj nowy adres"
+                    TextColor="#1C1C1E"
+                    BackgroundColor="#97D8FE"
+                    FontFamily="BakbakOneRegular"
+                    FontSize="15"
+                    Margin="20,10,20,0"
+                    CornerRadius="20"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center"/>
+        </Grid>
     </Border>
 </mopups:PopupPage>
