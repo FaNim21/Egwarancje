@@ -16,15 +16,20 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid>
-        <ScrollView>
+    <Grid RowDefinitions="100, 520, 60"
+          ColumnDefinitions="*"
+          Margin="20">
+
+        <Label Grid.Row="0"
+               Text="Podgląd gwarancji"
+               TextColor="White"
+               Margin="0, 30"
+               FontSize="30"
+               HorizontalOptions="Center"
+               FontFamily="BakbakOneRegular"/>
+
+        <ScrollView Grid.Row="1">
             <StackLayout Margin="20">
-                <Label Text="Podgląd gwarancji"
-                       TextColor="White"
-                       Margin="0, 30"
-                       FontSize="30"
-                       HorizontalOptions="Center"
-                       FontFamily="BakbakOneRegular"/>
                 <CollectionView ItemsSource="{Binding Warranties}"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="StartAndExpand">
@@ -119,5 +124,16 @@
                 </CollectionView>
             </StackLayout>
         </ScrollView>
+
+        <Button Grid.Row="2"
+                Text="Utwórz nową gwarancję"
+                TextColor="#1C1C1E"
+                BackgroundColor="#97D8FE"
+                FontFamily="BakbakOneRegular"
+                FontSize="20"
+                Padding="10"
+                CornerRadius="20"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"/>
     </Grid>
 </ContentPage>
