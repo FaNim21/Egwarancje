@@ -50,6 +50,7 @@ public class UserController : ControllerBase
     {
         User? user = await _database.Users
             .Include(u => u.Orders!).ThenInclude(o => o.OrderSpecs)
+            .Include(a => a.Addresses)
             .FirstOrDefaultAsync(u => u.Email.Equals(email) && u.Password.Equals(password));
 
         if (user is null) return BadRequest("User not found.");

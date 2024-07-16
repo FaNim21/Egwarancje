@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace EgwarancjeDbLibrary.Models;
 
@@ -24,5 +25,5 @@ public class Address
     [ForeignKey(nameof(User))]
     public int UserId { get; set; }
 
-    public User User { get; set; }
+    [JsonIgnore] public User? User { get; set; }
 }

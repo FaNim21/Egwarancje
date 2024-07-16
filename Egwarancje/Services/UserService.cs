@@ -302,6 +302,54 @@ public class UserService : IDisposable
         }
     }
 
+    public async Task<Address?> CreateWarrantyAsync(Address address)
+    {
+        bool access = await CheckForNetworkAccess();
+        if (!access) return null;
+
+        try
+        {
+            var requestUri = $"{_url}/Address/Add";
+            var contentPost = SetPostContent(address);
+            var response = await _httpClient.PostAsync(requestUri, contentPost);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+
+                Address? dbAddress = JsonSerializer.Deserialize<Address>(content, _jsonSerializerOptions);
+                return dbAddress;
+            }
+
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Trace.WriteLine(ex.Message);
+            return null;
+        }
+    }
+    public async Task<bool> UpdateAddressAsync(Address address)
+    {
+        bool access = await CheckForNetworkAccess();
+        if (!access) return false;
+
+        try
+        {
+            var requestUri = $"{_url}/Address/Update";
+            var contentPost = SetPostContent(address);
+            var response = await _httpClient.PutAsync(requestUri, contentPost);
+
+            return response.IsSuccessStatusCode;
+        }
+        catch (Exception ex)
+        {
+            Trace.WriteLine(ex.Message);
+            IsAuthenticated = false;
+            return false;
+        }
+    }
+
     private StringContent SetPostContent(object value)
     {
         string json = JsonSerializer.Serialize(value, _jsonSerializerOptions);
