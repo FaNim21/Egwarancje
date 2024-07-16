@@ -13,10 +13,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <Image Grid.Row="0"
@@ -24,12 +23,12 @@
                    Aspect="AspectFit"
                    WidthRequest="40"
                    HeightRequest="40"
-                   HorizontalOptions="Start" >
+                   HorizontalOptions="Start">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding BackCommand}" />
                 </Image.GestureRecognizers>
             </Image>
-            
+
             <Label Grid.Row="1"
                    Text="Szczegóły zamówienia"
                    HorizontalOptions="Center"
@@ -55,7 +54,7 @@
                                    TextColor="White"
                                    FontSize="20"
                                    FontFamily="BakbakOneRegular" />
-                            <Label Text="{Binding Order.OrderNumber}"
+                            <Label Text="{Binding Order.OrderNumber, Mode=OneWay}"
                                    FontFamily="BakbakOneRegular"
                                    FontSize="20"
                                    TextColor="White" />
@@ -72,8 +71,8 @@
                                    TextColor="White"
                                    FontSize="20"
                                    FontFamily="BakbakOneRegular" />
-                            <Label Text="{Binding Order.OrderDate}"
-                                   FontSize="10"
+                            <Label Text="{Binding Order.OrderDate, Mode=OneWay}"
+                                   FontSize="20"
                                    FontFamily="BakbakOneRegular"
                                    LineBreakMode="TailTruncation"
                                    TextColor="White" />
@@ -90,7 +89,12 @@
                                    TextColor="White"
                                    FontSize="20"
                                    FontFamily="BakbakOneRegular" />
-                            <Label Text="tu będzie cena"
+                            <Label Text="{Binding Order.GrossSum, Mode=OneWay}"
+                                   FontSize="20"
+                                   FontFamily="BakbakOneRegular"
+                                   LineBreakMode="TailTruncation"
+                                   TextColor="White" />
+                            <Label Text="zł"
                                    FontSize="20"
                                    FontFamily="BakbakOneRegular"
                                    LineBreakMode="TailTruncation"
@@ -118,107 +122,119 @@
                                  HorizontalOptions="FillAndExpand"
                                  VerticalOptions="Center" />
                         <StackLayout Padding="10">
-                            <Label Text="{Binding Order.Comments}"
+                            <Label Text="{Binding Order.Comments, Mode=OneWay}"
                                    FontSize="15"
                                    LineBreakMode="WordWrap"
                                    TextColor="White"
                                    HorizontalOptions="FillAndExpand"
                                    VerticalOptions="CenterAndExpand"
                                    MaxLines="5"
-                                   WidthRequest="320"
-                   />
+                                   WidthRequest="320" />
                         </StackLayout>
                     </VerticalStackLayout>
                 </Frame>
-
             </StackLayout>
-        </Grid>
-    </ScrollView>
-</ContentPage>
 
-<!--<StackLayout Padding="20">
-            <Image Source="Images/return_image.png"
-                   Aspect="AspectFit"
-                   WidthRequest="40"
-                   HeightRequest="40">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding BackCommand}" />
-                </Image.GestureRecognizers>
-            </Image>
-            <Label Text="Szczegóły zamówienia"
-                   TextColor="White"
-                   FontSize="30"
-                   HorizontalOptions="Center"
-                   FontFamily="BakbakOneRegular" />
-
-            <Label Text="Numer zamówienia:"
-                   FontSize="20"
-                   FontFamily="BakbakOneRegular"
-                   TextColor="White" />
-            <Label Text="{Binding Order.OrderNumber}"
-                   FontSize="20"
-                   TextColor="White" />
-
-            <Label Text="Data zamówienia:"
-                   FontSize="20"
-                   FontFamily="BakbakOneRegular"
-                   TextColor="White" />
-            <Label Text="{Binding Order.OrderDate}"
-                   FontSize="20"
-                   TextColor="White" />
-
-            <Label Text="Komentarz:"
-                   FontSize="20"
-                   FontFamily="BakbakOneRegular"
-                   TextColor="White" />
-            <Label Text="{Binding Order.Comments}"
-                   FontSize="20"
-                   TextColor="White" />
-            <Label Text="Pozycje zamówienia:"
-                   FontSize="20"
-                   FontFamily="BakbakOneRegular"
-                   TextColor="White"
-                   Margin="0, 20, 0, 10" />
-
-            <CollectionView ItemsSource="{Binding OrderSpecs}"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="StartAndExpand">
+            <CollectionView Grid.Row="3"
+                            Margin="0,10,0,0"
+                            ItemsSource="{Binding OrderSpecs}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"
-                                       ItemSpacing="10" />
+                                       SnapPointsType="None"
+                                       SnapPointsAlignment="Start" />
                 </CollectionView.ItemsLayout>
+
+                <CollectionView.Header>
+                    <Grid Padding="0,10,0,0"
+                         BackgroundColor="#393E46"
+                          ColumnSpacing="10"
+                          RowSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Nazwa"
+                               FontSize="16"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               FontFamily="BakbakOneRegular"
+                               Grid.Column="0" />
+                        <Label Text="Ilość"
+                               FontSize="16"
+                               HorizontalOptions="Center"
+                               TextColor="White"
+                               FontFamily="BakbakOneRegular"
+                               Grid.Column="1" />
+                        <Label Text="Realizacja"
+                               FontSize="16"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               FontFamily="BakbakOneRegular"
+                               Grid.Column="2" />
+                        <Label Text="Cena"
+                               FontSize="16"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               FontFamily="BakbakOneRegular"
+                               Grid.Column="3" />
+                        <BoxView HeightRequest="1"
+                                 Color="#616161"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="Center"
+                                 Grid.ColumnSpan="4"
+                                 Grid.Row="1" />
+                    </Grid>
+                </CollectionView.Header>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:OrderSpec">
-                        <Frame Padding="10"
-                               BackgroundColor="#393E46"
-                               CornerRadius="20"
-                               HasShadow="True"
-                               BorderColor="#616161"
-                               Margin="0, 5">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Name}"
-                                       FontSize="20"
-                                       FontFamily="BakbakOneRegular"
-                                       TextColor="White" />
-                                <Label Text="{Binding ValueGross}"
-                                       FontSize="16"
-                                       TextColor="White" />
-                            </VerticalStackLayout>
-                        </Frame>
+                        <StackLayout>
+                            <Grid BackgroundColor="#393E46"
+                                  ColumnSpacing="10"
+                                  RowSpacing="10"
+                                  Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Name, Mode=OneWay}"
+                                       FontSize="14"
+                                       TextColor="White"
+                                       HorizontalOptions="Center"
+                                       Grid.Column="0" />
+                                <Label Text="nothing"
+                                       FontSize="14"
+                                       HorizontalOptions="Center"
+                                       TextColor="White"
+                                       Grid.Column="1" />
+                                <Label Text="{Binding Realization, Mode=OneWay}"
+                                       FontSize="14"
+                                       HorizontalOptions="Center"
+                                       TextColor="White"
+                                       Grid.Column="2" />
+                                <HorizontalStackLayout Grid.Column="3"
+                                                       HorizontalOptions="Center">
+                                    <Label Text="{Binding ValueGross, Mode=OneWay}"
+                                           FontSize="14"
+                                           TextColor="White" />
+                                    <Label Text=" zł"
+                                           FontSize="14"
+                                           TextColor="White" />
+                                </HorizontalStackLayout>
+                                
+                            </Grid>
+                            <BoxView HeightRequest="1"
+                                     Color="#616161"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="Center" />
+                        </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button Text="POWRÓT"
-                    FontAttributes="Bold"
-                    BackgroundColor="#FFFFFF"
-                    BorderColor="#D3D3D3"
-                    TextColor="#3A3A3A"
-                    CornerRadius="15"
-                    HeightRequest="45"
-                    FontFamily="BalooBhaiRegular"
-                    Command="{Binding BackCommand}" />
-
-        </StackLayout>
+        </Grid>
     </ScrollView>
-</ContentPage>-->
+</ContentPage>

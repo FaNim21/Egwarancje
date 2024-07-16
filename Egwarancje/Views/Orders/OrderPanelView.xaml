@@ -55,7 +55,7 @@
                                                    FontSize="20"
                                                    FontFamily="BakbakOneRegular"
                                                    TextColor="White" />
-                                            <Label Text="{Binding OrderNumber}"
+                                            <Label Text="{Binding OrderNumber, Mode=OneWay}"
                                                    FontFamily="BakbakOneRegular"
                                                    FontSize="20"
                                                    TextColor="White" />
@@ -69,13 +69,13 @@
                                            InputTransparent="True">
                                         <StackLayout Orientation="Horizontal"
                                                      Spacing="5">
-                                            <Label Text="{Binding OrderDate}"
+                                            <Label Text="{Binding OrderDate, Mode=OneWay}"
                                                    FontSize="13"
                                                    TextColor="White" />
                                             <Label Text="|"
                                                    FontSize="13"
                                                    TextColor="White" />
-                                            <Label Text="{Binding OrderNumber}"
+                                            <Label Text="{Binding GrossSum, Mode=OneWay}"
                                                    FontSize="13"
                                                    TextColor="White" />
                                             <Label Text="zł"
@@ -84,7 +84,7 @@
                                             <Label Text="|"
                                                    FontSize="13"
                                                    TextColor="White" />
-                                            <Label Text="{Binding OrderNumber}"
+                                            <Label Text="{Binding OrderSpecs.Count, Mode=OneWay}"
                                                    FontSize="13"
                                                    TextColor="White" />
                                             <Label Text="przedmiotów"

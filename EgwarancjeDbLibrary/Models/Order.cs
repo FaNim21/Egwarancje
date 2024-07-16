@@ -14,12 +14,15 @@ public class Order
 
     public string? Comments { get; set; }
 
-    public DateTime OrderDate { get; set; }
+    public string? OrderDate { get; set; }
 
     [ForeignKey(nameof(User))]
     public int UserId { get; set; }
 
-    public List<OrderSpec>? OrderSpecs { get; set; }
+    public List<OrderSpec> OrderSpecs { get; set; } = [];
     [JsonIgnore] public User? User { get; set; }
+
+    [NotMapped]
+    public float GrossSum { get { return OrderSpecs.Sum(os => os.ValueGross); } private set { } }
 }
 
