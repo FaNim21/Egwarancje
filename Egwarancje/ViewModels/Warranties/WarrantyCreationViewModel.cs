@@ -1,7 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Egwarancje.Services;
-using Egwarancje.Views;
+using Egwarancje.ViewModels.Orders;
+using Egwarancje.Views.Orders;
 using Egwarancje.Views.Warranties;
 using EgwarancjeDbLibrary.Models;
 using Mopups.Services;
@@ -12,33 +13,44 @@ namespace Egwarancje.ViewModels.Warranties;
 public partial class WarrantyCreationViewModel : BaseViewModel
 {
     public readonly UserService service;
-    public readonly Order order;
 
-    public Warranty warranty;
+    [ObservableProperty] private Order selectedOrder;
+    [ObservableProperty] private ObservableCollection<Order> orders = [];
 
     [ObservableProperty] private ObservableCollection<WarrantySpec> warrantySpecs = [];
     [ObservableProperty] private string? comment;
     [ObservableProperty] private DateTime dateOfWarranty;
 
+    public Warranty warranty;
 
-    public WarrantyCreationViewModel(UserService serivce, Order order, List<OrderSpec> orderSpecs)
+
+    public WarrantyCreationViewModel(UserService serivce)
     {
         this.service = serivce;
+
+        Orders = new(serivce.User.Orders ?? []);
+
+        /*
         this.order = order;
+            OrderId = order.Id,
+            Order = order!,
+         */
 
         dateOfWarranty = DateTime.Now;
         warranty = new()
         {
             DateOfWarranty = DateOfWarranty,
             Status = WarrantyStatusType.Awaitng,
-            OrderId = order.Id,
-            Order = order!,
         };
+    }
 
+    public void AddWarranties(List<OrderSpec> orderSpecs)
+    {
+        WarrantySpecs.Clear();
         for (int i = 0; i < orderSpecs.Count; i++)
         {
             var currentOrderSpec = orderSpecs[i];
-
+        
             WarrantySpec warrantySpec = new()
             {
                 OrderSpecId = currentOrderSpec.Id,
@@ -47,6 +59,13 @@ public partial class WarrantyCreationViewModel : BaseViewModel
             };
             WarrantySpecs.Add(warrantySpec);
         }
+    }
+
+    [RelayCommand]
+    public async Task ShowOrderSpecsPanel()
+    {
+        if (SelectedOrder == null) return;
+        await MopupService.Instance.PushAsync(new OrderSpecsView(new OrderSpecsViewModel(service, this, SelectedOrder)));
     }
 
     [RelayCommand]
@@ -69,8 +88,8 @@ public partial class WarrantyCreationViewModel : BaseViewModel
             return;
         }
 
-        dbWarranty.Order = order;
-        dbWarranty.OrderId = order.Id;
+        dbWarranty.Order = selectedOrder;
+        dbWarranty.OrderId = selectedOrder.Id;
 
         dbWarranty.WarrantySpecs ??= [];
         for (int i = 0; i < WarrantySpecs.Count; i++)

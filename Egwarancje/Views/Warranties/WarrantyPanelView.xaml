@@ -134,6 +134,7 @@
                 Padding="10"
                 CornerRadius="20"
                 HorizontalOptions="FillAndExpand"
-                VerticalOptions="Center"/>
+                VerticalOptions="Center"
+                Command="{Binding CreateWarrantyCommand}" />
     </Grid>
 </ContentPage>
