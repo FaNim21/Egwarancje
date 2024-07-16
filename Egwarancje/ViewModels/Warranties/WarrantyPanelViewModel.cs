@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Egwarancje.Services;
-using Egwarancje.Views;
 using Egwarancje.Views.Warranties;
 using EgwarancjeDbLibrary.Models;
 using Mopups.Services;
@@ -29,6 +28,12 @@ public partial class WarrantyPanelViewModel : BaseViewModel
     public async Task ShowDetails(Warranty warranty)
     {
         await MopupService.Instance.PushAsync(new WarrantyDetailsView(new WarrantyDetailsViewModel(warranty)));
+    }
+
+    [RelayCommand]
+    public async Task CreateWarranty()
+    {
+        await Shell.Current.Navigation.PushAsync(new WarrantyCreationView(new WarrantyCreationViewModel(service)));
     }
 }
 
