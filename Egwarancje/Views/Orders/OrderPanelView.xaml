@@ -75,10 +75,7 @@
                                             <Label Text="|"
                                                    FontSize="13"
                                                    TextColor="White" />
-                                            <Label Text="{Binding GrossSum, Mode=OneWay}"
-                                                   FontSize="13"
-                                                   TextColor="White" />
-                                            <Label Text="zł"
+                                            <Label Text="{Binding GrossSum, StringFormat='{}{0:F2} zł', Mode=OneWay}"
                                                    FontSize="13"
                                                    TextColor="White" />
                                             <Label Text="|"
