@@ -39,6 +39,12 @@ public class LocalDatabaseContext : DbContext
             .HasForeignKey(o => o.UserId)
             .IsRequired();
 
+        modelBuilder.Entity<User>()
+            .HasMany(u => u.Addresses)
+            .WithOne(a => a.User)
+            .HasForeignKey(a => a.UserId)
+            .IsRequired();
+
         //Order
         modelBuilder.Entity<Order>()
             .HasMany(o => o.OrderSpecs)

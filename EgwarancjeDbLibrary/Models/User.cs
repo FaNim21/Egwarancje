@@ -23,6 +23,8 @@ public class User
 
     public List<Warranty>? Warranties { get; set; }
 
+    public List<Address>? Addresses { get; set; }
+
     public string? ConfirmationToken { get; set; }
 }
 
