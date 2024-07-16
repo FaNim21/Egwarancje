@@ -19,6 +19,8 @@ public partial class AddressDetailsViewModel : BaseViewModel
 {
     private readonly UserService _service;
 
+    private Address? _address;
+
     [ObservableProperty] private string? country;
     [ObservableProperty] private string? province;
     [ObservableProperty] private string? zipCode;
@@ -31,14 +33,54 @@ public partial class AddressDetailsViewModel : BaseViewModel
         _service = service;
     }
 
+    public AddressDetailsViewModel(UserService service, Address address) : this(service)
+    {
+        _service = service;
+        _address = address;
+
+        if (address != null)
+        {
+            Country = address.Country;
+            Province = address.Province;
+            ZipCode = address.ZipCode;
+            City = address.City;
+            Street = address.Street;
+            Number = address.Number;
+        }
+    }
+
     [RelayCommand]
     public async Task UpdateDetails()
     {
         if (!Country.IsNullOrEmpty() && !Province.IsNullOrEmpty() && !ZipCode.IsNullOrEmpty() && !City.IsNullOrEmpty() && !Street.IsNullOrEmpty() && !Number.IsNullOrEmpty())
         {
-            //_service.User.Addresses.Address = Country;
-            //_service.User.Province = Province;
-            //_service.User.ZipCode = ZipCode;
+            if (_address != null)
+            {
+                _address.Country = Country;
+                _address.City = City;
+                _address.ZipCode = ZipCode;
+                _address.Street = Street;
+                _address.Number = Number;
+            }
+            else
+            {
+                var newAddress = new Address
+                {
+                    Country = Country,
+                    Province = Province,
+                    ZipCode = ZipCode,
+                    City = City,
+                    Street = Street,
+                    Number = Number
+                };
+                if (_service.User.Addresses == null)
+                {
+                    _service.User.Addresses = new List<Address>();
+                }
+
+                _service.User.Addresses.Add(newAddress);
+            }
+
             bool success = await _service.UpdateUserAsync();
             if (success)
             {

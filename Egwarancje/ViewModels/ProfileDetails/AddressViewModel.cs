@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Egwarancje.Services;
+using Egwarancje.Views.ProfileDetails;
 using EgwarancjeDbLibrary.Models;
 using Microsoft.IdentityModel.Tokens;
 using Mopups.Services;
@@ -25,9 +26,30 @@ public partial class AddressViewModel : BaseViewModel
         LoadAddresses();
     }
 
-    private async void LoadAddresses()
+    private void LoadAddresses()
     {
-        //var userAddresses = await _service.GetUserAddressesAsync();
+        var userAddresses = _service.User.Addresses;
+        if (userAddresses != null)
+        {
+            foreach (var address in userAddresses)
+            {
+                Addresses.Add(address);
+            }
+        }
+    }
+
+    [RelayCommand]
+    private async Task AddNewAddress()
+    {
+        await MopupService.Instance.PushAsync(new AddressDetailsView(new AddressDetailsViewModel(_service)));
+        LoadAddresses();
+    }
+
+    [RelayCommand]
+    private async Task EditAddress(Address address)
+    {
+        await MopupService.Instance.PushAsync(new AddressDetailsView(new AddressDetailsViewModel(_service, address)));
+        LoadAddresses();
     }
 
 }
