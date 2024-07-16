@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+                  x:Class="Egwarancje.Views.ProfileDetails.AddressDetailsView"
+                  xmlns:vm="clr-namespace:Egwarancje.ViewModels"
+                  xmlns:models="clr-namespace:EgwarancjeDbLibrary.Models;assembly=EgwarancjeDbLibrary"
+                  xmlns:profile="clr-namespace:Egwarancje.ViewModels.ProfileDetails"
+                  x:DataType="profile:AddressDetailsViewModel"
+                  Title="AddressDetailsView"
+                  BackgroundColor="#80000000"
+                  CloseWhenBackgroundIsClicked="True">
+    <Border WidthRequest="-1"
+            HeightRequest="500"
+            VerticalOptions="End"
+            BackgroundColor="#1C1C1E"
+            StrokeShape="RoundRectangle 30,30,30,30"
+            StrokeThickness="0">
+        <Grid RowDefinitions="40, 360, 60"
+              ColumnDefinitions="*"
+              Padding="0,20,0,20">
+
+            <Label Grid.Row="0"
+                   Text="Dostępne adresy"
+                   TextColor="White"
+                   FontSize="30"
+                   HorizontalOptions="Center"
+                   FontFamily="BakbakOneRegular" />
+
+
+            <ScrollView Grid.Row="1">
+
+            </ScrollView>
+
+            <Button Grid.Row="2"
+                    Text="Dodaj nowy adres"
+                    TextColor="#1C1C1E"
+                    BackgroundColor="#97D8FE"
+                    FontFamily="BakbakOneRegular"
+                    FontSize="15"
+                    Margin="20,10,20,0"
+                    CornerRadius="20"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center" />
+        </Grid>
+    </Border>
+</mopups:PopupPage>

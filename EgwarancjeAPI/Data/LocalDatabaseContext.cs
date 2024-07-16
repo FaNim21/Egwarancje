@@ -17,6 +17,8 @@ public class LocalDatabaseContext : DbContext
 
     public DbSet<Attachment> Attachments { get; set; }
 
+    public DbSet<Address> Addresses { get; set; }
+
 
     public LocalDatabaseContext() { }
     public LocalDatabaseContext(DbContextOptions<LocalDatabaseContext> options) : base(options)
