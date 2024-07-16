@@ -34,7 +34,7 @@ public partial class OrderSpecsViewModel : BaseViewModel
     {
         if (_warrantySpecs == null || _warrantySpecs.Count == 0) return;
 
-        //warrantyCreationViewModel.WarrantySpecs = new(_warrantySpecs ?? []);
+        warrantyCreationViewModel.AddWarranties(_warrantySpecs); 
         await MopupService.Instance.PopAsync();
         //await Shell.Current.Navigation.PushAsync(new WarrantyCreationView(new WarrantyCreationViewModel(service, order, _warrantySpecs)));
     }
