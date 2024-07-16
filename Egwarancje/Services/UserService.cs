@@ -302,7 +302,7 @@ public class UserService : IDisposable
         }
     }
 
-    public async Task<Address?> CreateWarrantyAsync(Address address)
+    public async Task<Address?> CreateAddress(Address address)
     {
         bool access = await CheckForNetworkAccess();
         if (!access) return null;
