@@ -26,8 +26,9 @@ public partial class AddressViewModel : BaseViewModel
         LoadAddresses();
     }
 
-    private void LoadAddresses()
+    public void LoadAddresses()
     {
+        Addresses.Clear();
         var userAddresses = _service.User.Addresses;
         if (userAddresses != null)
         {
@@ -41,15 +42,13 @@ public partial class AddressViewModel : BaseViewModel
     [RelayCommand]
     private async Task AddNewAddress()
     {
-        await MopupService.Instance.PushAsync(new AddressDetailsView(new AddressDetailsViewModel(_service)));
-        LoadAddresses();
+        await MopupService.Instance.PushAsync(new AddressDetailsView(new AddressDetailsViewModel(_service, this)));
     }
 
     [RelayCommand]
     private async Task EditAddress(Address address)
     {
-        await MopupService.Instance.PushAsync(new AddressDetailsView(new AddressDetailsViewModel(_service, address)));
-        LoadAddresses();
+        await MopupService.Instance.PushAsync(new AddressDetailsView(new AddressDetailsViewModel(_service, address, this)));
     }
 
 }

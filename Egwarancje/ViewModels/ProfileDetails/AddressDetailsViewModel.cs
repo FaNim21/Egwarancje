@@ -18,6 +18,7 @@ namespace Egwarancje.ViewModels.ProfileDetails;
 public partial class AddressDetailsViewModel : BaseViewModel
 {
     private readonly UserService _service;
+    private readonly AddressViewModel _addressViewModel;
 
     private Address? _address;
 
@@ -28,14 +29,14 @@ public partial class AddressDetailsViewModel : BaseViewModel
     [ObservableProperty] private string? street;
     [ObservableProperty] private string? number;
 
-    public AddressDetailsViewModel(UserService service)
+    public AddressDetailsViewModel(UserService service, AddressViewModel addressViewModel)
     {
         _service = service;
+        _addressViewModel = addressViewModel;
     }
 
-    public AddressDetailsViewModel(UserService service, Address address) : this(service)
+    public AddressDetailsViewModel(UserService service, Address address, AddressViewModel addressViewModel) : this(service, addressViewModel)
     {
-        _service = service;
         _address = address;
 
         if (address != null)
@@ -73,19 +74,13 @@ public partial class AddressDetailsViewModel : BaseViewModel
                     Street = Street,
                     Number = Number
                 };
-                if (_service.User.Addresses == null)
-                {
-                    _service.User.Addresses = new List<Address>();
-                }
 
-                _service.User.Addresses.Add(newAddress);
+                var address = await _service.CreateAddress(newAddress);
+                _service.User.Addresses ??= [];
+                _service.User.Addresses.Add(address);
             }
 
-            bool success = await _service.UpdateUserAsync();
-            if (success)
-            {
-                await Application.Current!.MainPage!.DisplayAlert("Message", "Zmiany zostały zaaktualizowane", "OK");
-            }
+            _addressViewModel.LoadAddresses();
             await MopupService.Instance.PopAsync();
         }
         else

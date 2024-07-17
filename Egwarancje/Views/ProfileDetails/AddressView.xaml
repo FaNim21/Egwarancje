@@ -39,11 +39,11 @@
                                    CornerRadius="10"
                                    HasShadow="True">
                                 <Grid>
-                                    <Label Text="{Binding Country}"
+                                    <Label Text="Test"
                                            TextColor="White"
                                            FontFamily="BakbakOneRegular"
                                            FontSize="18" />
-                                    <Label Text="{Binding Street}"
+                                    <Label Text="Dziala"
                                            TextColor="White"
                                            FontFamily="BakbakOneRegular"
                                            FontSize="15"
