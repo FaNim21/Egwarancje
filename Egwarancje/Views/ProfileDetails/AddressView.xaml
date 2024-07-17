@@ -25,13 +25,40 @@
                    TextColor="White"
                    FontSize="30"
                    HorizontalOptions="Center"
-                   FontFamily="BakbakOneRegular"/>
-
+                   FontFamily="BakbakOneRegular" />
 
             <ScrollView Grid.Row="1">
-                
+                <CollectionView ItemsSource="{Binding Addresses}"
+                                SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="10"
+                                   Margin="5"
+                                   BackgroundColor="#292929"
+                                   BorderColor="#616161"
+                                   CornerRadius="10"
+                                   HasShadow="True">
+                                <Grid>
+                                    <Label Text="Test"
+                                           TextColor="White"
+                                           FontFamily="BakbakOneRegular"
+                                           FontSize="18" />
+                                    <Label Text="Dziala"
+                                           TextColor="White"
+                                           FontFamily="BakbakOneRegular"
+                                           FontSize="15"
+                                           Grid.Row="1" />
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type profile:AddressViewModel}}, Path=EditAddressCommand}"
+                                                          CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </ScrollView>
-            
+
             <Button Grid.Row="2"
                     Text="Dodaj nowy adres"
                     TextColor="#1C1C1E"
@@ -41,7 +68,8 @@
                     Margin="20,10,20,0"
                     CornerRadius="20"
                     HorizontalOptions="FillAndExpand"
-                    VerticalOptions="Center"/>
+                    VerticalOptions="Center"
+                    Command="{Binding AddNewAddressCommand}" />
         </Grid>
     </Border>
 </mopups:PopupPage>

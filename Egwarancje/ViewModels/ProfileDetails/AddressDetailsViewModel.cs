@@ -18,6 +18,9 @@ namespace Egwarancje.ViewModels.ProfileDetails;
 public partial class AddressDetailsViewModel : BaseViewModel
 {
     private readonly UserService _service;
+    private readonly AddressViewModel _addressViewModel;
+
+    private Address? _address;
 
     [ObservableProperty] private string? country;
     [ObservableProperty] private string? province;
@@ -26,9 +29,25 @@ public partial class AddressDetailsViewModel : BaseViewModel
     [ObservableProperty] private string? street;
     [ObservableProperty] private string? number;
 
-    public AddressDetailsViewModel(UserService service)
+    public AddressDetailsViewModel(UserService service, AddressViewModel addressViewModel)
     {
         _service = service;
+        _addressViewModel = addressViewModel;
+    }
+
+    public AddressDetailsViewModel(UserService service, Address address, AddressViewModel addressViewModel) : this(service, addressViewModel)
+    {
+        _address = address;
+
+        if (address != null)
+        {
+            Country = address.Country;
+            Province = address.Province;
+            ZipCode = address.ZipCode;
+            City = address.City;
+            Street = address.Street;
+            Number = address.Number;
+        }
     }
 
     [RelayCommand]
@@ -36,14 +55,33 @@ public partial class AddressDetailsViewModel : BaseViewModel
     {
         if (!Country.IsNullOrEmpty() && !Province.IsNullOrEmpty() && !ZipCode.IsNullOrEmpty() && !City.IsNullOrEmpty() && !Street.IsNullOrEmpty() && !Number.IsNullOrEmpty())
         {
-            //_service.User.Addresses.Address = Country;
-            //_service.User.Province = Province;
-            //_service.User.ZipCode = ZipCode;
-            bool success = await _service.UpdateUserAsync();
-            if (success)
+            if (_address != null)
             {
-                await Application.Current!.MainPage!.DisplayAlert("Message", "Zmiany zostały zaaktualizowane", "OK");
+                _address.Country = Country;
+                _address.City = City;
+                _address.ZipCode = ZipCode;
+                _address.Street = Street;
+                _address.Number = Number;
             }
+            else
+            {
+                var newAddress = new Address
+                {
+                    Country = Country,
+                    Province = Province,
+                    ZipCode = ZipCode,
+                    City = City,
+                    Street = Street,
+                    Number = Number,
+                    UserId = _service.User.Id,
+                };
+
+                var address = await _service.CreateAddress(newAddress);
+                _service.User.Addresses ??= [];
+                _service.User.Addresses.Add(address);
+            }
+
+            _addressViewModel.LoadAddresses();
             await MopupService.Instance.PopAsync();
         }
         else

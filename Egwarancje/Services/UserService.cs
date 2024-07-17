@@ -349,6 +349,26 @@ public class UserService : IDisposable
             return false;
         }
     }
+    public async Task<bool> DeleteAddressAsync(Address address)
+    {
+        bool access = await CheckForNetworkAccess();
+        if (!access) return false;
+
+        try
+        {
+            var requestUri = $"{_url}/Address/Delete";
+            var contentPost = SetPostContent(address);
+            var response = await _httpClient.PostAsync(requestUri, contentPost);
+
+            return response.IsSuccessStatusCode;
+        }
+        catch (Exception ex)
+        {
+            Trace.WriteLine(ex.Message);
+            return false;
+        }
+    }
+        
 
     private StringContent SetPostContent(object value)
     {
