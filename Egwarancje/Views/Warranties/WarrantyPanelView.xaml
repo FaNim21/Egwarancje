@@ -126,7 +126,7 @@
         </ScrollView>
 
         <Button Grid.Row="2"
-                Text="Utwórz nową gwarancję"
+                Text="ZGŁOŚ GWARANCJĘ"
                 TextColor="#1C1C1E"
                 BackgroundColor="#97D8FE"
                 FontFamily="BakbakOneRegular"
