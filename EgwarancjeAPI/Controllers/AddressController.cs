@@ -30,12 +30,12 @@ namespace EgwarancjeAPI.Controllers
 
         [HttpPost]
         [Route("Add")]
-        public async Task <IActionResult> AddNewAddress(Address address)
+        public async Task <ActionResult<Address>> AddNewAddress(Address address)
         {
             _database.Addresses.Add(address);
             await _database.SaveChangesAsync();
 
-            return Ok();
+            return Ok(address);
         }
 
         [HttpPut]
@@ -55,6 +55,19 @@ namespace EgwarancjeAPI.Controllers
             await _database.SaveChangesAsync();
 
             return Ok();
+        }
+
+        [HttpDelete]
+        [Route("Delete")]
+        public async Task<ActionResult<List<Address>>> DeleteAddress(Address address)
+        {
+            var dbAddress = await _database.Addresses.FindAsync(address.Id);
+            if (dbAddress is null) return BadRequest("Address not found.");
+
+            _database.Addresses.Remove(dbAddress);
+            await _database.SaveChangesAsync();
+
+            return Ok(await _database.Addresses.ToListAsync());
         }
     }
 }

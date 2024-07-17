@@ -72,7 +72,8 @@ public partial class AddressDetailsViewModel : BaseViewModel
                     ZipCode = ZipCode,
                     City = City,
                     Street = Street,
-                    Number = Number
+                    Number = Number,
+                    UserId = _service.User.Id,
                 };
 
                 var address = await _service.CreateAddress(newAddress);
