@@ -12,12 +12,12 @@
     <Border WidthRequest="-1"
             HeightRequest="500"
             VerticalOptions="End"
-            BackgroundColor="#292929"
+            BackgroundColor="#1C1C1E"
             StrokeShape="RoundRectangle 30,30,30,30"
             StrokeThickness="0">
         <Grid RowDefinitions="*, Auto, Auto"
               ColumnDefinitions="*"
-              Padding="0,20,0,20">
+              Padding="10,20,10,20">
             <CollectionView Grid.Row="0"
                             ItemsSource="{Binding OrderSpecs}">
                 <CollectionView.Header>
@@ -30,13 +30,13 @@
                         <Label Grid.Column="1"
                                Text="Nazwa"
                                TextColor="White"
-                               FontSize="15"
-                               FontAttributes="Bold" />
+                               FontSize="20"
+                               FontFamily="BakbakOneRegular" />
                         <Label Grid.Column="2"
                                Text="Realizacja"
                                TextColor="White"
-                               FontSize="15"
-                               FontAttributes="Bold" />
+                               FontSize="20"
+                               FontFamily="BakbakOneRegular" />
                     </Grid>
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
@@ -57,7 +57,8 @@
                                    TextColor="White" 
                                    VerticalTextAlignment="Center"
                                    HorizontalOptions="Start"
-                                   VerticalOptions="Center" />
+                                   VerticalOptions="Center" 
+                                   Margin="0, 0, 10, 0"/>
                             <Label Grid.Column="2"
                                    Text="{Binding Realization}"
                                    TextColor="White"
@@ -71,14 +72,16 @@
             </CollectionView>
 
             <Button Grid.Row="1"
-                    Text="Stwórz gwarancje"
+                    Text="DODAJ PRZEDMIOTY"
                     Command="{Binding CreateWarrantyCommand}"
-                    BackgroundColor="#6B5B95"
+                    BackgroundColor="#97D8FE"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Center"
-                    TextColor="White"
+                    TextColor="#1C1C1E"
+                    FontSize="17"
+                    FontFamily="BakbakOneRegular"
                     Margin="20,10,20,0"
-                    CornerRadius="10" />
+                    CornerRadius="20" />
         </Grid>
     </Border>
 </mopups:PopupPage>

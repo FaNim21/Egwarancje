@@ -69,7 +69,8 @@
                     <TapGestureRecognizer Command="{Binding ShowOrderSpecsPanelCommand}"/>
                 </Frame.GestureRecognizers>
                 <Label Text="Dodaj produkt"
-                       TextColor="#616161"/>
+                       TextColor="#616161"
+                       InputTransparent="True"/>
 
             </Frame>
         </StackLayout>
