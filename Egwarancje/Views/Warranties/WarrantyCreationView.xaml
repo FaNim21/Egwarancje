@@ -33,34 +33,28 @@
                    Padding="20"/>
         </StackLayout>
 
-        <CollectionView ItemsSource="{Binding Orders}"
-                        Grid.Row="1"
-                        BackgroundColor="Transparent">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Order">
-                    <VerticalStackLayout>
-                        <Label Text="Numer zamówienia"
-                               TextColor="#FFFFFF"
-                               FontSize="14"
-                               FontFamily="BakbakOneRegular"
-                               Margin="0, 10, 0, 0"/>
-                        <Frame BackgroundColor="Transparent"
-                               BorderColor="#616161"
-                               CornerRadius="30"
-                               Padding="3"
-                               >
-                            <Picker ItemsSource="{Binding OrderNumber}"
-                                    Title="Kliknij by wybrać"
-                                    TitleColor="#616161"
-                                    TextColor="White"
-                                    BackgroundColor="Transparent"
-                                    HorizontalOptions="FillAndExpand"
-                                    Margin="15, 0"/>
-                        </Frame>
-                    </VerticalStackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <StackLayout Grid.Row="1">
+            <Label Text="Numer zamówienia"
+                   TextColor="#FFFFFF"
+                   FontSize="14"
+                   FontFamily="BakbakOneRegular"
+                   Margin="0, 10, 0, 0"/>
+            <Frame BackgroundColor="Transparent"
+                   BorderColor="#616161"
+                   CornerRadius="30"
+                   Padding="3"
+                   >
+                <Picker ItemsSource="{Binding Orders}"
+                        ItemDisplayBinding="{Binding OrderNumber}"
+                        SelectedItem="{Binding SelectedOrder}"
+                        Title="Kliknij by wybrać"
+                        TitleColor="#616161"
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="FillAndExpand"
+                        Margin="15, 0"/>
+            </Frame>
+        </StackLayout>
 
         <Button Grid.Row="2"
                 Margin="0, 10"
