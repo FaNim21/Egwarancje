@@ -28,7 +28,7 @@
                FontFamily="BakbakOneRegular"/>
 
         <ScrollView Grid.Row="1">
-            <StackLayout Margin="20, 0, 0, 0">
+            <StackLayout Margin="20, 0, 20, 0">
                 <CollectionView ItemsSource="{Binding Warranties}"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="StartAndExpand">
