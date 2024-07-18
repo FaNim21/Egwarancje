@@ -20,8 +20,14 @@ public partial class WarrantyPanelViewModel : BaseViewModel
     {
         this.service = service;
 
+        LoadWarranties();
+    }
+
+    public void LoadWarranties()
+    {
         if (service.User.Warranties == null) return;
-        warranties = new(service.User.Warranties);
+        warranties.Clear();
+        Warranties = new(service.User.Warranties);
     }
 
     [RelayCommand]
@@ -33,7 +39,7 @@ public partial class WarrantyPanelViewModel : BaseViewModel
     [RelayCommand]
     public async Task CreateWarranty()
     {
-        await Shell.Current.Navigation.PushAsync(new WarrantyCreationView(new WarrantyCreationViewModel(service)));
+        await Shell.Current.Navigation.PushAsync(new WarrantyCreationView(new WarrantyCreationViewModel(service, this)));
     }
 }
 

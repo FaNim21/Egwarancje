@@ -12,9 +12,10 @@ namespace Egwarancje.ViewModels.Warranties;
 
 public partial class WarrantyCreationViewModel : BaseViewModel
 {
+    private readonly WarrantyPanelViewModel _warrantyPanel;
     public readonly UserService service;
 
-    [ObservableProperty] private Order selectedOrder;
+    [ObservableProperty] private Order? selectedOrder;
     [ObservableProperty] private ObservableCollection<Order> orders = [];
 
     [ObservableProperty] private ObservableCollection<WarrantySpec> warrantySpecs = [];
@@ -24,17 +25,12 @@ public partial class WarrantyCreationViewModel : BaseViewModel
     public Warranty warranty;
 
 
-    public WarrantyCreationViewModel(UserService serivce)
+    public WarrantyCreationViewModel(UserService serivce, WarrantyPanelViewModel warrantyPanel)
     {
-        this.service = serivce;
+        service = serivce;
+        _warrantyPanel = warrantyPanel;
 
         Orders = new(serivce.User.Orders ?? []);
-
-        /*
-        this.order = order;
-            OrderId = order.Id,
-            Order = order!,
-         */
 
         dateOfWarranty = DateTime.Now;
         warranty = new()
@@ -77,10 +73,18 @@ public partial class WarrantyCreationViewModel : BaseViewModel
     [RelayCommand]
     public async Task Confirm()
     {
+        if(SelectedOrder == null)
+        {
+            await Application.Current!.MainPage!.DisplayAlert("Błąd", "nie wybrano zamówienia", "Ok");
+            return;
+        }
+
         bool result = await Application.Current!.MainPage!.DisplayAlert("Potwierdzenie", "Czy na pewno zgłosić tą gwarancję?", "Tak", "Nie");
         if (!result) return;
 
         warranty.Comments = Comment;
+        warranty.Order = SelectedOrder;
+        warranty.OrderId = SelectedOrder.Id;
         Warranty? dbWarranty = await service.CreateWarrantyAsync(warranty);
         if (dbWarranty is null)
         {
@@ -88,9 +92,7 @@ public partial class WarrantyCreationViewModel : BaseViewModel
             return;
         }
 
-        dbWarranty.Order = selectedOrder;
-        dbWarranty.OrderId = selectedOrder.Id;
-
+        dbWarranty.Order = SelectedOrder;
         dbWarranty.WarrantySpecs ??= [];
         for (int i = 0; i < WarrantySpecs.Count; i++)
         {
@@ -147,6 +149,7 @@ public partial class WarrantyCreationViewModel : BaseViewModel
         service.User.Warranties.Add(dbWarranty);
 
         await Application.Current!.MainPage!.DisplayAlert("Dodano", "Pomyślnie zgłoszono gwarancję", "OK");
+        _warrantyPanel.LoadWarranties();
         await Shell.Current.Navigation.PopAsync();
     }
 
