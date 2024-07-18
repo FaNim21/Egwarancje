@@ -62,6 +62,16 @@ public partial class AddressDetailsViewModel : BaseViewModel
                 _address.ZipCode = ZipCode;
                 _address.Street = Street;
                 _address.Number = Number;
+
+                var success = await _service.UpdateAddressAsync(_address);
+                if (success) 
+                {
+                    await Application.Current!.MainPage!.DisplayAlert("Message", "Edytowano adres pomyślnie", "OK");
+                }
+                else
+                {
+                    await Application.Current!.MainPage!.DisplayAlert("Message", "Coś poszło nie tak", "OK");
+                }
             }
             else
             {
@@ -79,6 +89,7 @@ public partial class AddressDetailsViewModel : BaseViewModel
                 var address = await _service.CreateAddress(newAddress);
                 _service.User.Addresses ??= [];
                 _service.User.Addresses.Add(address);
+                await Application.Current!.MainPage!.DisplayAlert("Message", "Dodano adres pomyślnie", "OK");
             }
 
             _addressViewModel.LoadAddresses();

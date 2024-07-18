@@ -54,9 +54,14 @@ public partial class AddressViewModel : BaseViewModel
     [RelayCommand]
     private async Task DeleteAddress(Address address)
     {
-        await _service.DeleteAddressAsync(address);
-        _service.User.Addresses?.Remove(address);
-        LoadAddresses();
+        bool answer = await Application.Current!.MainPage!.DisplayAlert("Message", "Czy na pewno chcesz usunąć ten adres?", "Tak", "Nie");
+        if (answer)
+        {
+            await _service.DeleteAddressAsync(address);
+            _service.User.Addresses?.Remove(address);
+            LoadAddresses();
+        }
+        else return;
     }
 
 }
