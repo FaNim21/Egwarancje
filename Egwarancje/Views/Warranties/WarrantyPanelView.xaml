@@ -16,20 +16,19 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="100, 520, 60"
-          ColumnDefinitions="*"
-          Margin="20">
+    <Grid RowDefinitions="120, 520, 60"
+          ColumnDefinitions="*">
 
         <Label Grid.Row="0"
                Text="Podgląd gwarancji"
                TextColor="White"
-               Margin="0, 30"
+               Margin="0, 40"
                FontSize="30"
                HorizontalOptions="Center"
                FontFamily="BakbakOneRegular"/>
 
         <ScrollView Grid.Row="1">
-            <StackLayout Margin="20">
+            <StackLayout Margin="20, 0, 0, 0">
                 <CollectionView ItemsSource="{Binding Warranties}"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="StartAndExpand">
@@ -48,15 +47,15 @@
                                    CornerRadius="20"
                                    HasShadow="True"
                                    BorderColor="#616161"
-                                   Margin="0, 5">
+                                   Margin="0, 0">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type warranties:WarrantyPanelViewModel}}, Path=ShowDetailsCommand}"
                                                           CommandParameter="{Binding .}"
                                                           NumberOfTapsRequired="1" />
                                 </Frame.GestureRecognizers>
                                 <VerticalStackLayout>
-                                    <Frame Padding="5"
-                                           Margin="0, 0, 0, -15"
+                                    <Frame Padding="0"
+                                           Margin="10, 5, 0, 0"
                                            BackgroundColor="Transparent"
                                            BorderColor="Transparent"
                                            CornerRadius="10"
@@ -73,8 +72,8 @@
                                                    TextColor="White" />
                                         </StackLayout>
                                     </Frame>
-                                    <Frame Padding="5"
-                                           Margin="0, 0"
+                                    <Frame Padding="0"
+                                           Margin="10, 0, 0, 5"
                                            BackgroundColor="Transparent"
                                            BorderColor="Transparent"
                                            CornerRadius="10"
@@ -126,6 +125,7 @@
         </ScrollView>
 
         <Button Grid.Row="2"
+                Margin="20, 0, 20, 0"
                 Text="ZGŁOŚ GWARANCJĘ"
                 TextColor="#1C1C1E"
                 BackgroundColor="#97D8FE"
