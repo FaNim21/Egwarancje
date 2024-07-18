@@ -59,9 +59,9 @@ namespace EgwarancjeAPI.Controllers
 
         [HttpDelete]
         [Route("Delete")]
-        public async Task<ActionResult<List<Address>>> DeleteAddress(Address address)
+        public async Task<ActionResult<List<Address>>> DeleteAddress(int id)
         {
-            var dbAddress = await _database.Addresses.FindAsync(address.Id);
+            var dbAddress = await _database.Addresses.FindAsync(id);
             if (dbAddress is null) return BadRequest("Address not found.");
 
             _database.Addresses.Remove(dbAddress);

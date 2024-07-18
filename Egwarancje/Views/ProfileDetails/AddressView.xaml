@@ -31,28 +31,68 @@
                 <CollectionView ItemsSource="{Binding Addresses}"
                                 SelectionMode="Single">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="models:Address"
+                                      x:Name="Address">
                             <Frame Padding="10"
-                                   Margin="5"
+                                   Margin="0,0,0,-15"
                                    BackgroundColor="#292929"
                                    BorderColor="#616161"
                                    CornerRadius="10"
                                    HasShadow="True">
-                                <Grid>
-                                    <Label Text="Test"
-                                           TextColor="White"
-                                           FontFamily="BakbakOneRegular"
-                                           FontSize="18" />
-                                    <Label Text="Dziala"
-                                           TextColor="White"
-                                           FontFamily="BakbakOneRegular"
-                                           FontSize="15"
-                                           Grid.Row="1" />
-                                </Grid>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type profile:AddressViewModel}}, Path=EditAddressCommand}"
                                                           CommandParameter="{Binding .}" />
+                                    <SwipeGestureRecognizer Direction="Left"
+                                                            Command="{Binding Source={RelativeSource AncestorType={x:Type profile:AddressViewModel}}, Path=DeleteAddressCommand}"
+                                                            CommandParameter="{Binding .}" />
                                 </Frame.GestureRecognizers>
+                                <VerticalStackLayout>
+                                    <Frame Padding="5"
+                                           Margin="0,0,0,-15"
+                                           BackgroundColor="Transparent"
+                                           BorderColor="Transparent"
+                                           CornerRadius="10"
+                                           InputTransparent="True">
+                                        <StackLayout Orientation="Horizontal"
+                                                     Spacing="10">
+                                            <Label Text="{Binding Country, Mode=OneWay}"
+                                                   FontFamily="BakbakOneRegular"
+                                                   FontSize="20"
+                                                   TextColor="White" />
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame Padding="5"
+                                           Margin="0, 0"
+                                           BackgroundColor="Transparent"
+                                           BorderColor="Transparent"
+                                           CornerRadius="10"
+                                           InputTransparent="True">
+                                        <StackLayout Orientation="Horizontal"
+                                                     Spacing="5">
+                                            <Label Text="{Binding Province, Mode=OneWay}"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="{Binding ZipCode, Mode=OneWay}"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="|"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="{Binding City, Mode=OneWay}"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="|"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="{Binding Street, Mode=OneWay}"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                            <Label Text="{Binding Number, Mode=OneWay}"
+                                                   FontSize="13"
+                                                   TextColor="White" />
+                                        </StackLayout>
+                                    </Frame>
+                                </VerticalStackLayout>
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

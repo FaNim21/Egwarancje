@@ -356,9 +356,8 @@ public class UserService : IDisposable
 
         try
         {
-            var requestUri = $"{_url}/Address/Delete";
-            var contentPost = SetPostContent(address);
-            var response = await _httpClient.PostAsync(requestUri, contentPost);
+            var requestUri = $"{_url}/Address/Delete?id={address.Id}";
+            var response = await _httpClient.DeleteAsync(requestUri);
 
             return response.IsSuccessStatusCode;
         }

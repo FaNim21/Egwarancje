@@ -51,4 +51,17 @@ public partial class AddressViewModel : BaseViewModel
         await MopupService.Instance.PushAsync(new AddressDetailsView(new AddressDetailsViewModel(_service, address, this)));
     }
 
+    [RelayCommand]
+    private async Task DeleteAddress(Address address)
+    {
+        bool answer = await Application.Current!.MainPage!.DisplayAlert("Message", "Czy na pewno chcesz usunąć ten adres?", "Tak", "Nie");
+        if (answer)
+        {
+            await _service.DeleteAddressAsync(address);
+            _service.User.Addresses?.Remove(address);
+            LoadAddresses();
+        }
+        else return;
+    }
+
 }
