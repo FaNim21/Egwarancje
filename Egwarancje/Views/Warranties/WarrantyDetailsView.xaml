@@ -29,10 +29,10 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="warranties:WarrantySpecDetail">
                             <Frame Padding="10"
-                                   BackgroundColor="Transparent"
+                                   BackgroundColor="#393E46"
                                    CornerRadius="20"
                                    HasShadow="True"
-                                   BorderColor="White"
+                                   BorderColor="#616161"
                                    Margin="5,10">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type warranties:WarrantyDetailsViewModel}}, Path=ShowDetailsCommand}"
@@ -42,9 +42,9 @@
                                 <VerticalStackLayout>
                                     <Label Text="{Binding Spec.OrderSpec.Name}"
                                            TextColor="White"
-                                           FontAttributes="Bold"
-                                           FontSize="Medium" 
-                                           Margin="10, 5, 10, 5"/>
+                                           FontFamily="BakbakOneRegular" 
+                                           FontSize="20" 
+                                           Margin="20, 7, 10, 5"/>
                                     <StackLayout IsVisible="{Binding IsVisible}"
                                                  Margin="10,0,0,0">
                                         <Label Text="{Binding Spec.Comments}"
