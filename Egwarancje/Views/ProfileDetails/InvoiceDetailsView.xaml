@@ -143,7 +143,8 @@
                     </Frame>
 
                     <Button Grid.Row="1"
-                            Text="Zapisz zmiany"
+                            Text="ZAPISZ ZMIANY"
+                            FontSize="17"
                             Command="{Binding UpdateDetailsCommand}"
                             BackgroundColor="#97D8FE"
                             HorizontalOptions="FillAndExpand"

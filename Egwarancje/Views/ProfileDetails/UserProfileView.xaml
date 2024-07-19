@@ -204,7 +204,7 @@
             </StackLayout>
 
             <Button Grid.Row="3"
-                    Text="Wyloguj"
+                    Text="WYLOGUJ"
                     FontFamily="BakbakOneRegular"
                     FontSize="17"
                     BackgroundColor="#97D8FE"

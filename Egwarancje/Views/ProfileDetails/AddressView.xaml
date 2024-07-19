@@ -98,11 +98,11 @@
             </ScrollView>
 
             <Button Grid.Row="2"
-                    Text="Dodaj nowy adres"
+                    Text="DODAJ NOWY ADRES"
                     TextColor="#1C1C1E"
                     BackgroundColor="#97D8FE"
                     FontFamily="BakbakOneRegular"
-                    FontSize="15"
+                    FontSize="17"
                     Margin="20,10,20,0"
                     CornerRadius="20"
                     HorizontalOptions="FillAndExpand"

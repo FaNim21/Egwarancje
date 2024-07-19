@@ -130,7 +130,7 @@
                 TextColor="#1C1C1E"
                 BackgroundColor="#97D8FE"
                 FontFamily="BakbakOneRegular"
-                FontSize="20"
+                FontSize="17"
                 Padding="10"
                 CornerRadius="20"
                 HorizontalOptions="FillAndExpand"
