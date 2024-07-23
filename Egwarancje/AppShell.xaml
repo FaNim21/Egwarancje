@@ -37,7 +37,8 @@
                       ContentTemplate="{DataTemplate viewOrders:OrderPanelView}"
                       Route="OrderPanel"
                       Icon="order_list.png" />
-        <Tab Route="CartTab"
+        <Tab Title="Koszyk"
+             Route="CartTab"
              Shell.TabBarBackgroundColor="#242424"
              Shell.TabBarUnselectedColor="#a6a6a6"
              Shell.TabBarTitleColor="#97D8FE"
@@ -48,8 +49,7 @@
                           Icon="shopping_cart.png" />
             <ShellContent Title="Konfigurator"
                           ContentTemplate="{DataTemplate viewOrders:ConfiguratorView}"
-                          Route="Configurator"
-                          Icon="" />
+                          Route="Configurator" />
         </Tab>
 
         <ShellContent Title="Gwarancje"
