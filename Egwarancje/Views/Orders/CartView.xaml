@@ -12,18 +12,18 @@
         <ScrollView>
             <StackLayout Margin="20">
                 <Label Text="Koszyk"
-                   TextColor="White"
-                   Margin="0, 30"
-                   FontSize="30"
-                   HorizontalOptions="Center"
-                   FontFamily="BakbakOneRegular"
-                   />
+                       TextColor="White"
+                       Margin="0, 30"
+                       FontSize="30"
+                       HorizontalOptions="Center"
+                       FontFamily="BakbakOneRegular" />
+
                 <Label Text="Aktualnie Twój koszyk jest pusty"
                        TextColor="White"
-                       HorizontalOptions="Center"/>
+                       HorizontalOptions="Center" />
 
                 <BoxView HeightRequest="80"
-                     Color="#1E1E1E" />
+                         Color="#1E1E1E" />
             </StackLayout>
         </ScrollView>
     </Grid>
