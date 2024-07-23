@@ -11,7 +11,7 @@
        Shell.FlyoutBehavior="Disabled"
        Shell.NavBarIsVisible="False"
        Title="Egwarancje">
-    
+
     <ShellContent Title="HomePage"
                   ContentTemplate="{DataTemplate viewAuth:HomeView}"
                   Route="Home" />
@@ -35,23 +35,32 @@
             Shell.TabBarForegroundColor="#97D8FE">
         <ShellContent Title="Zamówienia"
                       ContentTemplate="{DataTemplate viewOrders:OrderPanelView}"
-                      Route="OrderPanel" 
-                      Icon="order_list.png"/>
-
-        <ShellContent Title="Koszyk"
-                      ContentTemplate="{DataTemplate viewOrders:CartView}"
-                      Route="Cart"
-                      Icon="shopping_cart.png"/>
+                      Route="OrderPanel"
+                      Icon="order_list.png" />
+        <Tab Route="CartTab"
+             Shell.TabBarBackgroundColor="#242424"
+             Shell.TabBarUnselectedColor="#a6a6a6"
+             Shell.TabBarTitleColor="#97D8FE"
+             Shell.TabBarForegroundColor="#97D8FE">
+            <ShellContent Title="Koszyk"
+                          ContentTemplate="{DataTemplate viewOrders:CartView}"
+                          Route="Cart"
+                          Icon="shopping_cart.png" />
+            <ShellContent Title="Konfigurator"
+                          ContentTemplate="{DataTemplate viewOrders:ConfiguratorView}"
+                          Route="Configurator"
+                          Icon="" />
+        </Tab>
 
         <ShellContent Title="Gwarancje"
                       ContentTemplate="{DataTemplate viewWarranties:WarrantyPanelView}"
                       Route="WarrantyPanel"
-                      Icon="transport_truck.png"/>
-      
+                      Icon="transport_truck.png" />
+
         <ShellContent Title="Profil"
                       ContentTemplate="{DataTemplate viewProfileDetails:UserProfileView}"
                       Route="UserProfile"
-                      Icon="profile_icon.png"/>
+                      Icon="profile_icon.png" />
     </TabBar>
 
 </Shell>
