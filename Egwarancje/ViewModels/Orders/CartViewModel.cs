@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Egwarancje.Services;
 
 namespace Egwarancje.ViewModels.Orders;
 
 public partial class CartViewModel : BaseViewModel
 {
+    private readonly UserService _userService;
+
+
+    public CartViewModel(UserService userService)
+    {
+        _userService = userService;
+    }
 }
