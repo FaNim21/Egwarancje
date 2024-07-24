@@ -13,56 +13,72 @@
              Shell.TabBarDisabledColor="Black"
              BackgroundColor="#1E1E1E"
              Title="ConfiguratorView">
-    <VerticalStackLayout>
-        <Label Text="Konfigurator"
-               VerticalOptions="Center"
-               HorizontalOptions="Center" />
+    <ScrollView>
+        <Grid RowDefinitions="Auto, *">
+            <VerticalStackLayout Margin="20"
+                                 Grid.Row="0">
+                <Label Text="Konfigurator"
+                       TextColor="White"
+                       Margin="0,30,0,0"
+                       FontSize="30"
+                       HorizontalOptions="Center"
+                       FontFamily="BakbakOneRegular" />
 
-        <CollectionView ItemsSource="{Binding Furnitures}"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="StartAndExpand"
-                        Margin="0, 90, 0, 0">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical"
-                                   SnapPointsType="None"
-                                   SnapPointsAlignment="Start"
-                                   ItemSpacing="10" />
-            </CollectionView.ItemsLayout>
+                <Label Text="Wybierz mebel do edycji"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+            <CollectionView ItemsSource="{Binding Furnitures}"
+                            Grid.Row="1"
+                            SelectionMode="Single"
+                            ItemsLayout="VerticalGrid, 2"
+                            Margin="0, 0, 0, 0">
+                <!--<CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       SnapPointsType="None"
+                                       SnapPointsAlignment="Start"
+                                       ItemSpacing="10" />
+                </CollectionView.ItemsLayout>-->
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:ProductConfigurator"
-                              x:Name="order">
-                    <Frame Padding="10"
-                           BackgroundColor="#393E46"
-                           CornerRadius="20"
-                           HasShadow="True"
-                           BorderColor="#616161"
-                           Margin="0, 5">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type order:ConfiguratorViewModel}}, Path=ProductConfigurationCommand}"
-                                                  CommandParameter="{Binding .}"
-                                                  NumberOfTapsRequired="1" />
-                        </Frame.GestureRecognizers>
-                        <VerticalStackLayout>
-                            <Frame Padding="5"
-                                   Margin="0,0,0,-15"
-                                   BackgroundColor="Transparent"
-                                   BorderColor="Transparent"
-                                   CornerRadius="10"
-                                   InputTransparent="True">
-                                <StackLayout Orientation="Horizontal"
-                                             Spacing="10">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ProductConfigurator"
+                                  x:Name="order">
+                        <Frame Padding="10"
+                               BackgroundColor="#393E46"
+                               CornerRadius="20"
+                               HasShadow="True"
+                               BorderColor="#616161"
+                               Margin="10">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type order:ConfiguratorViewModel}}, Path=ProductConfigurationCommand}"
+                                                      CommandParameter="{Binding .}"
+                                                      NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <VerticalStackLayout Grid.Row="0"
+                                                     Padding="5"
+                                                     VerticalOptions="Center">
+
                                     <Label Text="{Binding Name, Mode=OneWay}"
                                            FontFamily="BakbakOneRegular"
-                                           FontSize="20"
+                                           FontSize="Medium"
                                            TextColor="White" />
-                                </StackLayout>
-                            </Frame>
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+                                    <Label Text="Inna cecha"
+                                           TextColor="White" />
+                                </VerticalStackLayout>
+                                <!--<Image Source="{Binding Zdjęcie}"
+                                                Grid.Row="1" />-->
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
 </ContentPage>
+    
     
