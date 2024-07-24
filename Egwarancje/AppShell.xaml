@@ -37,16 +37,17 @@
                       ContentTemplate="{DataTemplate viewOrders:OrderPanelView}"
                       Route="OrderPanel"
                       Icon="order_list.png" />
-        <Tab Title="Koszyk"
+        <Tab Title="Kreator"
              Route="CartTab"
              Shell.TabBarBackgroundColor="#242424"
              Shell.TabBarUnselectedColor="#a6a6a6"
              Shell.TabBarTitleColor="#97D8FE"
-             Shell.TabBarForegroundColor="#97D8FE">
+             Shell.TabBarForegroundColor="#97D8FE"
+             Icon="shopping_cart.png">
             <ShellContent Title="Koszyk"
                           ContentTemplate="{DataTemplate viewOrders:CartView}"
                           Route="Cart"
-                          Icon="shopping_cart.png" />
+                           />
             <ShellContent Title="Konfigurator"
                           ContentTemplate="{DataTemplate viewOrders:ConfiguratorView}"
                           Route="Configurator" />
