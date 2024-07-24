@@ -23,7 +23,6 @@
                        FontSize="30"
                        HorizontalOptions="Center"
                        FontFamily="BakbakOneRegular" />
-
                 <Label Text="Wybierz mebel do edycji"
                        TextColor="White"
                        HorizontalOptions="Center" />
@@ -32,14 +31,7 @@
                             Grid.Row="1"
                             SelectionMode="Single"
                             ItemsLayout="VerticalGrid, 2"
-                            Margin="0, 0, 0, 0">
-                <!--<CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical"
-                                       SnapPointsType="None"
-                                       SnapPointsAlignment="Start"
-                                       ItemSpacing="10" />
-                </CollectionView.ItemsLayout>-->
-
+                            Margin="0, 20, 0, 0">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:ProductConfigurator"
                                   x:Name="order">
@@ -66,8 +58,10 @@
                                     <Label Text="{Binding Name, Mode=OneWay}"
                                            FontFamily="BakbakOneRegular"
                                            FontSize="Medium"
+                                           HorizontalOptions="Center"
                                            TextColor="White" />
                                     <Label Text="Inna cecha"
+                                           HorizontalOptions="Center"
                                            TextColor="White" />
                                 </VerticalStackLayout>
                                 <!--<Image Source="{Binding Zdjęcie}"
