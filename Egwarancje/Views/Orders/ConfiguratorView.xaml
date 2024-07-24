@@ -31,7 +31,6 @@
             </StackLayout>
             
             <CollectionView Grid.Row="1"
-                            ItemsSource="{Binding Orders}"
                             SelectionMode="Single"
                             ItemsLayout="VerticalGrid, 2">
                 <CollectionView.ItemTemplate>
