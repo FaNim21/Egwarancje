@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Egwarancje.Services;
+using Egwarancje.Views.Orders;
 using EgwarancjeDbLibrary.Models;
 using System.Collections.ObjectModel;
 using System.Text.Json;
@@ -46,4 +48,11 @@ public partial class ConfiguratorViewModel : BaseViewModel
             Furnitures.Add(new ProductConfigurator() { ImagePath = product.ImagePath, Name = product.Name, Structure = productStructure });
         }
     }
+
+    [RelayCommand]
+    public async Task ProductConfiguration(ProductConfigurator productConfigurator)
+    {
+        await Shell.Current.Navigation.PushAsync(new ProductConfigurationView(new ProductConfigurationViewModel(productConfigurator)));
+    }
+
 }

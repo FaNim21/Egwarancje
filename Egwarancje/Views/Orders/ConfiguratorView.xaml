@@ -14,10 +14,9 @@
              BackgroundColor="#1E1E1E"
              Title="ConfiguratorView">
     <VerticalStackLayout>
-        <Label 
-            Text="Konfigurator"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Label Text="Konfigurator"
+               VerticalOptions="Center"
+               HorizontalOptions="Center" />
 
         <CollectionView ItemsSource="{Binding Furnitures}"
                         HorizontalOptions="FillAndExpand"
@@ -39,6 +38,11 @@
                            HasShadow="True"
                            BorderColor="#616161"
                            Margin="0, 5">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type order:ConfiguratorViewModel}}, Path=ProductConfigurationCommand}"
+                                                  CommandParameter="{Binding .}"
+                                                  NumberOfTapsRequired="1" />
+                        </Frame.GestureRecognizers>
                         <VerticalStackLayout>
                             <Frame Padding="5"
                                    Margin="0,0,0,-15"
@@ -59,21 +63,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
-                                <VerticalStackLayout Grid.Row="0" Padding="5" VerticalOptions="Center">
-                                    <!--<Label Text="{Binding NazwaMebla}"
-                                           FontSize="Medium"
-                                           FontFamily="BakbakOneRegular" />-->
-                                    <Label Text="Może coś jeszcze tu" />
-                                </VerticalStackLayout>
-                                <!--<Image Source="{Binding Jakaśfota}"
-                                       Grid.Row="1" />-->
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
-    </ScrollView>
+    </VerticalStackLayout>
 </ContentPage>
     

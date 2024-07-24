@@ -63,6 +63,9 @@ public static class MauiProgram
         builder.Services.AddTransient<CartView>();
         builder.Services.AddTransient<CartViewModel>();
 
+        builder.Services.AddTransient<ProductConfigurationView>();
+        builder.Services.AddTransient<ProductConfigurationViewModel>();
+
         return builder.Build();
     }
 }

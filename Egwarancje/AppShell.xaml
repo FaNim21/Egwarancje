@@ -27,6 +27,10 @@
     <ShellContent Title="RecoverPage"
                   ContentTemplate="{DataTemplate viewAuth:RecoverPasswordView}"
                   Route="Recover" />
+    
+    <ShellContent Title="ProductConfigurationPage"
+                  ContentTemplate="{DataTemplate viewOrders:ProductConfigurationView}"
+                  Route="ProductConfigurationView" />
 
     <TabBar Route="MainTab"
             Shell.TabBarBackgroundColor="#242424"
