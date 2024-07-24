@@ -8,6 +8,9 @@
              x:DataType="order:ConfiguratorViewModel"
              Shell.NavBarIsVisible="False"
              Shell.FlyoutItemIsVisible="False"
+             Shell.BackgroundColor="#a6a6a6"
+             Shell.TabBarUnselectedColor="Black"
+             Shell.TabBarDisabledColor="Black"
              BackgroundColor="#1E1E1E"
              Title="ConfiguratorView">
     <VerticalStackLayout>
@@ -57,5 +60,20 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-    </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Row="0" Padding="5" VerticalOptions="Center">
+                                    <!--<Label Text="{Binding NazwaMebla}"
+                                           FontSize="Medium"
+                                           FontFamily="BakbakOneRegular" />-->
+                                    <Label Text="Może coś jeszcze tu" />
+                                </VerticalStackLayout>
+                                <!--<Image Source="{Binding Jakaśfota}"
+                                       Grid.Row="1" />-->
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
 </ContentPage>
+    
