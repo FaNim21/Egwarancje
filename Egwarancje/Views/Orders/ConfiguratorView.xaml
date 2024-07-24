@@ -8,14 +8,56 @@
              x:DataType="order:ConfiguratorViewModel"
              Shell.NavBarIsVisible="False"
              Shell.FlyoutItemIsVisible="False"
+             Shell.BackgroundColor="#a6a6a6"
+             Shell.TabBarUnselectedColor="Black"
+             Shell.TabBarDisabledColor="Black"
              BackgroundColor="#1E1E1E"
              Title="ConfiguratorView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    
+    <ScrollView>
+        <Grid RowDefinitions="Auto, *">
+            <StackLayout Margin="20" 
+                         Grid.Row="0">
+                <Label Text="Konfigurator"
+                       TextColor="White"
+                       Margin="0,30,0,0"
+                       FontSize="30"
+                       HorizontalOptions="Center"
+                       FontFamily="BakbakOneRegular" />
 
+                <Label Text="Wybierz mebel do edycji"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
+            </StackLayout>
+            
+            <CollectionView Grid.Row="1"
+                            ItemsSource="{Binding Orders}"
+                            SelectionMode="Single"
+                            ItemsLayout="VerticalGrid, 2">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Order"
+                                  x:Name="order">
+                        <Frame Margin="10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height=".3*" />
+                                    <RowDefinition Height=".7*" />
+                                </Grid.RowDefinitions>
 
-    </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Row="0" Padding="5" VerticalOptions="Center">
+                                    <!--<Label Text="{Binding NazwaMebla}"
+                                           FontSize="Medium"
+                                           FontFamily="BakbakOneRegular" />-->
+                                    <Label Text="Może coś jeszcze tu" />
+                                </VerticalStackLayout>
+                                <!--<Image Source="{Binding Jakaśfota}"
+                                       Grid.Row="1" />-->
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
 </ContentPage>
+    

@@ -7,6 +7,7 @@
              xmlns:ord="clr-namespace:Egwarancje.ViewModels.Orders"
              x:DataType="ord:CartViewModel"
              Title="Cart"
+             Shell.BackgroundColor="#a6a6a6"
              BackgroundColor="#1C1C1E">
     <Grid>
         <ScrollView>
