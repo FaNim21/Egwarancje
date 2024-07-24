@@ -12,10 +12,50 @@
              Title="ConfiguratorView">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Konfigurator"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
+        <CollectionView ItemsSource="{Binding Furnitures}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="StartAndExpand"
+                        Margin="0, 90, 0, 0">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   SnapPointsType="None"
+                                   SnapPointsAlignment="Start"
+                                   ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:ProductConfigurator"
+                              x:Name="order">
+                    <Frame Padding="10"
+                           BackgroundColor="#393E46"
+                           CornerRadius="20"
+                           HasShadow="True"
+                           BorderColor="#616161"
+                           Margin="0, 5">
+                        <VerticalStackLayout>
+                            <Frame Padding="5"
+                                   Margin="0,0,0,-15"
+                                   BackgroundColor="Transparent"
+                                   BorderColor="Transparent"
+                                   CornerRadius="10"
+                                   InputTransparent="True">
+                                <StackLayout Orientation="Horizontal"
+                                             Spacing="10">
+                                    <Label Text="{Binding Name, Mode=OneWay}"
+                                           FontFamily="BakbakOneRegular"
+                                           FontSize="20"
+                                           TextColor="White" />
+                                </StackLayout>
+                            </Frame>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
     </VerticalStackLayout>
 </ContentPage>

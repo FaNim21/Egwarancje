@@ -19,6 +19,8 @@ public class LocalDatabaseContext : DbContext
 
     public DbSet<Address> Addresses { get; set; }
 
+    public DbSet<Product> Products { get; set; }
+
 
     public LocalDatabaseContext() { }
     public LocalDatabaseContext(DbContextOptions<LocalDatabaseContext> options) : base(options)

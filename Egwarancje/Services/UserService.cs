@@ -367,7 +367,32 @@ public class UserService : IDisposable
             return false;
         }
     }
-        
+
+    public async Task<List<Product>?> GetAllProducts()
+    {
+        bool access = await CheckForNetworkAccess();
+        if (!access) return null;
+
+        try
+        {
+            var requestUri = $"{_url}/Product/GetAll";
+            var response = await _httpClient.GetAsync(requestUri);
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+
+                List<Product>? products = JsonSerializer.Deserialize<List<Product>>(content, _jsonSerializerOptions);
+                return products;
+            }
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Trace.WriteLine(ex.Message);
+            IsAuthenticated = false;
+            return null;
+        }
+    }
 
     private StringContent SetPostContent(object value)
     {
