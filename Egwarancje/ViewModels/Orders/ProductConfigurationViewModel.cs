@@ -28,6 +28,6 @@ public partial class ProductConfigurationViewModel : BaseViewModel
     [RelayCommand]
     public async Task Back()
     {
-        await Shell.Current.GoToAsync("///OrderPanel");
+        await Shell.Current.GoToAsync("///Configurator");
     }
 }
