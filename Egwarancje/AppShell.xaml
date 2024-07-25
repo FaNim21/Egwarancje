@@ -50,7 +50,7 @@
              Shell.TabBarForegroundColor="#97D8FE">
             <ShellContent Title="          Koszyk           "
                           ContentTemplate="{DataTemplate viewOrders:CartView}"
-                          Route="Cart"/>
+                          Route="Cart" />
             <ShellContent Title="      Konfigurator      "
                           ContentTemplate="{DataTemplate viewOrders:ConfiguratorView}"
                           Route="Configurator" />

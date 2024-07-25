@@ -21,6 +21,8 @@ public class LocalDatabaseContext : DbContext
 
     public DbSet<Product> Products { get; set; }
 
+    public DbSet<Cart> Carts { get; set; }
+
 
     public LocalDatabaseContext() { }
     public LocalDatabaseContext(DbContextOptions<LocalDatabaseContext> options) : base(options)
@@ -47,6 +49,12 @@ public class LocalDatabaseContext : DbContext
             .HasMany(u => u.Addresses)
             .WithOne(a => a.User)
             .HasForeignKey(a => a.UserId)
+            .IsRequired();
+
+        modelBuilder.Entity<User>()
+            .HasOne(u => u.Cart)
+            .WithOne(c => c.User)
+            .HasForeignKey<Cart>(c => c.UserId)
             .IsRequired();
 
         //Order

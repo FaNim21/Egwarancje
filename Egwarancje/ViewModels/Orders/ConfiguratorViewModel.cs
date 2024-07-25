@@ -38,7 +38,6 @@ public partial class ConfiguratorViewModel : BaseViewModel
             PropertyNameCaseInsensitive = true
         };
 
-
         for (int i = 0; i < products.Count; i++)
         {
             var product = products[i];
@@ -52,7 +51,6 @@ public partial class ConfiguratorViewModel : BaseViewModel
     [RelayCommand]
     public async Task ProductConfiguration(ProductConfigurator productConfigurator)
     {
-        await Shell.Current.Navigation.PushAsync(new ProductConfigurationView(new ProductConfigurationViewModel(productConfigurator)));
+        await Shell.Current.Navigation.PushAsync(new ProductConfigurationView(new ProductConfigurationViewModel(this, productConfigurator)));
     }
-
 }
