@@ -4,9 +4,14 @@
              x:Class="Egwarancje.Views.Orders.ProductConfigurationView"
              xmlns:orders="clr-namespace:Egwarancje.ViewModels.Orders"
              xmlns:models="clr-namespace:EgwarancjeDbLibrary.Models;assembly=EgwarancjeDbLibrary"
+             xmlns:order="clr-namespace:Egwarancje.ViewModels.Orders"
+             xmlns:converters="clr-namespace:Egwarancje.Converters"
              x:DataType="orders:ProductConfigurationViewModel"
              BackgroundColor="#1E1E1E"
              Title="ProductConfigurationView">
+    <ContentPage.Resources>
+        <converters:ItemsSourceToVisibilityConverter x:Key="itemsSourceToVisibility" />
+    </ContentPage.Resources>
 
     <ScrollView>
         <Grid RowDefinitions="Auto,*,Auto"
@@ -38,14 +43,31 @@
                                 <Label Text="{Binding Name}"
                                        FontSize="18"
                                        TextColor="White" />
-                                <Label Text="Wybierz materiał:"
-                                       FontSize="16"
-                                       TextColor="White"
-                                       Margin="0,10,0,0" />
-                                <Picker ItemsSource="{Binding Materials}"
-                                        FontSize="16"
-                                        TextColor="Black"
-                                        BackgroundColor="White" />
+                                <VerticalStackLayout IsVisible="{Binding Materials, Converter={StaticResource itemsSourceToVisibility}}">
+                                    <Label Text="Wybierz materiał:"
+                                           FontSize="16"
+                                           TextColor="White"
+                                           Margin="0,10,0,0" />
+                                    <Picker ItemsSource="{Binding Materials}"
+                                            SelectedItem="{Binding SelectedMaterials}"
+                                            IsVisible="{Binding Materials, Converter={StaticResource itemsSourceToVisibility}}"
+                                            FontSize="16"
+                                            TextColor="Black"
+                                            BackgroundColor="White" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout IsVisible="{Binding Colors, Converter={StaticResource itemsSourceToVisibility}}">
+                                    <Label Text="Wybierz kolor:"
+                                           FontSize="16"
+                                           TextColor="White"
+                                           Margin="0,10,0,0" />
+                                    <Picker ItemsSource="{Binding Colors}"
+                                            SelectedItem="{Binding SelectedColor}"
+                                            IsVisible="{Binding Colors, Converter={StaticResource itemsSourceToVisibility}}"
+                                            FontSize="16"
+                                            TextColor="Black"
+                                            BackgroundColor="White" />
+                                </VerticalStackLayout>
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>

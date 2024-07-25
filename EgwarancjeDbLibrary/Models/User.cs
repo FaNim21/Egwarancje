@@ -25,6 +25,8 @@ public class User
 
     public List<Address>? Addresses { get; set; }
 
+    public Cart? Cart { get; set; }
+
     public string? ConfirmationToken { get; set; }
 }
 

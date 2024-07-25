@@ -14,21 +14,26 @@ public class Product
     public string? Structure { get; set; }
 }
 
-public struct ProductStructure
-{
-    public Resources[] Resources { get; set; }
-}
-
-public struct Resources
-{
-    public string Name { get; set; }
-    public string?[] Materials { get; set; }
-    public string?[] Colors { get; set; }
-}
-
 public class ProductConfigurator
 {
     public string? Name { get; set; }
     public string? ImagePath { get; set; }
     public ProductStructure? Structure { get; set; }
 }
+
+public struct ProductStructure
+{
+    public Resources[] Resources { get; set; }
+}
+
+public class Resources
+{
+    public string Name { get; set; }
+
+    public string SelectedMaterials { get; set; } = string.Empty;
+    public string SelectedColor { get; set; } = string.Empty;
+
+    public string?[] Materials { get; set; }
+    public string?[] Colors { get; set; }
+}
+
