@@ -88,7 +88,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Button Text="ZAPISZ"
+            <Button Text="ZATWIERDŹ PRODUKT"
                     Command="{Binding SaveProductCommand}"
                     Grid.Row="3"
                     FontAttributes="Bold"
@@ -97,7 +97,8 @@
                     CornerRadius="15"
                     HeightRequest="45"
                     Margin="5"
-                    FontFamily="BalooBhaiRegular"
+                    VerticalOptions="CenterAndExpand"
+                    FontFamily="BakbakOneRegular"
                     HorizontalOptions="FillAndExpand" />
 
         </Grid>
