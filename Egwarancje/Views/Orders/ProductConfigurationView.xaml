@@ -8,20 +8,33 @@
              xmlns:converters="clr-namespace:Egwarancje.Converters"
              x:DataType="orders:ProductConfigurationViewModel"
              BackgroundColor="#1E1E1E"
+             Shell.PresentationMode="ModalAnimated"
              Title="ProductConfigurationView">
     <ContentPage.Resources>
         <converters:ItemsSourceToVisibilityConverter x:Key="itemsSourceToVisibility" />
     </ContentPage.Resources>
 
     <ScrollView>
-        <Grid RowDefinitions="Auto,*,Auto"
+        <Grid RowDefinitions="Auto,Auto,*,Auto"
               Margin="20">
-            <VerticalStackLayout Padding="20"
-                                 Spacing="15"
+            <VerticalStackLayout HorizontalOptions="Start"
+                                 Margin="10,10"
                                  Grid.Row="0">
+                <Image Source="Images/return_image.png"
+                       Aspect="AspectFit"
+                       WidthRequest="40"
+                       HeightRequest="40">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </VerticalStackLayout>
+            <VerticalStackLayout Padding="20"
+                                 Spacing="0"
+                                 Grid.Row="1">
                 <Label Text="Konfiguracja Mebla"
                        TextColor="White"
-                       Margin="0,30,0,0"
+                       Margin="0,0,0,0"
                        FontSize="30"
                        HorizontalOptions="Center"
                        FontFamily="BakbakOneRegular" />
@@ -32,41 +45,52 @@
                        HorizontalOptions="Center" />
             </VerticalStackLayout>
             <CollectionView ItemsSource="{Binding Resources}"
-                            Grid.Row="1">
+                            Grid.Row="2">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Resources">
                         <Frame Padding="10"
-                               Margin="0,5"
                                BackgroundColor="#393E46"
-                               CornerRadius="10">
+                               CornerRadius="20"
+                               HasShadow="True"
+                               BorderColor="#616161"
+                               Margin="0,10">
                             <VerticalStackLayout>
                                 <Label Text="{Binding Name}"
-                                       FontSize="18"
-                                       TextColor="White" />
+                                       FontSize="Large"
+                                       HorizontalTextAlignment="Start"
+                                       TextColor="White"
+                                       FontFamily="BakbakOneRegular" />
+                                <BoxView HeightRequest="1"
+                                         Color="#616161"
+                                         HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="Center" />
                                 <VerticalStackLayout IsVisible="{Binding Materials, Converter={StaticResource itemsSourceToVisibility}}">
-                                    <Label Text="Wybierz materiał:"
-                                           FontSize="16"
+                                    <Label Text="Materiał:"
+                                           FontSize="17"
                                            TextColor="White"
                                            Margin="0,10,0,0" />
                                     <Picker ItemsSource="{Binding Materials}"
                                             SelectedItem="{Binding SelectedMaterial}"
                                             IsVisible="{Binding Materials, Converter={StaticResource itemsSourceToVisibility}}"
-                                            FontSize="16"
-                                            TextColor="Black"
-                                            BackgroundColor="White" />
+                                            FontSize="17"
+                                            TextColor="White"
+                                            Margin="0,10"
+                                            BackgroundColor="#393E46" />
                                 </VerticalStackLayout>
 
-                                <VerticalStackLayout IsVisible="{Binding Colors, Converter={StaticResource itemsSourceToVisibility}}">
-                                    <Label Text="Wybierz kolor:"
-                                           FontSize="16"
+                                <VerticalStackLayout IsVisible="{Binding Colors, Converter={StaticResource itemsSourceToVisibility}}" HorizontalOptions="FillAndExpand">
+                                    <Label Text="Kolor:"
+                                           FontSize="17"
                                            TextColor="White"
-                                           Margin="0,10,0,0" />
+                                           Margin="0,10" />
                                     <Picker ItemsSource="{Binding Colors}"
                                             SelectedItem="{Binding SelectedColor}"
                                             IsVisible="{Binding Colors, Converter={StaticResource itemsSourceToVisibility}}"
                                             FontSize="16"
-                                            TextColor="Black"
-                                            BackgroundColor="White" />
+                                            
+                                            TextColor="White"
+                                            BackgroundColor="#393E46" 
+                                            />
                                 </VerticalStackLayout>
                             </VerticalStackLayout>
                         </Frame>
@@ -74,28 +98,18 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <HorizontalStackLayout Grid.Row="2" >
-                <Button Text="Zapisz"
-                        Command="{Binding SaveProductCommand}"
-                        FontAttributes="Bold"
-                        BackgroundColor="#97D8FE"
-                        TextColor="#1C1C1E"
-                        CornerRadius="15"
-                        HeightRequest="45"
-                        FontFamily="BalooBhaiRegular"
-                        HorizontalOptions="FillAndExpand" />
-
-                <Button Text="Wróć"
-                        Command="{Binding BackCommand}"
-                        FontAttributes="Bold"
-                        BackgroundColor="#97D8FE"
-                        TextColor="#1C1C1E"
-                        CornerRadius="15"
-                        HeightRequest="45"
-                        FontFamily="BalooBhaiRegular"
-                        HorizontalOptions="FillAndExpand" />
-            </HorizontalStackLayout>
-            
+            <Button Text="ZATWIERDŹ PRODUKT"
+                    Command="{Binding SaveProductCommand}"
+                    Grid.Row="3"
+                    FontAttributes="Bold"
+                    BackgroundColor="#97D8FE"
+                    TextColor="#1C1C1E"
+                    CornerRadius="15"
+                    HeightRequest="45"
+                    Margin="5,10,5,5"
+                    VerticalOptions="EndAndExpand"
+                    FontFamily="BakbakOneRegular"
+                    HorizontalOptions="FillAndExpand" />
         </Grid>
     </ScrollView>
 </ContentPage>
