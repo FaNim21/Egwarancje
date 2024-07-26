@@ -5,6 +5,7 @@
              xmlns:vm="clr-namespace:Egwarancje.ViewModels"
              xmlns:converters="clr-namespace:Egwarancje.Converters"
              xmlns:ord="clr-namespace:Egwarancje.ViewModels.Orders"
+             xmlns:models="clr-namespace:EgwarancjeDbLibrary.Models;assembly=EgwarancjeDbLibrary"
              x:DataType="ord:CartViewModel"
              Title="Cart"
              Shell.BackgroundColor="#a6a6a6"
@@ -25,6 +26,53 @@
 
                 <BoxView HeightRequest="80"
                          Color="#1E1E1E" />
+
+                <CollectionView ItemsSource="{Binding Products}" 
+                                Grid.Row="1">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:CartProduct">
+                            <Frame Padding="10"
+                                   Margin="0,5"
+                                   BackgroundColor="#393E46"
+                                   CornerRadius="10">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Name}"
+                                           FontSize="18"
+                                           TextColor="White" />
+                                    <Label Text="{Binding Amount}"
+                                           FontSize="16"
+                                           TextColor="White"
+                                           Margin="0,10,0,0" />
+                                    <CollectionView ItemsSource="{Binding Details}"
+                                                    Grid.Row="1">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate x:DataType="models:CartDetailsProduct">
+                                                <Frame Padding="10"
+                                                       Margin="0,5"
+                                                       BackgroundColor="#393E46"
+                                                       CornerRadius="10">
+                                                    <VerticalStackLayout>
+                                                        <Label Text="{Binding Name}"
+                                                               FontSize="18"
+                                                               TextColor="White" />
+                                                        <Label Text="{Binding Color}"
+                                                               FontSize="16"
+                                                               TextColor="White"
+                                                               Margin="0,10,0,0" />
+                                                        <Label Text="{Binding Material}"
+                                                               FontSize="16"
+                                                               TextColor="White"
+                                                               Margin="0,10,0,0" />
+                                                    </VerticalStackLayout>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </StackLayout>
         </ScrollView>
     </Grid>

@@ -31,6 +31,9 @@ public class UserService : IDisposable
     private bool _disposed = false;
 
 
+    /// <summary>
+    /// to mozna uproscic do jednej klasy usuwajacej po id itp itd czy tez zrobic generic do tworzenia itp itd, ale tak ladnie wyglada w praktyce do uzycia 
+    /// </summary>
     public UserService()
     {
         User = new();
@@ -345,7 +348,6 @@ public class UserService : IDisposable
         catch (Exception ex)
         {
             Trace.WriteLine(ex.Message);
-            IsAuthenticated = false;
             return false;
         }
     }
@@ -357,6 +359,71 @@ public class UserService : IDisposable
         try
         {
             var requestUri = $"{_url}/Address/Delete?id={address.Id}";
+            var response = await _httpClient.DeleteAsync(requestUri);
+
+            return response.IsSuccessStatusCode;
+        }
+        catch (Exception ex)
+        {
+            Trace.WriteLine(ex.Message);
+            return false;
+        }
+    }
+
+    public async Task<Cart?> CreateCart(Cart cart)
+    {
+        bool access = await CheckForNetworkAccess();
+        if (!access) return null;
+
+        try
+        {
+            var requestUri = $"{_url}/Cart/Add";
+            var contentPost = SetPostContent(cart);
+            var response = await _httpClient.PostAsync(requestUri, contentPost);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+
+                Cart? dbCart = JsonSerializer.Deserialize<Cart>(content, _jsonSerializerOptions);
+                return dbCart;
+            }
+
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Trace.WriteLine(ex.Message);
+            return null;
+        }
+    }
+    public async Task<bool> UpdateCartAsync(Cart cart)
+    {
+        bool access = await CheckForNetworkAccess();
+        if (!access) return false;
+
+        try
+        {
+            var requestUri = $"{_url}/Cart/Update";
+            var contentPost = SetPostContent(cart);
+            var response = await _httpClient.PutAsync(requestUri, contentPost);
+
+            return response.IsSuccessStatusCode;
+        }
+        catch (Exception ex)
+        {
+            Trace.WriteLine(ex.Message);
+            return false;
+        }
+    }
+    public async Task<bool> DeleteCartAsync(Cart address)
+    {
+        bool access = await CheckForNetworkAccess();
+        if (!access) return false;
+
+        try
+        {
+            var requestUri = $"{_url}/Cart/Delete?id={address.Id}";
             var response = await _httpClient.DeleteAsync(requestUri);
 
             return response.IsSuccessStatusCode;

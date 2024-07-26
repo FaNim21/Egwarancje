@@ -48,6 +48,40 @@ public partial class ConfiguratorViewModel : BaseViewModel
         }
     }
 
+    public async Task AddProductToCart(ProductConfigurator product)
+    {
+        CartProduct cartProduct = new();
+        cartProduct.Name = product.Name;
+        cartProduct.Amount = 1;
+        cartProduct.Details ??= [];
+
+        for (int i = 0; i < product.Structure!.Resources.Length; i++)
+        {
+            var current = product.Structure!.Resources[i];
+            CartDetailsProduct details = new()
+            {
+                Name = current.Name,
+                Material = current.SelectedMaterial,
+                Color = current.SelectedColor
+            };
+
+            cartProduct.Details.Add(details);
+        }
+
+        List<CartProduct> products = [];
+        if(!string.IsNullOrEmpty(_userService.User.Cart.Products))
+        {
+            List<CartProduct>? _products = JsonSerializer.Deserialize<List<CartProduct>>(_userService.User.Cart.Products);
+            if (_products == null) return;
+            products = new(_products);
+        }
+
+        products.Add(cartProduct);
+        string json = JsonSerializer.Serialize(products);
+        _userService.User.Cart.Products = json;
+        await _userService.UpdateCartAsync(_userService.User.Cart);
+    }
+
     [RelayCommand]
     public async Task ProductConfiguration(ProductConfigurator productConfigurator)
     {

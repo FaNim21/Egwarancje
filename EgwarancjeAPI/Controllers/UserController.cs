@@ -61,7 +61,7 @@ public class UserController : ControllerBase
                                 .ThenInclude(w => w.Attachments).ToListAsync();
 
         user.Warranties = warranties;
-
+        user.Cart = await _database.Carts.FirstOrDefaultAsync(c => c.UserId == user.Id);
         return Ok(user);
     }
 

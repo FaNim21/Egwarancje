@@ -26,9 +26,9 @@ public partial class ProductConfigurationViewModel : BaseViewModel
     [RelayCommand]
     public async Task SaveProduct()
     {
-        // Tutaj zrobic dodawanie do koszyka skonfigurowanego produktu
-        await Application.Current!.MainPage!.DisplayAlert("Zapisano", $"Konfiguracja dla {Furniture.Name} została zapisana.", "OK");
+        await _configurator.AddProductToCart(Furniture);
 
+        await Application.Current!.MainPage!.DisplayAlert("Zapisano", $"Konfiguracja dla {Furniture.Name} została zapisana.", "OK");
         await Back();
     }
 

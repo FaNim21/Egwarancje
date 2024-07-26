@@ -16,12 +16,12 @@ public class Product
 
 public class ProductConfigurator
 {
-    public string? Name { get; set; }
+    public string Name { get; set; }
     public string? ImagePath { get; set; }
     public ProductStructure? Structure { get; set; }
 }
 
-public struct ProductStructure
+public class ProductStructure
 {
     public Resources[] Resources { get; set; }
 }
@@ -30,7 +30,7 @@ public class Resources
 {
     public string Name { get; set; }
 
-    public string SelectedMaterials { get; set; } = string.Empty;
+    public string SelectedMaterial { get; set; } = string.Empty;
     public string SelectedColor { get; set; } = string.Empty;
 
     public string?[] Materials { get; set; }

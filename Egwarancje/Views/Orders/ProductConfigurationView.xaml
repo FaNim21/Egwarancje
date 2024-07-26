@@ -49,7 +49,7 @@
                                            TextColor="White"
                                            Margin="0,10,0,0" />
                                     <Picker ItemsSource="{Binding Materials}"
-                                            SelectedItem="{Binding SelectedMaterials}"
+                                            SelectedItem="{Binding SelectedMaterial}"
                                             IsVisible="{Binding Materials, Converter={StaticResource itemsSourceToVisibility}}"
                                             FontSize="16"
                                             TextColor="Black"
