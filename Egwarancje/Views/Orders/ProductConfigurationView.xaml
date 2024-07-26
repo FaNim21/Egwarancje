@@ -8,6 +8,7 @@
              xmlns:converters="clr-namespace:Egwarancje.Converters"
              x:DataType="orders:ProductConfigurationViewModel"
              BackgroundColor="#1E1E1E"
+             Shell.PresentationMode="ModalAnimated"
              Title="ProductConfigurationView">
     <ContentPage.Resources>
         <converters:ItemsSourceToVisibilityConverter x:Key="itemsSourceToVisibility" />
@@ -52,35 +53,44 @@
                                CornerRadius="20"
                                HasShadow="True"
                                BorderColor="#616161"
-                               Margin="0, 5">
+                               Margin="0,10">
                             <VerticalStackLayout>
                                 <Label Text="{Binding Name}"
-                                       FontSize="18"
-                                       TextColor="White" />
+                                       FontSize="Large"
+                                       HorizontalTextAlignment="Start"
+                                       TextColor="White"
+                                       FontFamily="BakbakOneRegular" />
+                                <BoxView HeightRequest="1"
+                                         Color="#616161"
+                                         HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="Center" />
                                 <VerticalStackLayout IsVisible="{Binding Materials, Converter={StaticResource itemsSourceToVisibility}}">
-                                    <Label Text="Wybierz materiał:"
-                                           FontSize="16"
+                                    <Label Text="Materiał:"
+                                           FontSize="17"
                                            TextColor="White"
                                            Margin="0,10,0,0" />
                                     <Picker ItemsSource="{Binding Materials}"
                                             SelectedItem="{Binding SelectedMaterials}"
                                             IsVisible="{Binding Materials, Converter={StaticResource itemsSourceToVisibility}}"
-                                            FontSize="16"
-                                            TextColor="Black"
-                                            BackgroundColor="White" />
+                                            FontSize="17"
+                                            TextColor="White"
+                                            Margin="0,10"
+                                            BackgroundColor="#393E46" />
                                 </VerticalStackLayout>
 
-                                <VerticalStackLayout IsVisible="{Binding Colors, Converter={StaticResource itemsSourceToVisibility}}">
-                                    <Label Text="Wybierz kolor:"
-                                           FontSize="16"
+                                <VerticalStackLayout IsVisible="{Binding Colors, Converter={StaticResource itemsSourceToVisibility}}" HorizontalOptions="FillAndExpand">
+                                    <Label Text="Kolor:"
+                                           FontSize="17"
                                            TextColor="White"
-                                           Margin="0,10,0,0" />
+                                           Margin="0,10" />
                                     <Picker ItemsSource="{Binding Colors}"
                                             SelectedItem="{Binding SelectedColor}"
                                             IsVisible="{Binding Colors, Converter={StaticResource itemsSourceToVisibility}}"
                                             FontSize="16"
-                                            TextColor="Black"
-                                            BackgroundColor="White" />
+                                            
+                                            TextColor="White"
+                                            BackgroundColor="#393E46" 
+                                            />
                                 </VerticalStackLayout>
                             </VerticalStackLayout>
                         </Frame>
@@ -96,11 +106,10 @@
                     TextColor="#1C1C1E"
                     CornerRadius="15"
                     HeightRequest="45"
-                    Margin="5"
-                    VerticalOptions="CenterAndExpand"
+                    Margin="5,10,5,5"
+                    VerticalOptions="EndAndExpand"
                     FontFamily="BakbakOneRegular"
                     HorizontalOptions="FillAndExpand" />
-
         </Grid>
     </ScrollView>
 </ContentPage>
