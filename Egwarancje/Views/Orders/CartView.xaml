@@ -75,5 +75,18 @@
                 </CollectionView>
             </StackLayout>
         </ScrollView>
+
+        <Button Grid.Row="2"
+                Margin="20, 0, 20, 0"
+                Text="Zgłoś zamówienie"
+                TextColor="#1C1C1E"
+                BackgroundColor="#97D8FE"
+                FontFamily="BakbakOneRegular"
+                FontSize="17"
+                Padding="10"
+                CornerRadius="20"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="End"
+                Command="{Binding SubmitOrderCommand}" />
     </Grid>
 </ContentPage>

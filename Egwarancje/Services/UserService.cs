@@ -416,14 +416,14 @@ public class UserService : IDisposable
             return false;
         }
     }
-    public async Task<bool> DeleteCartAsync(Cart address)
+    public async Task<bool> DeleteCartAsync(Cart cart)
     {
         bool access = await CheckForNetworkAccess();
         if (!access) return false;
 
         try
         {
-            var requestUri = $"{_url}/Cart/Delete?id={address.Id}";
+            var requestUri = $"{_url}/Cart/Delete?id={cart.Id}";
             var response = await _httpClient.DeleteAsync(requestUri);
 
             return response.IsSuccessStatusCode;

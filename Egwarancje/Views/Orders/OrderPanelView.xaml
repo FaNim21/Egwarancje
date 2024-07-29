@@ -96,17 +96,5 @@
                 </CollectionView>
             </Grid>
         </ScrollView>
-        <StackLayout VerticalOptions="CenterAndExpand"
-                     Padding="20"
-                     Margin="0,600,0,0">
-            <Button Text="DODAJ ZAMÓWIENIE"
-                    FontFamily="BakbakOneRegular"
-                    FontSize="17"
-                    TextColor="#282830"
-                    BackgroundColor="#97D8FE"
-                    CornerRadius="20"
-                    Padding="10"
-                    Command="{Binding AddOrderCommand}" />
-        </StackLayout>
     </Grid>
 </ContentPage>

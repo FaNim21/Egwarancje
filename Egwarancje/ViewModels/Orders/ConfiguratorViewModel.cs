@@ -50,9 +50,11 @@ public partial class ConfiguratorViewModel : BaseViewModel
 
     public async Task AddProductToCart(ProductConfigurator product)
     {
-        CartProduct cartProduct = new();
-        cartProduct.Name = product.Name;
-        cartProduct.Amount = 1;
+        CartProduct cartProduct = new()
+        {
+            Name = product.Name,
+            Amount = 1
+        };
         cartProduct.Details ??= [];
 
         for (int i = 0; i < product.Structure!.Resources.Length; i++)
@@ -69,7 +71,7 @@ public partial class ConfiguratorViewModel : BaseViewModel
         }
 
         List<CartProduct> products = [];
-        if(!string.IsNullOrEmpty(_userService.User.Cart.Products))
+        if(!string.IsNullOrEmpty(_userService.User.Cart!.Products))
         {
             List<CartProduct>? _products = JsonSerializer.Deserialize<List<CartProduct>>(_userService.User.Cart.Products);
             if (_products == null) return;

@@ -74,9 +74,9 @@
                HeightRequest="50"
                BackgroundColor="Transparent"
                BorderColor="#FEFEFF">
-            <Entry Placeholder="Numer zamówienia"
-                   Text="{Binding OrderNumber, Mode=TwoWay}"
-                   Keyboard="Numeric"
+            <Entry Placeholder="Komentarz do zamowienia"
+                   Text="{Binding Comment, Mode=TwoWay}"
+                   Keyboard="Text"
                    BackgroundColor="Transparent"
                    PlaceholderColor="Gray"
                    TextColor="White" />
