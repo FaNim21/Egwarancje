@@ -21,14 +21,14 @@
         
         <ScrollView Grid.Row="1">
             <StackLayout Padding="10">
-                <Label IsVisible="{Binding isCartEmpty}"
+                <Label IsVisible="{Binding IsCartEmpty}"
                        Text="Aktualnie Twój koszyk jest pusty"
                        TextColor="White"
                        HorizontalOptions="Center" />
 
                 <BoxView HeightRequest="80"
                          Color="#1E1E1E" 
-                         IsVisible="{Binding isCartEmpty}"/>
+                         IsVisible="{Binding IsCartEmpty}"/>
 
                 <CollectionView ItemsSource="{Binding Products}" 
                                 Grid.Row="1">
@@ -105,6 +105,6 @@
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="End"
                 Command="{Binding SubmitOrderCommand}" 
-                IsVisible="{Binding isCartEmpty}"/>
+                IsVisible="{Binding IsCartEmpty}"/>
     </Grid>
 </ContentPage>

@@ -14,7 +14,7 @@ public partial class CartViewModel : BaseViewModel
 
     [ObservableProperty] private ObservableCollection<CartProduct> _products = [];
 
-    public bool isCartEmpty = true;
+    [ObservableProperty] public bool _isCartEmpty = true;
 
 
     public CartViewModel(UserService userService)
@@ -37,11 +37,11 @@ public partial class CartViewModel : BaseViewModel
             Cart? cart = await _userService.CreateCart(newCart);
             if (cart == null)
             {
-                isCartEmpty = true;
+                IsCartEmpty = true;
                 return;
             }
             _userService.User.Cart = cart;
-            isCartEmpty = false;
+            IsCartEmpty = false;
         }
 
         string? cartProductContent = _userService.User.Cart.Products;
