@@ -41,22 +41,16 @@
                       ContentTemplate="{DataTemplate viewOrders:OrderPanelView}"
                       Route="OrderPanel"
                       Icon="order_list.png" />
-        <Tab Title="Kreator"
-             Route="CartTab"
-             Icon="shopping_cart.png"
-             Shell.TabBarBackgroundColor="#242424"
-             Shell.TabBarUnselectedColor="#a6a6a6"
-             Shell.TabBarTitleColor="#97D8FE"
-             Shell.TabBarForegroundColor="#97D8FE">
-            <ShellContent Title="          Koszyk           "
-                          ContentTemplate="{DataTemplate viewOrders:CartView}"
-                          Route="Cart"
-                          Shell.BackgroundColor="#a6a6a6" />
-            <ShellContent Title="      Konfigurator      "
-                          ContentTemplate="{DataTemplate viewOrders:ConfiguratorView}"
-                          Route="Configurator"
-                          Shell.BackgroundColor="#a6a6a6" />
-        </Tab>
+
+        <ShellContent Title="Koszyk"
+                      ContentTemplate="{DataTemplate viewOrders:CartView}"
+                      Route="Cart"
+                      Icon="shopping_cart.png"/>
+        
+        <ShellContent Title="Konfigurator"
+                      ContentTemplate="{DataTemplate viewOrders:ConfiguratorView}"
+                      Route="Configurator"
+                      Icon="armchair.png"/>
 
         <ShellContent Title="Gwarancje"
                       ContentTemplate="{DataTemplate viewWarranties:WarrantyPanelView}"
