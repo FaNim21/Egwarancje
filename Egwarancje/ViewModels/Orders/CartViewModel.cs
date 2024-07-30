@@ -14,10 +14,13 @@ public partial class CartViewModel : BaseViewModel
 
     [ObservableProperty] private ObservableCollection<CartProduct> _products = [];
 
+    public bool isCartEmpty = true;
+
 
     public CartViewModel(UserService userService)
     {
         _userService = userService;
+
         Task.Run(LoadOrCreateCart);
     }
 
@@ -25,14 +28,20 @@ public partial class CartViewModel : BaseViewModel
     {
         if (_userService.User.Cart == null)
         {
+
             Cart newCart = new()
             {
                 UserId = _userService.User.Id,
             };
 
             Cart? cart = await _userService.CreateCart(newCart);
-            if (cart == null) return; 
+            if (cart == null)
+            {
+                isCartEmpty = true;
+                return;
+            }
             _userService.User.Cart = cart;
+            isCartEmpty = false;
         }
 
         string? cartProductContent = _userService.User.Cart.Products;
